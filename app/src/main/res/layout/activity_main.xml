@@ -2,14 +2,64 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hon"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/menyushka1"
+    android:foregroundGravity="fill_horizontal|fill_vertical"
+    android:foregroundTintMode="add"
     tools:context=".MainActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_konez"
+        android:layout_width="540dp"
+        android:layout_height="307dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/vihod"
+        android:transitionGroup="true"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/button_igra"
+        app:layout_constraintTop_toBottomOf="@+id/button_ans">
+
+        <Button
+            android:id="@+id/button_NET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="125dp"
+            android:layout_marginBottom="34dp"
+            android:text="НЕТ"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/button_Da"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="94dp"
+            android:text="ДА"
+            app:layout_constraintBottom_toBottomOf="@+id/button_NET"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_NET" />
+
+        <TextView
+            android:id="@+id/text_konez"
+            android:layout_width="122dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="23dp"
+            android:text="Вы дочно хотите выйте из приложения"
+            android:textColor='@color/design_default_color_primary_variant'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/nachalo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/purple_500"
         android:text="@string/nachalo_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,16 +110,6 @@
         app:layout_constraintEnd_toStartOf="@+id/button_nastr" />
 
     <Button
-        android:id="@+id/button_nastr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="18dp"
-        android:text="cetinks"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/button_kliker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,6 +117,16 @@
         android:layout_marginEnd="4dp"
         android:text="klick"
         app:layout_constraintEnd_toStartOf="@+id/button_ans"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_nastr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="18dp"
+        android:text="cetinks"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
