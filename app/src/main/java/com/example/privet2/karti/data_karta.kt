@@ -26,3 +26,5 @@ open class data_karta(paint: Int, xp: Int, ataka: Int) {
             8 to R.drawable.koloda02, 9 to R.drawable.koloda02, 10 to R.drawable.koloda02)  // добавить картинки
         return ataka_paint_art[this.ataka_now]}
 }
+
+
