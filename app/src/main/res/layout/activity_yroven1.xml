@@ -5,58 +5,60 @@
     android:id="@+id/IPPPPPPPP"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/interfeis"
     tools:context=".yroven1">
 
-    <Button
-        android:id="@+id/button_ctart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:text="Старт"
+    <ImageView
+        android:id="@+id/image_ctart"
+        android:layout_width="116dp"
+        android:layout_height="71dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.955" />
+        app:layout_constraintVertical_bias="0.884"
+        app:srcCompat="@drawable/play" />
 
     <ImageView
         android:id="@+id/image_vrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
         android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.974"
+        app:layout_constraintHorizontal_bias="0.992"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintVertical_bias="0.046"
+        app:srcCompat="@drawable/evilpers" />
 
     <ImageView
         android:id="@+id/image_i"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="120dp"
+        android:layout_height="141dp"
+        android:background="@drawable/pers"
         android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintVertical_bias="0.003" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/laiaut_2_4"
-        android:layout_width="107dp"
-        android:layout_height="115dp"
-        android:background="@color/design_default_color_error"
+        android:layout_width="110dp"
+        android:layout_height="161dp"
+        android:background="@drawable/evilplace"
         android:clickable="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintHorizontal_bias="0.801"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783">
+        app:layout_constraintVertical_bias="0.848">
 
         <ImageView
             android:id="@+id/image_2_4_xp"
@@ -67,8 +69,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_2_4_ataka"
@@ -76,26 +77,26 @@
             android:layout_height="38dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.985"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/laiaut_2_3"
-        android:layout_width="107dp"
-        android:layout_height="115dp"
-        android:background="@color/design_default_color_error"
+        android:layout_width="110dp"
+        android:layout_height="161dp"
+        android:background="@drawable/evilplace"
         android:clickable="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.639"
+        app:layout_constraintHorizontal_bias="0.637"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783">
+        app:layout_constraintVertical_bias="0.848">
 
         <ImageView
             android:id="@+id/image_2_3_xp"
@@ -106,8 +107,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_2_3_ataka"
@@ -118,23 +118,22 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/laiaut_1_4"
-        android:layout_width="107dp"
-        android:layout_height="115dp"
-        android:background="@color/design_default_color_error"
+        android:layout_width="110dp"
+        android:layout_height="161dp"
+        android:background="@drawable/evilplace"
         android:clickable="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintHorizontal_bias="0.801"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307">
+        app:layout_constraintVertical_bias="0.124">
 
         <ImageView
             android:id="@+id/image_1_4_xp"
@@ -145,8 +144,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_1_4_ataka"
@@ -157,23 +155,22 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/laiaut_1_3"
-        android:layout_width="107dp"
-        android:layout_height="115dp"
-        android:background="@color/design_default_color_error"
+        android:layout_width="110dp"
+        android:layout_height="161dp"
+        android:background="@drawable/evilplace"
         android:clickable="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.639"
+        app:layout_constraintHorizontal_bias="0.638"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307">
+        app:layout_constraintVertical_bias="0.124">
 
         <ImageView
             android:id="@+id/image_1_3_xp"
@@ -184,8 +181,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_1_3_ataka"
@@ -196,15 +192,14 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/laiaut_2_2"
-        android:layout_width="107dp"
-        android:layout_height="115dp"
-        android:background="@color/design_default_color_error"
+        android:layout_width="110dp"
+        android:layout_height="161dp"
+        android:background="@drawable/place"
         android:clickable="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -212,7 +207,7 @@
         app:layout_constraintHorizontal_bias="0.399"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783">
+        app:layout_constraintVertical_bias="0.848">
 
         <ImageView
             android:id="@+id/image_2_2_xp"
@@ -223,8 +218,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_2_2_ataka"
@@ -235,23 +229,23 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/laiaut_2_1"
-        android:layout_width="107dp"
-        android:layout_height="115dp"
-        android:background="@color/design_default_color_error"
+        android:layout_width="110dp"
+        android:layout_height="161dp"
+        android:background="@drawable/place"
         android:clickable="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783">
+        app:layout_constraintVertical_bias="0.848">
 
         <ImageView
             android:id="@+id/image_2_1_xp"
@@ -262,8 +256,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_2_1_ataka"
@@ -274,15 +267,14 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/laiaut_1_2"
-        android:layout_width="107dp"
-        android:layout_height="115dp"
-        android:background="@color/design_default_color_error"
+        android:layout_width="110dp"
+        android:layout_height="161dp"
+        android:background="@drawable/place"
         android:clickable="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -290,7 +282,7 @@
         app:layout_constraintHorizontal_bias="0.399"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307">
+        app:layout_constraintVertical_bias="0.124">
 
         <ImageView
             android:id="@+id/image_1_2_xp"
@@ -301,8 +293,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_1_2_ataka"
@@ -313,23 +304,22 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/laiaut_1_1"
-        android:layout_width="107dp"
-        android:layout_height="115dp"
-        android:background="@color/design_default_color_error"
+        android:layout_width="110dp"
+        android:layout_height="161dp"
+        android:background="@drawable/place"
         android:clickable="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307">
+        app:layout_constraintVertical_bias="0.124">
 
         <ImageView
             android:id="@+id/image_1_1_xp"
@@ -340,8 +330,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_1_1_ataka"
@@ -352,98 +341,79 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/text_xp_nahi"
+        android:layout_width="63dp"
+        android:layout_height="48dp"
+        android:text="50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <TextView
+        android:id="@+id/text_xp_vraga"
+        android:layout_width="63dp"
+        android:layout_height="48dp"
+        android:text="50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <ImageView
+        android:id="@+id/image_koloda_v_igre"
+        android:layout_width="93dp"
+        android:layout_height="92dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.902" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/konsol_yverenu"
-        android:layout_width="551dp"
-        android:layout_height="300dp"
-        android:background="@color/design_default_color_error"
+        android:layout_width="621dp"
+        android:layout_height="379dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.495">
+        app:layout_constraintVertical_bias="0.812">
 
-        <TextView
-            android:id="@+id/out_lvl"
-            android:layout_width="109dp"
-            android:layout_height="68dp"
-            android:text="Вы хотите начать игру?"
+        <ImageView
+            android:id="@+id/image_igra_igrat"
+            android:layout_width="140dp"
+            android:layout_height="133dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.168"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.336" />
+            app:layout_constraintVertical_bias="0.934"
+            app:srcCompat="@drawable/button_da" />
 
-        <Button
-            android:id="@+id/button_igra_igrat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DA"
+        <ImageView
+            android:id="@+id/image_igra_vuhod"
+            android:layout_width="140dp"
+            android:layout_height="133dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.258"
+            app:layout_constraintHorizontal_bias="0.837"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.85" />
-
-        <Button
-            android:id="@+id/button_igra_vuhod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NET"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.804"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.85" />
+            app:layout_constraintVertical_bias="0.934"
+            app:srcCompat="@drawable/button_no" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/button_otkrit_kolody"
-        android:layout_width="88dp"
-        android:layout_height="83dp"
-        android:background="@drawable/i"
-        android:clickable="false"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.951" />
-
-    <EditText
-        android:id="@+id/xp_nahi"
-        android:layout_width="73dp"
-        android:layout_height="56dp"
-        android:ems="50"
-        android:inputType="number"
-        android:text="50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
-
-    <EditText
-        android:id="@+id/xp_vraga"
-        android:layout_width="73dp"
-        android:layout_height="56dp"
-        android:ems="50"
-        android:inputType="number"
-        android:text="50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

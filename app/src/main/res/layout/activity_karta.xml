@@ -4,42 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/lvl"
     tools:context=".karta">
 
-    <Button
-        android:id="@+id/button_back"
-        android:layout_width="139dp"
-        android:layout_height="58dp"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.964"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954" />
-
-    <Button
+    <ImageView
         android:id="@+id/i1_yroven"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:background="@drawable/i"
-        android:text="1"
+        android:layout_width="136dp"
+        android:layout_height="115dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintVertical_bias="0.148"
+        app:srcCompat="@drawable/button_lvlone" />
 
-    <Button
-        android:id="@+id/button_exper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+    <ImageView
+        android:id="@+id/image_back"
+        android:layout_width="163dp"
+        android:layout_height="116dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.756"
+        app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.928" />
+        app:layout_constraintVertical_bias="0.945"
+        app:srcCompat="@drawable/button_back" />
 </androidx.constraintlayout.widget.ConstraintLayout>

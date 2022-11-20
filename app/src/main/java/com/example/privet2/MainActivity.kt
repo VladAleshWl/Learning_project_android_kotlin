@@ -1,13 +1,10 @@
 package com.example.privet2
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 
 
@@ -18,26 +15,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var HON: ConstraintLayout = findViewById(R.id.hon)
-        var tex1: TextView = findViewById(R.id.nachalo)
-        var vihod: Button = findViewById(R.id.button_vihod)
-        var koloda: Button = findViewById(R.id.button_koloda)
-        var igra: Button = findViewById(R.id.button_igra)
-        var ans: Button = findViewById(R.id.button_ans)
-        var nastr: Button = findViewById(R.id.button_nastr)
-        var kliker: Button = findViewById(R.id.button_kliker)
+        var vihod: ImageView = findViewById(R.id.image_vixod)
+        var koloda: ImageView = findViewById(R.id.image_koloda)
+        var igra: ImageView = findViewById(R.id.image_igra)
+        var nastr: ImageView = findViewById(R.id.image_nastr)
+        var kliker: ImageView = findViewById(R.id.image_kliker)
         var vihod_kones: ConstraintLayout = findViewById(R.id.constraintLayout_konez)
-        var DA: Button = findViewById(R.id.button_Da)
-        var NET: Button = findViewById(R.id.button_NET)
-        var text_vaxoda: TextView = findViewById(R.id.text_konez)
+        var DA: ImageView = findViewById(R.id.image_Da)
+        var NET: ImageView = findViewById(R.id.image_No)
+
+        kliker.setBackgroundResource(R.drawable.clickbutton)
 
         vihod.setOnClickListener {
             vihod_kones.visibility = View.VISIBLE
-            kliker.visibility = View.INVISIBLE
-            tex1.visibility = View.INVISIBLE
             vihod.setClickable(false)
             koloda.setClickable(false)
             igra.setClickable(false)
-            ans.setClickable(false)
             nastr.setClickable(false)
 
         }
@@ -49,16 +42,13 @@ class MainActivity : AppCompatActivity() {
         NET.setOnClickListener {
             vihod_kones.visibility = View.INVISIBLE
             kliker.visibility = View.VISIBLE
-            tex1.visibility = View.VISIBLE
             vihod.setClickable(true)
             koloda.setClickable(true)
             igra.setClickable(true)
-            ans.setClickable(true)
             nastr.setClickable(true)
         }
 
         koloda.setOnClickListener {
-            tex1.setText("Тут ,пока, надо включить воображение")
         }
 
         igra.setOnClickListener {
@@ -66,16 +56,63 @@ class MainActivity : AppCompatActivity() {
             startActivity(MyIntent)
         }
 
-        var a:Int = 0
+        var a = 1
         kliker.setOnClickListener {
+            when (a){
+                1 -> {kliker.setBackgroundResource(R.drawable.nomer1)}
+                2 -> {kliker.setBackgroundResource(R.drawable.nomer2)}
+                3 -> {kliker.setBackgroundResource(R.drawable.nomer3)}
+                4 -> {kliker.setBackgroundResource(R.drawable.nomer4)}
+                5 -> {kliker.setBackgroundResource(R.drawable.nomer5)}
+                6 -> {kliker.setBackgroundResource(R.drawable.nomer6)}
+                7 -> {kliker.setBackgroundResource(R.drawable.nomer7)}
+                8 -> {kliker.setBackgroundResource(R.drawable.nomer8)}
+                9 -> {kliker.setBackgroundResource(R.drawable.nomer9)}
+                10 -> {
+                    kliker.setBackgroundResource(R.drawable.clickbutton)
+                    a = 0
+                }
+            }
             a++
-            tex1.setText("${a}")
-            if (a == 50){
-                tex1.setText("Я сломался. Доигрались")
-                kliker.visibility = View.INVISIBLE}
         }
+
 
     }
 
+    override fun onBackPressed() {
+        var HON: ConstraintLayout = findViewById(R.id.hon)
+        var vihod: ImageView = findViewById(R.id.image_vixod)
+        var koloda: ImageView = findViewById(R.id.image_koloda)
+        var igra: ImageView = findViewById(R.id.image_igra)
+        var nastr: ImageView = findViewById(R.id.image_nastr)
+        var kliker: ImageView = findViewById(R.id.image_kliker)
+        var vihod_kones: ConstraintLayout = findViewById(R.id.constraintLayout_konez)
+        var DA: ImageView = findViewById(R.id.image_Da)
+        var NET: ImageView = findViewById(R.id.image_No)
 
+        kliker.setBackgroundResource(R.drawable.clickbutton)
+
+        vihod.setOnClickListener {
+            vihod_kones.visibility = View.VISIBLE
+            vihod.setClickable(false)
+            koloda.setClickable(false)
+            igra.setClickable(false)
+            nastr.setClickable(false)
+
+        }
+        DA.setOnClickListener {
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+        }
+
+        NET.setOnClickListener {
+            vihod_kones.visibility = View.INVISIBLE
+            kliker.visibility = View.VISIBLE
+            vihod.setClickable(true)
+            koloda.setClickable(true)
+            igra.setClickable(true)
+            nastr.setClickable(true)
+        }
+        vihod.performClick()
+    }
 }

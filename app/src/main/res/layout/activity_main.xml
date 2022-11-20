@@ -11,137 +11,103 @@
     tools:context=".MainActivity">
 
 
+    <ImageView
+        android:id="@+id/image_kliker"
+        android:layout_width="106dp"
+        android:layout_height="93dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.613" />
+
+    <ImageView
+        android:id="@+id/image_nastr"
+        android:layout_width="107dp"
+        android:layout_height="92dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021"
+        app:srcCompat="@drawable/settings" />
+
+    <ImageView
+        android:id="@+id/image_igra"
+        android:layout_width="264dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.184"
+        app:srcCompat="@drawable/playbutton" />
+
+    <ImageView
+        android:id="@+id/image_koloda"
+        android:layout_width="264dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.572"
+        app:srcCompat="@drawable/colodabutton" />
+
+    <ImageView
+        android:id="@+id/image_vixod"
+        android:layout_width="264dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947"
+        app:srcCompat="@drawable/exitbutton" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout_konez"
         android:layout_width="540dp"
         android:layout_height="307dp"
-        android:layout_marginStart="112dp"
-        android:background="@drawable/vihod"
+        android:background="@drawable/button_exit1"
         android:transitionGroup="true"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
-        app:layout_constraintStart_toStartOf="@+id/button_igra"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653">
+        app:layout_constraintVertical_bias="0.711">
 
-        <Button
-            android:id="@+id/button_NET"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="125dp"
-            android:layout_marginBottom="34dp"
-            android:text="НЕТ"
+        <ImageView
+            android:id="@+id/image_Da"
+            android:layout_width="155dp"
+            android:layout_height="107dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/button_Da"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="94dp"
-            android:text="ДА"
-            app:layout_constraintBottom_toBottomOf="@+id/button_NET"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button_NET" />
-
-        <TextView
-            android:id="@+id/text_konez"
-            android:layout_width="122dp"
-            android:layout_height="74dp"
-            android:layout_marginTop="31dp"
-            android:layout_marginEnd="23dp"
-            android:text="Вы дочно хотите выйте из приложения"
-            android:textColor='@color/design_default_color_primary_variant'
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.197"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.92"
+            app:srcCompat="@drawable/button_da" />
+
+        <ImageView
+            android:id="@+id/image_No"
+            android:layout_width="155dp"
+            android:layout_height="107dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.859"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.92"
+            app:srcCompat="@drawable/button_no" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/nachalo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/purple_500"
-        android:text="@string/nachalo_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_vihod"
-        android:layout_width="139dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="56dp"
-        android:background="@drawable/button"
-        android:text="ВЫХОД"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_koloda"
-        android:layout_width="139dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="-345dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/button"
-        android:text="КОЛОДА"
-        app:layout_constraintBottom_toTopOf="@+id/button_vihod"
-        app:layout_constraintStart_toStartOf="@+id/button_vihod" />
-
-    <Button
-        android:id="@+id/button_igra"
-        android:layout_width="130dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="77dp"
-        android:background="@drawable/button"
-        android:text="ИГРА"
-        app:iconTint="#5C1616"
-        app:layout_constraintBottom_toBottomOf="@+id/button_koloda"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_nastr"
-        app:layout_constraintVertical_bias="0.901"
-        app:strokeColor="#B81A1A" />
-
-    <Button
-        android:id="@+id/button_ans"
-        android:layout_width="51dp"
-        android:layout_height="67dp"
-        android:background="@drawable/answer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.867"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/button_kliker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="124dp"
-        android:text="klick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.584" />
-
-    <Button
-        android:id="@+id/button_nastr"
-        android:layout_width="76dp"
-        android:layout_height="71dp"
-        android:background="@drawable/settings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toEndOf="@+id/button_ans"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047"
-        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

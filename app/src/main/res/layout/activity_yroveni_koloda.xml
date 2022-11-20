@@ -2,14 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button_back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".yroveni_koloda">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/korta_v_kolode_3"
-        android:layout_width="241dp"
-        android:layout_height="263dp"
+        android:layout_width="187dp"
+        android:layout_height="278dp"
         android:background="@color/design_default_color_error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,33 +21,31 @@
 
         <ImageView
             android:id="@+id/image_karta_v_colode_ataka_3"
-            android:layout_width="79dp"
-            android:layout_height="87dp"
+            android:layout_width="53dp"
+            android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.955"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_karta_v_colode_xp_3"
-            android:layout_width="79dp"
-            android:layout_height="87dp"
+            android:layout_width="49dp"
+            android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button_back__yroven_koloda"
-        android:layout_width="147dp"
-        android:layout_height="92dp"
+        android:id="@+id/button_back_yroven_koloda"
+        android:layout_width="139dp"
+        android:layout_height="57dp"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,74 +55,70 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/korta_v_kolode_1"
-        android:layout_width="241dp"
-        android:layout_height="263dp"
+        android:layout_width="179dp"
+        android:layout_height="273dp"
         android:background="@color/design_default_color_error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371">
+        app:layout_constraintVertical_bias="0.365">
 
         <ImageView
             android:id="@+id/image_karta_v_colode_ataka_1"
-            android:layout_width="79dp"
-            android:layout_height="87dp"
+            android:layout_width="49dp"
+            android:layout_height="47dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.971"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_karta_v_colode_xp_1"
-            android:layout_width="79dp"
-            android:layout_height="87dp"
+            android:layout_width="56dp"
+            android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="0.973" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/korta_v_kolode_2"
-        android:layout_width="241dp"
-        android:layout_height="263dp"
+        android:layout_width="177dp"
+        android:layout_height="265dp"
         android:background="@color/design_default_color_error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108">
+        app:layout_constraintVertical_bias="0.219">
 
         <ImageView
             android:id="@+id/image_karta_v_colode_ataka_2"
-            android:layout_width="79dp"
-            android:layout_height="87dp"
+            android:layout_width="52dp"
+            android:layout_height="46dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.96"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/image_karta_v_colode_xp_2"
-            android:layout_width="79dp"
-            android:layout_height="87dp"
+            android:layout_width="53dp"
+            android:layout_height="47dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.047"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintVertical_bias="0.964" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
