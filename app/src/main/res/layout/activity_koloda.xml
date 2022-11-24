@@ -524,7 +524,7 @@
     </ScrollView>
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/image_kn_bl"
         android:layout_width="188dp"
         android:layout_height="126dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -532,11 +532,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/button_blizhniki" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/image_kn_dal"
         android:layout_width="188dp"
         android:layout_height="126dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -544,11 +543,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442"
-        app:srcCompat="@drawable/button_dalniki" />
+        app:layout_constraintVertical_bias="0.498" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/image_kn_ipi"
         android:layout_width="188dp"
         android:layout_height="126dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -556,7 +554,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884"
-        app:srcCompat="@drawable/button_vozvishini" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
