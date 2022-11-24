@@ -32,6 +32,7 @@ class create_koloda {
     val nabor_kart = listOf<data_karta>(fox, dog, bird)
     val nabor_kart_dalnici = listOf<karte_dalnic>(bird)
     val nabor_kart_blihnic = listOf<karte_blihnic>(dog, fox)
+    val nabor_kart_vragi = listOf<data_karta>(voron, sneake)
     val nabor_kart_vragi_dalnici = listOf<karte_dalnic>(voron)
     val nabor_kart_vragi_blihnic = listOf<karte_blihnic>(sneake)
     var cpiso: Map<String, data_karta> = mapOf(nety_data.ip_karti to nety_data, fox.ip_karti to fox,
@@ -56,5 +57,19 @@ class create_koloda {
     fun nyhen_dalnici_vrag (): karte_dalnic {
         var number: Int = Random.nextInt(nabor_kart_vragi_dalnici.size)
         return nabor_kart_vragi_dalnici.get(number)
+    }
+    fun dai_karty_is_cpicka_get(number: Int): data_karta{
+        var num = number
+        val dlina_1 = nabor_kart.size
+        if (number >= dlina_1 + nabor_kart_vragi.size) { return nety_data}
+        else {
+            if (number < dlina_1){
+                return nabor_kart.get(num)
+            }
+            else {
+                num = num - dlina_1
+                return nabor_kart_vragi.get(num)
+            }
+        }
     }
 }

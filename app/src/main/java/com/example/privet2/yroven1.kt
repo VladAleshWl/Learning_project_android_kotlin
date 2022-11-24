@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.privet2.Data.Data_and_flagi
 import com.example.privet2.karti.create_koloda
 import com.example.privet2.karti.data_karta
 import kotlin.random.Random
@@ -19,6 +20,7 @@ class yroven1 : AppCompatActivity() {
     var flag_bloca_vcex: Boolean = true
     lateinit var carta_ctavit: data_karta
     var basa_cart = create_koloda()
+    var basa_fkagov = Data_and_flagi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -337,7 +339,10 @@ class yroven1 : AppCompatActivity() {
             xp_poli_2_4_now = b3
             vrag_xp_chislo = d3
             xp_vrag.setText(vrag_xp_chislo.toString())
-            if (vrag_xp_chislo < 1) { finish() }           //тут стоп
+            if (vrag_xp_chislo < 1) {
+                finish()
+                basa_fkagov.flag_1_go_yr = true
+            }
             carta_ctavit = basa_cart.nety_data
             blok_poli_vrag(true)
             opnova(pole_2_4, xp_poli_2_4_now)

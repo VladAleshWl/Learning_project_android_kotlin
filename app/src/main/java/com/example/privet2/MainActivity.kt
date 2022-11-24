@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         koloda.setOnClickListener {
+            val MyIntent = Intent(this, com.example.privet2.koloda::class.java)
+            startActivity(MyIntent)
         }
 
         igra.setOnClickListener {
