@@ -24,9 +24,9 @@ class create_koloda {
     public  fun get_karta_na_pole(): data_karta{return karta_na_pole}
 
     val nety_data = data_karta(R.drawable.oblozka, 0, 0, "000")
-    val fox = karte_blihnic(R.drawable.fox, 3, 3, "001-1")
-    val mouse = karte_dalnic(R.drawable.mouse, 2, 5, "001-1")
-    val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-2")
+    val fox = karte_blihnic(R.drawable.fox, 3, 3, "002-2")
+    val mouse = karte_dalnic(R.drawable.mouse, 2, 5, "001-2")
+    val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-3")
     val dog = karte_blihnic(R.drawable.dog, 4, 1, "002-1")
     val voron = karte_dalnic(R.drawable.voron, 1, 2, "101")
     val sneake = karte_blihnic(R.drawable.sneake, 3, 1, "102")

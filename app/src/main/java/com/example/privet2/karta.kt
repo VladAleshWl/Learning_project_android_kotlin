@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.privet2.Data.Data_and_flagi
 
 public class karta : AppCompatActivity() {
-    var basa_fkagov = Data_and_flagi
+    val basa_fkagov = Data_and_flagi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_karta)
         supportActionBar?.hide()
-        var back: ImageView = findViewById(R.id.image_back)
-        var i1: ImageView = findViewById(R.id.i1_yroven)
+        val back: ImageView = findViewById(R.id.image_back)
+        val i1: ImageView = findViewById(R.id.i1_yroven)
 
 
         back.setOnClickListener {
@@ -27,7 +27,7 @@ public class karta : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        var i2: ImageView = findViewById(R.id.i2_yroven)
+        val i2: ImageView = findViewById(R.id.i2_yroven)
         if(basa_fkagov.flag_1_go_yr) { i2.visibility = View.VISIBLE }
 
         i2.setOnClickListener {

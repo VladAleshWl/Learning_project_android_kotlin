@@ -14,15 +14,15 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var HON: ConstraintLayout = findViewById(R.id.hon)
-        var vihod: ImageView = findViewById(R.id.image_vixod)
-        var koloda: ImageView = findViewById(R.id.image_koloda)
-        var igra: ImageView = findViewById(R.id.image_igra)
-        var nastr: ImageView = findViewById(R.id.image_nastr)
-        var kliker: ImageView = findViewById(R.id.image_kliker)
-        var vihod_kones: ConstraintLayout = findViewById(R.id.constraintLayout_konez)
-        var DA: ImageView = findViewById(R.id.image_Da)
-        var NET: ImageView = findViewById(R.id.image_No)
+        val HON: ConstraintLayout = findViewById(R.id.hon)
+        val vihod: ImageView = findViewById(R.id.image_vixod)
+        val koloda: ImageView = findViewById(R.id.image_koloda)
+        val igra: ImageView = findViewById(R.id.image_igra)
+        val nastr: ImageView = findViewById(R.id.image_nastr)
+        val kliker: ImageView = findViewById(R.id.image_kliker)
+        val vihod_kones: ConstraintLayout = findViewById(R.id.constraintLayout_konez)
+        val DA: ImageView = findViewById(R.id.image_Da)
+        val NET: ImageView = findViewById(R.id.image_No)
 
         kliker.setBackgroundResource(R.drawable.clickbutton)
 
@@ -77,8 +77,6 @@ class MainActivity : AppCompatActivity() {
             }
             a++
         }
-
-
     }
 
     override fun onBackPressed() {

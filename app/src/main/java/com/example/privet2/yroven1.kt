@@ -21,63 +21,42 @@ class yroven1 : AppCompatActivity() {
     val basa_fkagov = Data_and_flagi
     var flag_deictvia: Int = 0
     var flag_bloca_vcex: Boolean = true
+    var prov_11 = 0
+    var prov_12 = 0
+    var prov_21 = 0
+    var prov_22 = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_yroven1)
         supportActionBar?.hide()
-        var pole_1_2_ataca: ImageView = findViewById(R.id.image_1_2_xp)
-        var pole_1_2_xp: ImageView = findViewById(R.id.image_1_2_ataka)
-        var pole_2_1_ataca: ImageView = findViewById(R.id.image_2_1_xp)
-        var pole_2_1_xp: ImageView = findViewById(R.id.image_2_1_ataka)
-        var pole_2_2_ataca: ImageView = findViewById(R.id.image_2_2_xp)
-        var pole_2_2_xp: ImageView = findViewById(R.id.image_2_2_ataka)
-        var pole_1_3_ataca: ImageView = findViewById(R.id.image_1_3_xp)
-        var pole_1_3_xp: ImageView = findViewById(R.id.image_1_3_ataka)
-        var pole_1_4_ataca: ImageView = findViewById(R.id.image_1_4_xp)
-        var pole_1_4_xp: ImageView = findViewById(R.id.image_1_4_ataka)
-        var pole_2_3_ataca: ImageView = findViewById(R.id.image_2_3_xp)
-        var pole_2_3_xp: ImageView = findViewById(R.id.image_2_3_ataka)
-        var pole_2_4_ataca: ImageView = findViewById(R.id.image_2_4_xp)
-        var pole_2_4_xp: ImageView = findViewById(R.id.image_2_4_ataka)
-        var igra_vuhod: ImageView = findViewById(R.id.image_igra_vuhod)
-        var igra_igrat: ImageView = findViewById(R.id.image_igra_igrat)
-        var pole_1_2: ConstraintLayout = findViewById(R.id.laiaut_1_2)
-        var pole_1_3: ConstraintLayout = findViewById(R.id.laiaut_1_3)
-        var pole_1_4: ConstraintLayout = findViewById(R.id.laiaut_1_4)
-        var pole_2_1: ConstraintLayout = findViewById(R.id.laiaut_2_1)
-        var pole_2_2: ConstraintLayout = findViewById(R.id.laiaut_2_2)
-        var pole_2_3: ConstraintLayout = findViewById(R.id.laiaut_2_3)
-        var pole_2_4: ConstraintLayout = findViewById(R.id.laiaut_2_4)
+
+        val igra_vuhod: ImageView = findViewById(R.id.image_igra_vuhod)
+        val igra_igrat: ImageView = findViewById(R.id.image_igra_igrat)
         val pole_1_1 = pole(findViewById(R.id.laiaut_1_1), findViewById(R.id.image_1_1_ataka), findViewById(R.id.image_1_1_xp))
-        var yverenu: ConstraintLayout = findViewById(R.id.konsol_yverenu)
-        var otkrit_kolody: ImageView = findViewById(R.id.image_koloda_v_igre)
-        var ctart: ImageView = findViewById(R.id.image_ctart)
-        var xp_my: TextView = findViewById(R.id.text_xp_nahi)
-        var xp_vrag: TextView = findViewById(R.id.text_xp_vraga)
-        var my_xp_chislo:Int = 50
-        var vrag_xp_chislo:Int = 50
-        var xp_poli_1_1_now = 0
-        var ataca_poli_1_1_now = 0
-        var xp_poli_1_2_now = 0
-        var ataca_poli_1_2_now = 0
-        var xp_poli_2_1_now = 0
-        var ataca_poli_2_1_now = 0
-        var xp_poli_2_2_now = 0
-        var ataca_poli_2_2_now = 0
-        var xp_poli_1_3_now = 0
-        var ataca_poli_1_3_now = 0
-        var xp_poli_1_4_now = 0
-        var ataca_poli_1_4_now = 0
-        var xp_poli_2_3_now = 0
-        var ataca_poli_2_3_now = 0
-        var xp_poli_2_4_now = 0
-        var ataca_poli_2_4_now = 0
+        val pole_1_2 = pole(findViewById(R.id.laiaut_1_2), findViewById(R.id.image_1_2_ataka), findViewById(R.id.image_1_2_xp))
+        val pole_2_1 = pole(findViewById(R.id.laiaut_2_1), findViewById(R.id.image_2_1_ataka), findViewById(R.id.image_2_1_xp))
+        val pole_2_2 = pole(findViewById(R.id.laiaut_2_2), findViewById(R.id.image_2_2_ataka), findViewById(R.id.image_2_2_xp))
+        val pole_1_3 = pole(findViewById(R.id.laiaut_1_3), findViewById(R.id.image_1_3_ataka), findViewById(R.id.image_1_3_xp))
+        val pole_1_4 = pole(findViewById(R.id.laiaut_1_4), findViewById(R.id.image_1_4_ataka), findViewById(R.id.image_1_4_xp))
+        val pole_2_3 = pole(findViewById(R.id.laiaut_2_3), findViewById(R.id.image_2_3_ataka), findViewById(R.id.image_2_3_xp))
+        val pole_2_4 = pole(findViewById(R.id.laiaut_2_4), findViewById(R.id.image_2_4_ataka), findViewById(R.id.image_2_4_xp))
+        val yverenu: ConstraintLayout = findViewById(R.id.konsol_yverenu)
+        val otkrit_kolody: ImageView = findViewById(R.id.image_koloda_v_igre)
+        val ctart: ImageView = findViewById(R.id.image_ctart)
+        val xp_my: TextView = findViewById(R.id.text_xp_nahi)
+        val xp_vrag: TextView = findViewById(R.id.text_xp_vraga)
+        var my_xp_chislo:Int = 40
+        var vrag_xp_chislo:Int = 40
         var otdix: Int
 
         basa_cart.set_krt1(basa_cart.nyhen_dalnici())
         basa_cart.set_krt2(basa_cart.nyhen_zenter())
         basa_cart.set_krt3(basa_cart.nyhen_blihnic())
+        basa_cart.set_flag_deistvii_2(0)
+
+        xp_vrag.setText(vrag_xp_chislo.toString())
+        xp_my.setText(my_xp_chislo.toString())
 
         otkrit_kolody.setClickable(false)
         ctart.setClickable(false)
@@ -94,16 +73,16 @@ class yroven1 : AppCompatActivity() {
 
         fun blok_poli_nahe(blok: Boolean){
             pole_1_1.pole.isClickable = blok
-            pole_1_2.isClickable = blok
-            pole_2_1.isClickable = blok
-            pole_2_2.isClickable = blok
+            pole_1_2.pole.isClickable = blok
+            pole_2_1.pole.isClickable = blok
+            pole_2_2.pole.isClickable = blok
             otkrit_kolody.isClickable = blok
         }
         fun blok_poli_vrag(blok: Boolean){
-            pole_1_3.isClickable = blok
-            pole_1_4.isClickable = blok
-            pole_2_3.isClickable = blok
-            pole_2_4.isClickable = blok
+            pole_1_3.pole.isClickable = blok
+            pole_1_4.pole.isClickable = blok
+            pole_2_3.pole.isClickable = blok
+            pole_2_4.pole.isClickable = blok
         }
 
         fun yron__linia(yron: Int, blignic: Int, dalnic: Int, vrag: Int): List<Int>{
@@ -126,289 +105,179 @@ class yroven1 : AppCompatActivity() {
             return dannie
         }
 
+        fun sapolnenie_poli(pole_: pole){
+            if (flag_deictvia == 1){
+            if (flag_bloca_vcex) {blok_poli_nahe(false)}
+
+            pole_.xp_now = carta_ctavit.xp
+            pole_.ataka_now = carta_ctavit.ataka
+            var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
+            var ataka_karti_icon = carta_ctavit.ataka_paint()
+            if ((ataka_karti_icon != null) && (xp_karti_icon != null)) {
+                pole_.ataka_image.setBackgroundResource(ataka_karti_icon)
+                pole_.xp_image.setBackgroundResource(xp_karti_icon)
+            }
+            pole_.pole.setBackgroundResource(carta_ctavit.paint)
+            otkrit_kolody.setBackgroundResource(R.drawable.koloda)
+        }
+            if (flag_deictvia == 2) {
+                var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
+                pole_.xp_image.setBackgroundResource(xp_karti_icon!!)
+                pole_.pole.isClickable = false
+            }}
+
         igra_vuhod.setOnClickListener {
             finish()
         }
         igra_igrat.setOnClickListener {
             yverenu.visibility = View.INVISIBLE
             pole_1_1.pole.visibility = View.VISIBLE
-            pole_1_2.visibility = View.VISIBLE
-            pole_1_3.visibility = View.VISIBLE
-            pole_1_4.visibility = View.VISIBLE
-            pole_2_1.visibility = View.VISIBLE
-            pole_2_2.visibility = View.VISIBLE
-            pole_2_3.visibility = View.VISIBLE
-            pole_2_4.visibility = View.VISIBLE
+            pole_1_2.pole.visibility = View.VISIBLE
+            pole_1_3.pole.visibility = View.VISIBLE
+            pole_1_4.pole.visibility = View.VISIBLE
+            pole_2_1.pole.visibility = View.VISIBLE
+            pole_2_2.pole.visibility = View.VISIBLE
+            pole_2_3.pole.visibility = View.VISIBLE
+            pole_2_4.pole.visibility = View.VISIBLE
             ctart.isClickable = true
             otkrit_kolody.isClickable = true
-            pole_2_4.isClickable = false
-            pole_2_3.isClickable = false
-            pole_1_4.isClickable = false
-            pole_1_3.isClickable = false
-            /*Сделать раздачу карт, чтобы они появлялись в активити колода. Дальше - нажатие на карту
-            переносит обратно на активити, замения кнопку колоды крестиком ( которая возвращает назад
-            и обнуляет значение флажка - поставления карты). Ктик на поле задает параметор
-            кнопки (флаг поставки), но проверяет стоит ли он там. Если все заняты возвращает активити
-            колоды и завершает его. А боевка будет по свойством класса кнопки ( надо добавить) про
-            хп и урон. Старт поочередо наносит урон кнопок, даже если равен = 0, и делает проверку
-            хп карт. Если оно не было равно 0, но стало 0, убираем карту Если было равно 0, то
-            переносим урон след. карте или главе в зависимости от пазиции*/
+            pole_2_4.pole.isClickable = false
+            pole_2_3.pole.isClickable = false
+            pole_1_4.pole.isClickable = false
+            pole_1_3.pole.isClickable = false
         }
 
         otkrit_kolody.setOnClickListener {
+            basa_cart.set_flag_deistvii_2(0)
+            flag_deictvia = basa_cart.get_flag_deistvii_2()
             otkrit_kolody.setBackgroundResource(R.drawable.ne_koloda)
             val intent = Intent(this, yroveni_koloda::class.java)
             startActivity(intent)
         }
 
-        pole_1_1.pole.setOnClickListener {
-            if (flag_deictvia == 1){
-                if (flag_bloca_vcex) {blok_poli_nahe(false)}
+        pole_1_1.pole.setOnClickListener { sapolnenie_poli(pole_1_1) }
+        pole_1_2.pole.setOnClickListener { sapolnenie_poli(pole_1_2) }
+        pole_2_1.pole.setOnClickListener { sapolnenie_poli(pole_2_1) }
+        pole_2_2.pole.setOnClickListener { sapolnenie_poli(pole_2_2) }
+        pole_1_3.pole.setOnClickListener { sapolnenie_poli(pole_1_3) }
+        pole_1_4.pole.setOnClickListener { sapolnenie_poli(pole_1_4) }
+        pole_2_3.pole.setOnClickListener { sapolnenie_poli(pole_2_3) }
+        pole_2_4.pole.setOnClickListener { sapolnenie_poli(pole_2_4) }
 
-                xp_poli_1_1_now = carta_ctavit.xp
-                ataca_poli_1_1_now = carta_ctavit.ataka
-                var xp_karti_1_1_icon = carta_ctavit.xp_paint(xp_poli_1_1_now)
-                var ataka_karti_1_1_icon = carta_ctavit.ataka_paint()
-                if ((ataka_karti_1_1_icon != null) && (xp_karti_1_1_icon != null)) {
-                    pole_1_1.ataka_image.setBackgroundResource(ataka_karti_1_1_icon)
-                    pole_1_1.xp_image.setBackgroundResource(xp_karti_1_1_icon)
-                }
-                pole_1_1.pole.setBackgroundResource(carta_ctavit.paint)
-                otkrit_kolody.setBackgroundResource(R.drawable.koloda)
-            }
-            if (flag_deictvia == 2) {
-                var xp_karti_1_1_icon = carta_ctavit.xp_paint(xp_poli_1_1_now)
-                pole_1_1.xp_image.setBackgroundResource(xp_karti_1_1_icon!!)
-                pole_1_1.pole.isClickable = false
-            }
-        }
-        pole_1_2.setOnClickListener {
-            if (flag_deictvia == 1){
-                if (flag_bloca_vcex) {blok_poli_nahe(false)}
-
-                xp_poli_1_2_now = carta_ctavit.xp
-                ataca_poli_1_2_now = carta_ctavit.ataka
-                var xp_karti_1_2_icon = carta_ctavit.xp_paint(xp_poli_1_2_now)
-                var ataka_karti_1_2_icon = carta_ctavit.ataka_paint()
-                if ((ataka_karti_1_2_icon != null) && (xp_karti_1_2_icon != null)) {
-                    pole_1_2_ataca.setBackgroundResource(ataka_karti_1_2_icon)
-                    pole_1_2_xp.setBackgroundResource(xp_karti_1_2_icon)
-                }
-                pole_1_2.setBackgroundResource(carta_ctavit.paint)
-                otkrit_kolody.setBackgroundResource(R.drawable.koloda)
-            }
-            if (flag_deictvia == 2) {
-                var xp_karti_1_2_icon = carta_ctavit.xp_paint(xp_poli_1_2_now)
-                pole_1_2_xp.setBackgroundResource(xp_karti_1_2_icon!!)
-                pole_1_2.isClickable = false
-            }
-        }
-        pole_2_1.setOnClickListener {
-            if (flag_deictvia == 1){
-                if (flag_bloca_vcex) {blok_poli_nahe(false)}
-
-                xp_poli_2_1_now = carta_ctavit.xp
-                ataca_poli_2_1_now = carta_ctavit.ataka
-                var xp_karti_2_1_icon = carta_ctavit.xp_paint(xp_poli_2_1_now)
-                var ataka_karti_2_1_icon = carta_ctavit.ataka_paint()
-                if ((ataka_karti_2_1_icon != null) && (xp_karti_2_1_icon != null)) {
-                    pole_2_1_ataca.setBackgroundResource(ataka_karti_2_1_icon)
-                    pole_2_1_xp.setBackgroundResource(xp_karti_2_1_icon)
-                }
-                pole_2_1.setBackgroundResource(carta_ctavit.paint)
-                otkrit_kolody.setBackgroundResource(R.drawable.koloda)
-            }
-            if (flag_deictvia == 2) {
-                var xp_karti_2_1_icon = carta_ctavit.xp_paint(xp_poli_2_1_now)
-                pole_2_1_xp.setBackgroundResource(xp_karti_2_1_icon!!)
-                pole_2_1.isClickable = false
-            }
-        }
-        pole_2_2.setOnClickListener {
-            if (flag_deictvia == 1){
-                if (flag_bloca_vcex) {blok_poli_nahe(false)}
-
-                xp_poli_2_2_now = carta_ctavit.xp
-                ataca_poli_2_2_now = carta_ctavit.ataka
-                var xp_karti_2_2_icon = carta_ctavit.xp_paint(xp_poli_2_2_now)
-                var ataka_karti_2_2_icon = carta_ctavit.ataka_paint()
-                if ((ataka_karti_2_2_icon != null) && (xp_karti_2_2_icon != null)) {
-                    pole_2_2_ataca.setBackgroundResource(ataka_karti_2_2_icon)
-                    pole_2_2_xp.setBackgroundResource(xp_karti_2_2_icon)
-                }
-                pole_2_2.setBackgroundResource(carta_ctavit.paint)
-                otkrit_kolody.setBackgroundResource(R.drawable.koloda)
-            }
-            if (flag_deictvia == 2) {
-                var xp_karti_2_2_icon = carta_ctavit.xp_paint(xp_poli_2_2_now)
-                pole_2_2_xp.setBackgroundResource(xp_karti_2_2_icon!!)
-                pole_2_2.isClickable = false
-            }
-        }
-        //поля врага      + заменить капипасту, функцией с 4 вводными, где переменный свойства класса
-        pole_1_3.setOnClickListener {
-            if (flag_deictvia == 1){
-
-                xp_poli_1_3_now = carta_ctavit.xp
-                ataca_poli_1_3_now = carta_ctavit.ataka
-                var xp_karti_1_3_icon = carta_ctavit.xp_paint(xp_poli_1_3_now)
-                var ataka_karti_1_3_icon = carta_ctavit.ataka_paint()
-                if ((ataka_karti_1_3_icon != null) && (xp_karti_1_3_icon != null)) {
-                    pole_1_3_ataca.setBackgroundResource(ataka_karti_1_3_icon)
-                    pole_1_3_xp.setBackgroundResource(xp_karti_1_3_icon)
-                }
-                pole_1_3.setBackgroundResource(carta_ctavit.paint)
-            }
-            if (flag_deictvia == 2) {
-                var xp_karti_1_3_icon = carta_ctavit.xp_paint(xp_poli_1_3_now)
-                pole_1_3_xp.setBackgroundResource(xp_karti_1_3_icon!!)
-            }
-        }
-        pole_1_4.setOnClickListener {
-            if (flag_deictvia == 1){
-
-                xp_poli_1_4_now = carta_ctavit.xp
-                ataca_poli_1_4_now = carta_ctavit.ataka
-                var xp_karti_1_4_icon = carta_ctavit.xp_paint(xp_poli_1_4_now)
-                var ataka_karti_1_4_icon = carta_ctavit.ataka_paint()
-                if ((ataka_karti_1_4_icon != null) && (xp_karti_1_4_icon != null)) {
-                    pole_1_4_ataca.setBackgroundResource(ataka_karti_1_4_icon)
-                    pole_1_4_xp.setBackgroundResource(xp_karti_1_4_icon)
-                }
-                pole_1_4.setBackgroundResource(carta_ctavit.paint)
-            }
-            if (flag_deictvia == 2) {
-                var xp_karti_1_4_icon = carta_ctavit.xp_paint(xp_poli_1_4_now)
-                pole_1_4_xp.setBackgroundResource(xp_karti_1_4_icon!!)
-            }
-        }
-        pole_2_3.setOnClickListener {
-            if (flag_deictvia == 1){
-
-                xp_poli_2_3_now = carta_ctavit.xp
-                ataca_poli_2_3_now = carta_ctavit.ataka
-                var xp_karti_2_3_icon = carta_ctavit.xp_paint(xp_poli_2_3_now)
-                var ataka_karti_2_3_icon = carta_ctavit.ataka_paint()
-                if ((ataka_karti_2_3_icon != null) && (xp_karti_2_3_icon != null)) {
-                    pole_2_3_ataca.setBackgroundResource(ataka_karti_2_3_icon)
-                    pole_2_3_xp.setBackgroundResource(xp_karti_2_3_icon)
-                }
-                pole_2_3.setBackgroundResource(carta_ctavit.paint)
-            }
-            if (flag_deictvia == 2) {
-                var xp_karti_2_3_icon = carta_ctavit.xp_paint(xp_poli_2_3_now)
-                pole_2_3_xp.setBackgroundResource(xp_karti_2_3_icon!!)
-            }
-        }
-        pole_2_4.setOnClickListener {
-            if (flag_deictvia == 1){
-
-                xp_poli_2_4_now = carta_ctavit.xp
-                ataca_poli_2_4_now = carta_ctavit.ataka
-                var xp_karti_2_4_icon = carta_ctavit.xp_paint(xp_poli_2_4_now)
-                var ataka_karti_2_4_icon = carta_ctavit.ataka_paint()
-                if ((ataka_karti_2_4_icon != null) && (xp_karti_2_4_icon != null)) {
-                    pole_2_4_ataca.setBackgroundResource(ataka_karti_2_4_icon)
-                    pole_2_4_xp.setBackgroundResource(xp_karti_2_4_icon)
-                }
-                pole_2_4.setBackgroundResource(carta_ctavit.paint)
-            }
-            if (flag_deictvia == 2) {
-                var xp_karti_2_4_icon = carta_ctavit.xp_paint(xp_poli_2_4_now)
-                pole_2_4_xp.setBackgroundResource(xp_karti_2_4_icon!!)
-            }
-        }
         ctart.setOnClickListener {
-            var (a, b, d) = yron__linia(ataca_poli_1_2_now, xp_poli_1_3_now, xp_poli_1_4_now, vrag_xp_chislo)
-            xp_poli_1_3_now = a
-            xp_poli_1_4_now = b
+            var (a, b, d) = yron__linia(pole_1_2.ataka_now, pole_1_3.xp_now, pole_1_4.xp_now, vrag_xp_chislo)
+            pole_1_3.xp_now = a
+            pole_1_4.xp_now = b
             vrag_xp_chislo = d
-
-            var (a1, b1, d1) = yron__linia(ataca_poli_1_1_now, xp_poli_1_3_now, xp_poli_1_4_now, vrag_xp_chislo)
-            xp_poli_1_3_now = a1
-            xp_poli_1_4_now = b1
+            var (a1, b1, d1) = yron__linia(pole_1_1.ataka_now, pole_1_3.xp_now, pole_1_4.xp_now, vrag_xp_chislo)
+            pole_1_3.xp_now = a1
+            pole_1_4.xp_now = b1
             vrag_xp_chislo = d1
-            var (a2, b2, d2) = yron__linia(ataca_poli_2_2_now, xp_poli_2_3_now, xp_poli_2_4_now, vrag_xp_chislo)
-            xp_poli_2_3_now = a2
-            xp_poli_2_4_now = b2
+            var (a2, b2, d2) = yron__linia(pole_2_2.ataka_now, pole_2_3.xp_now, pole_2_4.xp_now, vrag_xp_chislo)
+            pole_2_3.xp_now = a2
+            pole_2_4.xp_now = b2
             vrag_xp_chislo = d2
-            var (a3, b3, d3) = yron__linia(ataca_poli_2_1_now, xp_poli_2_3_now, xp_poli_2_4_now, vrag_xp_chislo)
-            xp_poli_2_3_now = a3
-            xp_poli_2_4_now = b3
+            var (a3, b3, d3) = yron__linia(pole_2_1.ataka_now, pole_2_3.xp_now, pole_2_4.xp_now, vrag_xp_chislo)
+            pole_2_3.xp_now = a3
+            pole_2_4.xp_now = b3
             vrag_xp_chislo = d3
             xp_vrag.setText(vrag_xp_chislo.toString())
+            carta_ctavit = basa_cart.nety_data
+            blok_poli_vrag(true)
+            opnova(pole_2_4.pole, pole_2_4.xp_now)
+            opnova(pole_2_3.pole, pole_2_3.xp_now)
+            opnova(pole_1_4.pole, pole_1_4.xp_now)
+            opnova(pole_1_3.pole, pole_1_3.xp_now)
             if (vrag_xp_chislo < 1) {
                 finish()
                 basa_fkagov.flag_1_go_yr = true
             }
-            carta_ctavit = basa_cart.nety_data
-            blok_poli_vrag(true)
-            opnova(pole_2_4, xp_poli_2_4_now)
-            opnova(pole_2_3, xp_poli_2_3_now)
-            opnova(pole_1_4, xp_poli_1_4_now)
-            opnova(pole_1_3, xp_poli_1_3_now)
-
-            if ((xp_poli_2_4_now != 0) && (xp_poli_2_3_now != 0) && (xp_poli_1_3_now != 0) && (xp_poli_1_4_now != 0)) { otdix = 1}
+            if ((pole_2_4.xp_now != 0) && (pole_2_3.xp_now != 0) && (pole_1_3.xp_now != 0) && (pole_1_4.xp_now != 0)) { otdix = 1}
             else{
             var xod_vraga: Int = Random.nextInt(3)
                 flag_deictvia = 1
             when (xod_vraga) {
                 0 -> { carta_ctavit = basa_cart.nyhen_blihnic_vrag()
-                    if (xp_poli_2_3_now < 1) { pole_2_3.performClick() }
-                    else { pole_1_3.performClick() }}
+                    if (pole_2_3.xp_now < 1) { pole_2_3.pole.performClick() }
+                    else { pole_1_3.pole.performClick() }}
                 1 -> { carta_ctavit = basa_cart.nyhen_blihnic_vrag()
-                    if (xp_poli_1_3_now < 1) { pole_1_3.performClick() }
-                    else { pole_2_3.performClick() }}
+                    if (pole_1_3.xp_now < 1) { pole_1_3.pole.performClick() }
+                    else { pole_2_3.pole.performClick() }}
                 2 -> { carta_ctavit = basa_cart.nyhen_dalnici_vrag()
-                    if (xp_poli_2_4_now < 1) { pole_2_4.performClick() }
-                    else { pole_1_4.performClick() }}
+                    if (pole_2_4.xp_now < 1) { pole_2_4.pole.performClick() }
+                    else { pole_1_4.pole.performClick() }}
                 3 -> { carta_ctavit = basa_cart.nyhen_dalnici_vrag()
-                    if (xp_poli_1_4_now < 1) { pole_1_4.performClick() }
-                    else { pole_2_4.performClick() }}
+                    if (pole_1_4.xp_now < 1) { pole_1_4.pole.performClick() }
+                    else { pole_2_4.pole.performClick() }}
             }}
 
 
             blok_poli_vrag(false)
-                var (a4, b4, d4) = yron__linia(ataca_poli_1_3_now, xp_poli_1_2_now, xp_poli_1_1_now, my_xp_chislo)
-                xp_poli_1_2_now = a4
-                xp_poli_1_1_now = b4
+                var (a4, b4, d4) = yron__linia(pole_1_3.ataka_now, pole_1_2.xp_now, pole_1_1.xp_now, my_xp_chislo)
+                pole_1_2.xp_now = a4
+                pole_1_1.xp_now = b4
                 my_xp_chislo = d4
-                var (a5, b5, d5) = yron__linia(ataca_poli_1_4_now, xp_poli_1_2_now, xp_poli_1_1_now, my_xp_chislo)
-                xp_poli_1_2_now = a5
-                xp_poli_1_1_now = b5
+                var (a5, b5, d5) = yron__linia(pole_1_4.ataka_now, pole_1_2.xp_now, pole_1_1.xp_now, my_xp_chislo)
+                pole_1_2.xp_now = a5
+                pole_1_1.xp_now = b5
                 my_xp_chislo = d5
-                var (a6, b6, d6) = yron__linia(ataca_poli_2_3_now, xp_poli_2_2_now, xp_poli_2_1_now, my_xp_chislo)
-                xp_poli_2_2_now = a6
-                xp_poli_2_1_now = b6
+                var (a6, b6, d6) = yron__linia(pole_2_3.ataka_now, pole_2_2.xp_now, pole_2_1.xp_now, my_xp_chislo)
+                pole_2_2.xp_now = a6
+                pole_2_1.xp_now = b6
                 my_xp_chislo = d6
-                var (a7, b7, d7) = yron__linia(ataca_poli_2_4_now, xp_poli_2_2_now, xp_poli_2_1_now, my_xp_chislo)
-                xp_poli_2_2_now = a7
-                xp_poli_2_1_now = b7
+                var (a7, b7, d7) = yron__linia(pole_2_4.ataka_now, pole_2_2.xp_now, pole_2_1.xp_now, my_xp_chislo)
+                pole_2_2.xp_now = a7
+                pole_2_1.xp_now = b7
                 my_xp_chislo = d7
                 xp_my.setText(my_xp_chislo.toString())
 
             blok_poli_nahe(true)
                 carta_ctavit = basa_cart.nety_data
             flag_bloca_vcex = false
-            opnova(pole_2_2, xp_poli_2_2_now)
-            opnova(pole_2_1, xp_poli_2_1_now)
-            opnova(pole_1_1.pole, xp_poli_1_1_now)
-            opnova(pole_1_2, xp_poli_1_2_now)
+            opnova(pole_2_2.pole, pole_2_2.xp_now)
+            opnova(pole_2_1.pole, pole_2_1.xp_now)
+            opnova(pole_1_1.pole, pole_1_1.xp_now)
+            opnova(pole_1_2.pole, pole_1_2.xp_now)
             flag_deictvia = 0
                 if (my_xp_chislo < 1) { finish() }
             basa_cart.set_krt1(basa_cart.nyhen_dalnici())
             basa_cart.set_krt2(basa_cart.nyhen_zenter())
             basa_cart.set_krt3(basa_cart.nyhen_blihnic())
             otkrit_kolody.setBackgroundResource(R.drawable.koloda)
+            basa_cart.set_flag_deistvii_2(0)
             flag_bloca_vcex = true
+            prov_11 = pole_1_1.xp_now
+            prov_12 = pole_1_2.xp_now
+            prov_21 = pole_2_1.xp_now
+            prov_22 = pole_2_2.xp_now
         }
     }
     override fun onResume() {
         super.onResume()
+        val pole_1_2 = pole(findViewById(R.id.laiaut_1_2), findViewById(R.id.image_1_2_ataka), findViewById(R.id.image_1_2_xp))
+        val pole_2_1 = pole(findViewById(R.id.laiaut_2_1), findViewById(R.id.image_2_1_ataka), findViewById(R.id.image_2_1_xp))
+        val pole_2_2 = pole(findViewById(R.id.laiaut_2_2), findViewById(R.id.image_2_2_ataka), findViewById(R.id.image_2_2_xp))
+        val pole_1_1 = pole(findViewById(R.id.laiaut_1_1), findViewById(R.id.image_1_1_ataka), findViewById(R.id.image_1_1_xp))
         var otkrit_kolody: ImageView = findViewById(R.id.image_koloda_v_igre)
         flag_deictvia = basa_cart.get_flag_deistvii_2()
         carta_ctavit = basa_cart.get_karta_na_pole()
-        if (basa_cart.get_flag_deistvii_2() == 0)  { otkrit_kolody.setBackgroundResource(R.drawable.koloda) }
+        if (basa_cart.get_flag_deistvii_2() == 0)  {
+            otkrit_kolody.setBackgroundResource(R.drawable.koloda)
+            pole_1_1.pole.isClickable = false
+            pole_1_2.pole.isClickable = false
+            pole_2_1.pole.isClickable = false
+            pole_2_2.pole.isClickable = false
+        }
+        if (basa_cart.get_flag_deistvii_2() == 1)  {
+            pole_1_1.pole.isClickable = true
+            pole_1_2.pole.isClickable = true
+            pole_2_1.pole.isClickable = true
+            pole_2_2.pole.isClickable = true
+        }
+        if (prov_11 > 0 ) { pole_1_1.pole.isClickable = false }
+        if (prov_12 > 0 ) { pole_1_2.pole.isClickable = false }
+        if (prov_21 > 0 ) { pole_2_1.pole.isClickable = false }
+        if (prov_22 > 0 ) { pole_2_2.pole.isClickable = false }
     }
 
     override fun onBackPressed() {

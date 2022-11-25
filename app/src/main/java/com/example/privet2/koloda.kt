@@ -17,15 +17,15 @@ class koloda : AppCompatActivity() {
         val kn_dal =  button_flag(findViewById(R.id.image_kn_dal), R.drawable.button_dalniki, R.drawable.koloda02, true)
         val kn_ipi = button_flag(findViewById(R.id.image_kn_ipi), R.drawable.button_vozvishini, R.drawable.koloda02, true)
 
-        val pole_1_1 = pole(findViewById(R.id.pole_1_1_kol), findViewById(R.id.image_ataka_1_1_kol), findViewById(R.id.image_xp_1_1_kol))
-        val pole_1_3 = pole(findViewById(R.id.pole_1_3_kol), findViewById(R.id.image_ataka_1_3_kol), findViewById(R.id.image_xp_1_3_kol))
-        val pole_1_5 = pole(findViewById(R.id.pole_1_5_kol), findViewById(R.id.image_ataka_1_5_kol), findViewById(R.id.image_xp_1_5_kol))
-        val pole_2_1 = pole(findViewById(R.id.pole_2_1_kol), findViewById(R.id.image_ataka_2_1_kol), findViewById(R.id.image_xp_2_1_kol))
-        val pole_2_3 = pole(findViewById(R.id.pole_2_3_kol), findViewById(R.id.image_ataka_2_3_kol), findViewById(R.id.image_xp_2_3_kol))
-        val pole_2_5 = pole(findViewById(R.id.pole_2_5_kol), findViewById(R.id.image_ataka_2_5_kol), findViewById(R.id.image_xp_2_5_kol))
-        val pole_3_1 = pole(findViewById(R.id.pole_3_1_kol), findViewById(R.id.image_ataka_3_1_kol), findViewById(R.id.image_xp_3_1_kol))
-        val pole_3_3 = pole(findViewById(R.id.pole_3_3_kol), findViewById(R.id.image_ataka_3_3_kol), findViewById(R.id.image_xp_3_3_kol))
-        val pole_3_5 = pole(findViewById(R.id.pole_3_5_kol), findViewById(R.id.image_ataka_3_5_kol), findViewById(R.id.image_xp_3_5_kol))
+        val pole_1_1 = pole(findViewById(R.id.pole_1_1_kol), findViewById(R.id.image_ataka_1_1_kol), findViewById(R.id.image_xp_1_1_kol),0,0)
+        val pole_1_3 = pole(findViewById(R.id.pole_1_3_kol), findViewById(R.id.image_ataka_1_3_kol), findViewById(R.id.image_xp_1_3_kol),0,0)
+        val pole_1_5 = pole(findViewById(R.id.pole_1_5_kol), findViewById(R.id.image_ataka_1_5_kol), findViewById(R.id.image_xp_1_5_kol),0,0)
+        val pole_2_1 = pole(findViewById(R.id.pole_2_1_kol), findViewById(R.id.image_ataka_2_1_kol), findViewById(R.id.image_xp_2_1_kol),0,0)
+        val pole_2_3 = pole(findViewById(R.id.pole_2_3_kol), findViewById(R.id.image_ataka_2_3_kol), findViewById(R.id.image_xp_2_3_kol),0,0)
+        val pole_2_5 = pole(findViewById(R.id.pole_2_5_kol), findViewById(R.id.image_ataka_2_5_kol), findViewById(R.id.image_xp_2_5_kol),0,0)
+        val pole_3_1 = pole(findViewById(R.id.pole_3_1_kol), findViewById(R.id.image_ataka_3_1_kol), findViewById(R.id.image_xp_3_1_kol),0,0)
+        val pole_3_3 = pole(findViewById(R.id.pole_3_3_kol), findViewById(R.id.image_ataka_3_3_kol), findViewById(R.id.image_xp_3_3_kol),0,0)
+        val pole_3_5 = pole(findViewById(R.id.pole_3_5_kol), findViewById(R.id.image_ataka_3_5_kol), findViewById(R.id.image_xp_3_5_kol),0,0)
 
         var i_for_pole: Int = 0
         val spisok_polei = listOf<pole>(pole_1_1, pole_1_3, pole_1_5, pole_2_1, pole_2_3, pole_2_5,
@@ -60,22 +60,23 @@ class koloda : AppCompatActivity() {
             }
         }
 
-        kn_bli.image.setOnClickListener{
-            kn_bli.flag_1 = !kn_bli.flag_1
-            kn_bli.image.setBackgroundResource(kn_bli.ism_kartinki())
-            kn_dal.image.isClickable = kn_bli.flag_1
+        fun knopki_click(kn_: button_flag){
+            kn_.flag_1 = !kn_.flag_1
+            kn_.image.setBackgroundResource(kn_.ism_kartinki())
             vipoln_sapolnenia()
+        }
+
+        kn_bli.image.setOnClickListener{
+            knopki_click(kn_bli)
+            kn_dal.image.isClickable = kn_bli.flag_1
+
         }
         kn_dal.image.setOnClickListener{
-            kn_dal.flag_1 = !kn_dal.flag_1
-            kn_dal.image.setBackgroundResource(kn_dal.ism_kartinki())
+            knopki_click(kn_dal)
             kn_bli.image.isClickable = kn_dal.flag_1
-            vipoln_sapolnenia()
         }
         kn_ipi.image.setOnClickListener{
-            kn_ipi.flag_1 = !kn_ipi.flag_1
-            kn_ipi.image.setBackgroundResource(kn_ipi.ism_kartinki())
-            vipoln_sapolnenia()
+            knopki_click(kn_ipi)
         }
 
         //выполнять
