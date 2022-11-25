@@ -24,19 +24,20 @@ class create_koloda {
     public  fun get_karta_na_pole(): data_karta{return karta_na_pole}
 
     val nety_data = data_karta(R.drawable.oblozka, 0, 0, "000")
-    val fox = karte_blihnic(R.drawable.fox, 2, 4, "001-1")
+    val fox = karte_blihnic(R.drawable.fox, 3, 3, "001-1")
+    val mouse = karte_dalnic(R.drawable.mouse, 2, 5, "001-1")
     val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-2")
-    val dog = karte_blihnic(R.drawable.dog, 3, 2, "002-1")
+    val dog = karte_blihnic(R.drawable.dog, 4, 1, "002-1")
     val voron = karte_dalnic(R.drawable.voron, 1, 2, "101")
     val sneake = karte_blihnic(R.drawable.sneake, 3, 1, "102")
-    val nabor_kart = listOf<data_karta>(fox, dog, bird)
-    val nabor_kart_dalnici = listOf<karte_dalnic>(bird)
+    val nabor_kart = listOf<data_karta>(fox, dog, bird, mouse)
+    val nabor_kart_dalnici = listOf<karte_dalnic>(bird, mouse)
     val nabor_kart_blihnic = listOf<karte_blihnic>(dog, fox)
     val nabor_kart_vragi = listOf<data_karta>(voron, sneake)
     val nabor_kart_vragi_dalnici = listOf<karte_dalnic>(voron)
     val nabor_kart_vragi_blihnic = listOf<karte_blihnic>(sneake)
     var cpiso: Map<String, data_karta> = mapOf(nety_data.ip_karti to nety_data, fox.ip_karti to fox,
-        dog.ip_karti to dog, bird.ip_karti to bird)
+        dog.ip_karti to dog, bird.ip_karti to bird, mouse.ip_karti to mouse)
     fun nyhen_blihnic (): karte_blihnic {
         var number: Int = Random.nextInt(nabor_kart_blihnic.size)
         return nabor_kart_blihnic.get(number)

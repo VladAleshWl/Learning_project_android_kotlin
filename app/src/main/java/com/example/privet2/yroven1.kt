@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.privet2.Data.Data_and_flagi
+import com.example.privet2.Data.pole
 import com.example.privet2.karti.create_koloda
 import com.example.privet2.karti.data_karta
 import kotlin.random.Random
@@ -15,19 +16,16 @@ import kotlin.random.Random
 
 
 class yroven1 : AppCompatActivity() {
-    lateinit var carta: String
+    lateinit var carta_ctavit: data_karta
+    val basa_cart = create_koloda()
+    val basa_fkagov = Data_and_flagi
     var flag_deictvia: Int = 0
     var flag_bloca_vcex: Boolean = true
-    lateinit var carta_ctavit: data_karta
-    var basa_cart = create_koloda()
-    var basa_fkagov = Data_and_flagi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_yroven1)
         supportActionBar?.hide()
-        var pole_1_1_ataca: ImageView = findViewById(R.id.image_1_1_xp)
-        var pole_1_1_xp: ImageView = findViewById(R.id.image_1_1_ataka)
         var pole_1_2_ataca: ImageView = findViewById(R.id.image_1_2_xp)
         var pole_1_2_xp: ImageView = findViewById(R.id.image_1_2_ataka)
         var pole_2_1_ataca: ImageView = findViewById(R.id.image_2_1_xp)
@@ -44,7 +42,6 @@ class yroven1 : AppCompatActivity() {
         var pole_2_4_xp: ImageView = findViewById(R.id.image_2_4_ataka)
         var igra_vuhod: ImageView = findViewById(R.id.image_igra_vuhod)
         var igra_igrat: ImageView = findViewById(R.id.image_igra_igrat)
-        var pole_1_1: ConstraintLayout = findViewById(R.id.laiaut_1_1)
         var pole_1_2: ConstraintLayout = findViewById(R.id.laiaut_1_2)
         var pole_1_3: ConstraintLayout = findViewById(R.id.laiaut_1_3)
         var pole_1_4: ConstraintLayout = findViewById(R.id.laiaut_1_4)
@@ -52,6 +49,7 @@ class yroven1 : AppCompatActivity() {
         var pole_2_2: ConstraintLayout = findViewById(R.id.laiaut_2_2)
         var pole_2_3: ConstraintLayout = findViewById(R.id.laiaut_2_3)
         var pole_2_4: ConstraintLayout = findViewById(R.id.laiaut_2_4)
+        val pole_1_1 = pole(findViewById(R.id.laiaut_1_1), findViewById(R.id.image_1_1_ataka), findViewById(R.id.image_1_1_xp))
         var yverenu: ConstraintLayout = findViewById(R.id.konsol_yverenu)
         var otkrit_kolody: ImageView = findViewById(R.id.image_koloda_v_igre)
         var ctart: ImageView = findViewById(R.id.image_ctart)
@@ -95,7 +93,7 @@ class yroven1 : AppCompatActivity() {
         }
 
         fun blok_poli_nahe(blok: Boolean){
-            pole_1_1.isClickable = blok
+            pole_1_1.pole.isClickable = blok
             pole_1_2.isClickable = blok
             pole_2_1.isClickable = blok
             pole_2_2.isClickable = blok
@@ -133,7 +131,7 @@ class yroven1 : AppCompatActivity() {
         }
         igra_igrat.setOnClickListener {
             yverenu.visibility = View.INVISIBLE
-            pole_1_1.visibility = View.VISIBLE
+            pole_1_1.pole.visibility = View.VISIBLE
             pole_1_2.visibility = View.VISIBLE
             pole_1_3.visibility = View.VISIBLE
             pole_1_4.visibility = View.VISIBLE
@@ -163,7 +161,7 @@ class yroven1 : AppCompatActivity() {
             startActivity(intent)
         }
 
-        pole_1_1.setOnClickListener {
+        pole_1_1.pole.setOnClickListener {
             if (flag_deictvia == 1){
                 if (flag_bloca_vcex) {blok_poli_nahe(false)}
 
@@ -172,16 +170,16 @@ class yroven1 : AppCompatActivity() {
                 var xp_karti_1_1_icon = carta_ctavit.xp_paint(xp_poli_1_1_now)
                 var ataka_karti_1_1_icon = carta_ctavit.ataka_paint()
                 if ((ataka_karti_1_1_icon != null) && (xp_karti_1_1_icon != null)) {
-                    pole_1_1_ataca.setBackgroundResource(ataka_karti_1_1_icon)
-                    pole_1_1_xp.setBackgroundResource(xp_karti_1_1_icon)
+                    pole_1_1.ataka_image.setBackgroundResource(ataka_karti_1_1_icon)
+                    pole_1_1.xp_image.setBackgroundResource(xp_karti_1_1_icon)
                 }
-                pole_1_1.setBackgroundResource(carta_ctavit.paint)
+                pole_1_1.pole.setBackgroundResource(carta_ctavit.paint)
                 otkrit_kolody.setBackgroundResource(R.drawable.koloda)
             }
             if (flag_deictvia == 2) {
                 var xp_karti_1_1_icon = carta_ctavit.xp_paint(xp_poli_1_1_now)
-                pole_1_1_xp.setBackgroundResource(xp_karti_1_1_icon!!)
-                pole_1_1.isClickable = false
+                pole_1_1.xp_image.setBackgroundResource(xp_karti_1_1_icon!!)
+                pole_1_1.pole.isClickable = false
             }
         }
         pole_1_2.setOnClickListener {
@@ -394,7 +392,7 @@ class yroven1 : AppCompatActivity() {
             flag_bloca_vcex = false
             opnova(pole_2_2, xp_poli_2_2_now)
             opnova(pole_2_1, xp_poli_2_1_now)
-            opnova(pole_1_1, xp_poli_1_1_now)
+            opnova(pole_1_1.pole, xp_poli_1_1_now)
             opnova(pole_1_2, xp_poli_1_2_now)
             flag_deictvia = 0
                 if (my_xp_chislo < 1) { finish() }
