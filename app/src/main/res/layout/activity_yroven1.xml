@@ -5,7 +5,6 @@
     android:id="@+id/IPPPPPPPP"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/interfeis"
     tools:context=".yroven1">
 
     <ImageView
@@ -37,7 +36,7 @@
         android:id="@+id/image_i"
         android:layout_width="120dp"
         android:layout_height="141dp"
-        android:background="@drawable/pers"
+        android:background="@drawable/pers2"
         android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

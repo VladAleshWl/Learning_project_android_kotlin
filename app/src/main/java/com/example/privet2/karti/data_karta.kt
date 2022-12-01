@@ -7,7 +7,6 @@ open class data_karta(paint: Int, xp: Int, ataka: Int, ip: String) {
     var ataka_now = ataka
     open val iconca_classa: Int = 0
     open val raspolozenie: String = ""
-    val iconca_xp = 0
     val paint = paint
     val xp = xp
     val ataka = ataka

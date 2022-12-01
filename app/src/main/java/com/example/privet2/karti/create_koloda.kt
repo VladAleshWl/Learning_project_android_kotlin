@@ -11,6 +11,7 @@ class create_koloda {
         public var krt3: data_karta = data_karta(R.color.black, 0, 0, "000")
         public var flag_deistvii_2: Int = 0
         public var karta_na_pole: data_karta = data_karta(R.color.black, 0, 0, "000")
+        val nety_data002 = data_karta(R.drawable.oblozka, 0, 0, "000")
     }
     public fun set_krt1(karta: data_karta){ krt1 = karta}
     public fun set_krt2(karta: data_karta){ krt2 = karta}
@@ -24,53 +25,56 @@ class create_koloda {
     public  fun get_karta_na_pole(): data_karta{return karta_na_pole}
 
     val nety_data = data_karta(R.drawable.oblozka, 0, 0, "000")
-    val fox = karte_blihnic(R.drawable.fox, 3, 3, "002-2")
-    val mouse = karte_dalnic(R.drawable.mouse, 2, 5, "001-2")
-    val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-3")
     val dog = karte_blihnic(R.drawable.dog, 4, 1, "002-1")
+    val fox = karte_blihnic(R.drawable.fox, 3, 3, "002-2")
+    val cat = karte_blihnic(R.drawable.cat, 2, 4, "002-3")
+    val mouse = karte_dalnic(R.drawable.mouse, 2, 5, "001-1")
+    val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-2")
     val voron = karte_dalnic(R.drawable.voron, 1, 2, "101")
     val sneake = karte_blihnic(R.drawable.sneake, 3, 1, "102")
-    val nabor_kart = listOf<data_karta>(fox, dog, bird, mouse)
-    val nabor_kart_dalnici = listOf<karte_dalnic>(bird, mouse)
-    val nabor_kart_blihnic = listOf<karte_blihnic>(dog, fox)
-    val nabor_kart_vragi = listOf<data_karta>(voron, sneake)
-    val nabor_kart_vragi_dalnici = listOf<karte_dalnic>(voron)
-    val nabor_kart_vragi_blihnic = listOf<karte_blihnic>(sneake)
-    var cpiso: Map<String, data_karta> = mapOf(nety_data.ip_karti to nety_data, fox.ip_karti to fox,
-        dog.ip_karti to dog, bird.ip_karti to bird, mouse.ip_karti to mouse)
-    fun nyhen_blihnic (): karte_blihnic {
-        var number: Int = Random.nextInt(nabor_kart_blihnic.size)
-        return nabor_kart_blihnic.get(number)
-    }
-    fun nyhen_dalnici (): karte_dalnic {
-        var number: Int = Random.nextInt(nabor_kart_dalnici.size)
-        return nabor_kart_dalnici.get(number)
-    }
-    fun nyhen_zenter (): data_karta{
-        var number: Int = Random.nextInt(nabor_kart.size)
-        return nabor_kart.get(number)
+    val wolf = karte_blihnic(R.drawable.wolf, 6, 5, "103")
+    val nabor_kart = listOf<data_karta>(fox, dog, cat, bird, mouse)
+    val nabor_kart_vragi = listOf<data_karta>(voron, sneake, wolf)
+    val cpiso: Map<String, data_karta> = mapOf(nety_data.ip_karti to nety_data, fox.ip_karti to fox,
+        dog.ip_karti to dog, bird.ip_karti to bird, mouse.ip_karti to mouse, voron.ip_karti to voron,
+        sneake.ip_karti to sneake)
+    val spisok_tekcta: Map<String, Int> = mapOf( fox.ip_karti to R.drawable.fox_opisanie,
+    dog.ip_karti to R.drawable.dog_opisanie, bird.ip_karti to R.drawable.bird_opisanie,
+    mouse.ip_karti to R.drawable.mouse_opisanie, voron.ip_karti to R.drawable.voron_opisanie,
+    sneake.ip_karti to R.drawable.sneake_opisanie, cat.ip_karti to R.drawable.cat_opisanie)
 
+    // для 1-го уровня колоды
+    val nabor_kart_dalnici_1 = listOf<karte_dalnic>(mouse)
+    val nabor_kart_blihnic_1 = listOf<karte_blihnic>(dog, fox)
+    val nabor_zentr_1 = listOf<data_karta>(dog, fox, mouse)
+    val nabor_kart_vragi_dalnici_1 = listOf<karte_dalnic>(voron)
+    val nabor_kart_vragi_blihnic_1 = listOf<karte_blihnic>(sneake)
+    // для 2-го уровня колоды
+    val nabor_kart_dalnici_2 = listOf<karte_dalnic>(bird, mouse)
+    val nabor_kart_blihnic_2 = listOf<karte_blihnic>(dog, fox, cat)
+    val nabor_zentr_2 = listOf<data_karta>(bird, mouse, dog, fox, cat)
+    val nabor_kart_vragi_dalnici_2 = listOf<karte_dalnic>(voron)
+    val nabor_kart_vragi_blihnic_2 = listOf<karte_blihnic>(sneake)
+
+    fun nyhen_blihnic (list: List<karte_blihnic>): karte_blihnic {
+        var number: Int = Random.nextInt(list.size)
+        return list.get(number)
     }
-    fun nyhen_blihnic_vrag (): karte_blihnic {
-        var number: Int = Random.nextInt(nabor_kart_vragi_blihnic.size)
-        return nabor_kart_vragi_blihnic.get(number)
+    fun nyhen_dalnici (list: List<karte_dalnic>): karte_dalnic {
+        var number: Int = Random.nextInt(list.size)
+        return list.get(number)
     }
-    fun nyhen_dalnici_vrag (): karte_dalnic {
-        var number: Int = Random.nextInt(nabor_kart_vragi_dalnici.size)
-        return nabor_kart_vragi_dalnici.get(number)
+    fun nyhen_zenter (list: List<data_karta>): data_karta{
+        var number: Int = Random.nextInt(list.size)
+        return list.get(number)
     }
-    fun dai_karty_is_cpicka_get(number: Int): data_karta{
-        var num = number
-        val dlina_1 = nabor_kart.size
-        if (number >= dlina_1 + nabor_kart_vragi.size) { return nety_data}
-        else {
-            if (number < dlina_1){
-                return nabor_kart.get(num)
-            }
-            else {
-                num = num - dlina_1
-                return nabor_kart_vragi.get(num)
-            }
-        }
+    fun nyhen_blihnic_vrag (list: List<karte_blihnic>): karte_blihnic {
+        var number: Int = Random.nextInt(list.size)
+        return list.get(number)
     }
+    fun nyhen_dalnici_vrag (list: List<karte_dalnic>): karte_dalnic {
+        var number: Int = Random.nextInt(list.size)
+        return list.get(number)
+    }
+    fun text_about_kart(ip: String): Int { return spisok_tekcta.get(ip)!! }
 }

@@ -21,16 +21,18 @@ public class karta : AppCompatActivity() {
             finish()
         }
         i1.setOnClickListener {
-            val MyIntent2 = Intent(this, yroven1::class.java)
+            basa_fkagov.yroven_now = 1
+            val MyIntent2 = Intent(this, yroven1::class.java)    //переход на 1-й уровень
             startActivity(MyIntent2)
         }
     }
     override fun onResume() {
         super.onResume()
         val i2: ImageView = findViewById(R.id.i2_yroven)
-        if(basa_fkagov.flag_1_go_yr) { i2.visibility = View.VISIBLE }
+        if(basa_fkagov.flag_1_go_yr) { i2.visibility = View.VISIBLE }   //появление 2-го уровня
 
         i2.setOnClickListener {
+            basa_fkagov.yroven_now = 2
             val MyIntent2 = Intent(this, yroven1::class.java)
             startActivity(MyIntent2)
         }

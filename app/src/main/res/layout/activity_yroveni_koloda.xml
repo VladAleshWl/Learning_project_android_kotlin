@@ -5,6 +5,8 @@
     android:id="@+id/button_back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pngshka"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
     tools:context=".yroveni_koloda">
 
     <androidx.constraintlayout.widget.ConstraintLayout

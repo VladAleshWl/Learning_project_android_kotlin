@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         kliker.setBackgroundResource(R.drawable.clickbutton)
 
-        vihod.setOnClickListener {
+        vihod.setOnClickListener {                                    //открытие лаута (уверены)
             vihod_kones.visibility = View.VISIBLE
             vihod.setClickable(false)
             koloda.setClickable(false)
@@ -35,26 +35,26 @@ class MainActivity : AppCompatActivity() {
 
         }
         DA.setOnClickListener {
-            android.os.Process.killProcess(android.os.Process.myPid());
+            android.os.Process.killProcess(android.os.Process.myPid());   //выход из приложения
             System.exit(1);
         }
 
         NET.setOnClickListener {
             vihod_kones.visibility = View.INVISIBLE
             kliker.visibility = View.VISIBLE
-            vihod.setClickable(true)
+            vihod.setClickable(true)                     //закрытие лаута (уверены)
             koloda.setClickable(true)
             igra.setClickable(true)
             nastr.setClickable(true)
         }
 
         koloda.setOnClickListener {
-            val MyIntent = Intent(this, com.example.privet2.koloda::class.java)
+            val MyIntent = Intent(this, com.example.privet2.koloda::class.java)       //переход в колоду
             startActivity(MyIntent)
         }
 
         igra.setOnClickListener {
-            val MyIntent = Intent(this, karta::class.java)
+            val MyIntent = Intent(this, karta::class.java)     //переход на карту
             startActivity(MyIntent)
         }
 
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 3 -> {kliker.setBackgroundResource(R.drawable.nomer3)}
                 4 -> {kliker.setBackgroundResource(R.drawable.nomer4)}
                 5 -> {kliker.setBackgroundResource(R.drawable.nomer5)}
-                6 -> {kliker.setBackgroundResource(R.drawable.nomer6)}
+                6 -> {kliker.setBackgroundResource(R.drawable.nomer6)}    //кликер
                 7 -> {kliker.setBackgroundResource(R.drawable.nomer7)}
                 8 -> {kliker.setBackgroundResource(R.drawable.nomer8)}
                 9 -> {kliker.setBackgroundResource(R.drawable.nomer9)}
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
+    override fun onBackPressed() {                //предотвращение случайного выхода
         var HON: ConstraintLayout = findViewById(R.id.hon)
         var vihod: ImageView = findViewById(R.id.image_vixod)
         var koloda: ImageView = findViewById(R.id.image_koloda)
@@ -89,8 +89,6 @@ class MainActivity : AppCompatActivity() {
         var vihod_kones: ConstraintLayout = findViewById(R.id.constraintLayout_konez)
         var DA: ImageView = findViewById(R.id.image_Da)
         var NET: ImageView = findViewById(R.id.image_No)
-
-        kliker.setBackgroundResource(R.drawable.clickbutton)
 
         vihod.setOnClickListener {
             vihod_kones.visibility = View.VISIBLE
