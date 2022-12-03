@@ -1,11 +1,18 @@
 package com.example.privet2
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import java.io.DataOutputStream
+import java.net.URL
+import java.nio.charset.StandardCharsets
+import java.util.concurrent.Executors
+import javax.net.ssl.HttpsURLConnection
+import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val vihod_kones: ConstraintLayout = findViewById(R.id.constraintLayout_konez)
         val DA: ImageView = findViewById(R.id.image_Da)
         val NET: ImageView = findViewById(R.id.image_No)
+        val executor = Executors.newSingleThreadExecutor()
 
         kliker.setBackgroundResource(R.drawable.clickbutton)
 
@@ -36,7 +44,46 @@ class MainActivity : AppCompatActivity() {
         }
         DA.setOnClickListener {
             android.os.Process.killProcess(android.os.Process.myPid());   //выход из приложения
-            System.exit(1);
+            System.exit(0);
+        }
+        nastr.setOnClickListener {
+            val emailToCheck = "test@gmail.com"
+            thread {
+                val text = try {
+                    val uriBuilder = Uri.Builder()
+                        .appendQueryParameter("email", emailToCheck)
+                        .build()
+
+                    val params = uriBuilder.toString().replace(
+                        "?",
+                        ""
+                    )  // Remove the "?" from the beginning of the parameters ?name=Jack&salary=8054&age=45
+                    val postData = params.toByteArray(StandardCharsets.UTF_8)
+
+                    val url = URL("https://mistyflower.ru/api/user/create")
+                    val httpsURLConnection = url.openConnection() as HttpsURLConnection
+                    httpsURLConnection.requestMethod = "POST"
+                    httpsURLConnection.setRequestProperty(
+                        "Content-Type",
+                        "application/x-www-form-urlencoded"
+                    ) // The format of the content we're sending to the server
+                    httpsURLConnection.setRequestProperty(
+                        "Accept",
+                        "application/json"
+                    ) // The format of response we want to get from the server
+                    httpsURLConnection.doInput = true
+                    httpsURLConnection.doOutput = true
+                    val dataOutputStream = DataOutputStream(httpsURLConnection.outputStream)
+                    dataOutputStream.write(postData)
+                    val response = httpsURLConnection.inputStream.bufferedReader()
+                        .use { it.readText() }
+
+                } catch (e: Exception) {
+                    println("ERROR $e")
+                    return@thread
+                }
+                runOnUiThread { println(text) }
+            }
         }
 
         NET.setOnClickListener {
@@ -49,7 +96,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         koloda.setOnClickListener {
-            val MyIntent = Intent(this, com.example.privet2.koloda::class.java)       //переход в колоду
+            val MyIntent =
+                Intent(this, com.example.privet2.koloda::class.java)       //переход в колоду
             startActivity(MyIntent)
         }
 
@@ -60,16 +108,34 @@ class MainActivity : AppCompatActivity() {
 
         var a = 1
         kliker.setOnClickListener {
-            when (a){
-                1 -> {kliker.setBackgroundResource(R.drawable.nomer1)}
-                2 -> {kliker.setBackgroundResource(R.drawable.nomer2)}
-                3 -> {kliker.setBackgroundResource(R.drawable.nomer3)}
-                4 -> {kliker.setBackgroundResource(R.drawable.nomer4)}
-                5 -> {kliker.setBackgroundResource(R.drawable.nomer5)}
-                6 -> {kliker.setBackgroundResource(R.drawable.nomer6)}    //кликер
-                7 -> {kliker.setBackgroundResource(R.drawable.nomer7)}
-                8 -> {kliker.setBackgroundResource(R.drawable.nomer8)}
-                9 -> {kliker.setBackgroundResource(R.drawable.nomer9)}
+            when (a) {
+                1 -> {
+                    kliker.setBackgroundResource(R.drawable.nomer1)
+                }
+                2 -> {
+                    kliker.setBackgroundResource(R.drawable.nomer2)
+                }
+                3 -> {
+                    kliker.setBackgroundResource(R.drawable.nomer3)
+                }
+                4 -> {
+                    kliker.setBackgroundResource(R.drawable.nomer4)
+                }
+                5 -> {
+                    kliker.setBackgroundResource(R.drawable.nomer5)
+                }
+                6 -> {
+                    kliker.setBackgroundResource(R.drawable.nomer6)
+                }    //кликер
+                7 -> {
+                    kliker.setBackgroundResource(R.drawable.nomer7)
+                }
+                8 -> {
+                    kliker.setBackgroundResource(R.drawable.nomer8)
+                }
+                9 -> {
+                    kliker.setBackgroundResource(R.drawable.nomer9)
+                }
                 10 -> {
                     kliker.setBackgroundResource(R.drawable.clickbutton)
                     a = 0

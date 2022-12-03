@@ -7,12 +7,12 @@ import kotlin.random.Random
 
 class create_koloda {
     companion object {
-        public var krt1: data_karta = data_karta(R.color.black, 0, 0, "000")
-        public var krt2: data_karta = data_karta(R.color.black, 0, 0, "000")
-        public var krt3: data_karta = data_karta(R.color.black, 0, 0, "000")
+        public var krt1: data_karta = data_karta(R.color.black, 0, 0, "000", "common")
+        public var krt2: data_karta = data_karta(R.color.black, 0, 0, "000", "common")
+        public var krt3: data_karta = data_karta(R.color.black, 0, 0, "000", "common")
         public var flag_deistvii_2: Int = 0
-        public var karta_na_pole: data_karta = data_karta(R.color.black, 0, 0, "000")
-        val nety_data002 = data_karta(R.drawable.oblozka, 0, 0, "000")
+        public var karta_na_pole: data_karta = data_karta(R.color.black, 0, 0, "000", "common")
+        val nety_data002 = data_karta(R.drawable.oblozka, 0, 0, "000", "common")
     }
     public fun set_krt1(karta: data_karta){ krt1 = karta}
     public fun set_krt2(karta: data_karta){ krt2 = karta}
@@ -26,15 +26,15 @@ class create_koloda {
     public  fun get_karta_na_pole(): data_karta{return karta_na_pole}
 
     val data_flagi = Data_and_flagi
-    val nety_data = data_karta(R.drawable.oblozka, 0, 0, "000")
-    val dog = karte_blihnic(R.drawable.dog, 4, 1, "002-1")
-    val fox = karte_blihnic(R.drawable.fox, 3, 3, "002-2")
-    val cat = karte_blihnic(R.drawable.cat, 2, 4, "002-3")
-    val mouse = karte_dalnic(R.drawable.mouse, 2, 5, "001-1")
-    val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-2")
-    val voron = karte_dalnic(R.drawable.voron, 2, 3, "101")
-    val sneake = karte_blihnic(R.drawable.sneake, 4, 1, "102")
-    val wolf = karte_blihnic(R.drawable.wolf, 7, 3, "103")
+    val nety_data = data_karta(R.drawable.oblozka, 0, 0, "000", "common")
+    val dog = karte_blihnic(R.drawable.dog, 4, 1, "002-1", "common")
+    val fox = karte_blihnic(R.drawable.fox, 3, 3, "002-2", "common")
+    val cat = karte_blihnic(R.drawable.cat, 2, 4, "002-3", "common")
+    val mouse = karte_dalnic(R.drawable.mouse, 2, 5, "001-1", "common")
+    val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-2", "common")
+    val voron = karte_dalnic(R.drawable.voron, 2, 3, "101", "common")
+    val sneake = karte_blihnic(R.drawable.sneake, 4, 1, "102", "common")
+    val wolf = karte_blihnic(R.drawable.wolf, 7, 3, "103", "common")
     val nabor_kart = listOf<data_karta>(fox, dog, cat, bird, mouse)
     val nabor_kart_vragi = listOf<data_karta>(voron, wolf, sneake)
     val cpiso: Map<String, data_karta> = mapOf(nety_data.ip_karti to nety_data, fox.ip_karti to fox,
