@@ -107,7 +107,7 @@ class koloda : AppCompatActivity() {
         kn_bli.image.setBackgroundResource(kn_bli.kartinka1)      //задания цвета кнопок
         kn_dal.image.setBackgroundResource(kn_dal.kartinka1)
         vipoln_sapolnenia()
-
+        kn_ipi.image.isClickable = false
 
 
 
