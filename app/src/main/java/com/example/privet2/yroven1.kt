@@ -12,6 +12,7 @@ import com.example.privet2.Data.pole
 import com.example.privet2.karti.create_koloda
 import com.example.privet2.karti.data_karta
 import com.example.privet2.karti.kolodi
+import com.example.privet2.karti.unic_vragi
 import kotlin.random.Random
 
 
@@ -20,6 +21,7 @@ class yroven1 : AppCompatActivity() {
     lateinit var carta_ctavit: data_karta
     val basa_cart = create_koloda()
     val koloda = kolodi()
+    val ynic = unic_vragi()
     val basa_fkagov = Data_and_flagi
     var flag_deictvia: Int = 0
     var flag_bloca_vcex: Boolean = true
@@ -49,9 +51,10 @@ class yroven1 : AppCompatActivity() {
         val ctart: ImageView = findViewById(R.id.image_ctart)
         val xp_my: TextView = findViewById(R.id.text_xp_nahi)
         val xp_vrag: TextView = findViewById(R.id.text_xp_vraga)
-        var my_xp_chislo:Int = 40
-        var vrag_xp_chislo:Int = 40
+        var my_xp_chislo:Int = basa_fkagov.xp_persov()
+        var vrag_xp_chislo:Int = my_xp_chislo
         var otdix: Int
+        var hod = 1
 
         val nabor_kart_dalnici = koloda.koloda_fo_lvl_dalnic(basa_fkagov.yroven_now)
         val nabor_zentr = koloda.koloda_fo_lvl_zentr(basa_fkagov.yroven_now)
@@ -202,7 +205,11 @@ class yroven1 : AppCompatActivity() {
                 basa_fkagov.flag_1_go_yr = true
             }
             if ((pole_2_4.xp_now != 0) && (pole_2_3.xp_now != 0) && (pole_1_3.xp_now != 0) && (pole_1_4.xp_now != 0)) { otdix = 1}
-            else{
+            else if(!ynic.ocob_xod(hod)){
+                carta_ctavit = basa_cart.ocobo()
+                if (pole_2_3.xp_now < 1){ pole_2_3.pole.performClick() }
+                else if (pole_1_3.xp_now < 1){ pole_1_3.pole.performClick() }
+            } else {
             var xod_vraga: Int = Random.nextInt(3)
                 flag_deictvia = 1
             when (xod_vraga) {    //выстовление карт врага
@@ -259,6 +266,7 @@ class yroven1 : AppCompatActivity() {
             prov_12 = pole_1_2.xp_now        //резервное хранение хп карт
             prov_21 = pole_2_1.xp_now
             prov_22 = pole_2_2.xp_now
+            hod += 1
         }
         otkrit_kolody.setClickable(false)
         ctart.setClickable(false)

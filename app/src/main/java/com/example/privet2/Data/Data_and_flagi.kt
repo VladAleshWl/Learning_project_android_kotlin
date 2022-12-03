@@ -21,6 +21,13 @@ class Data_and_flagi {
             }
             return R.drawable.interfeis
         }
+        fun xp_persov():Int{
+            when (yroven_now){
+                1 -> return 40
+                2 -> return 90
+            }
+            return 40
+        }
     }
     fun get_karta(): data_karta { return karta_1_peredacha}
 

@@ -1,4 +1,5 @@
 package com.example.privet2.karti
+import com.example.privet2.Data.Data_and_flagi
 import com.example.privet2.R
 import kotlin.random.Random
 
@@ -24,6 +25,7 @@ class create_koloda {
     public  fun get_flag_deistvii_2(): Int{return flag_deistvii_2}
     public  fun get_karta_na_pole(): data_karta{return karta_na_pole}
 
+    val data_flagi = Data_and_flagi
     val nety_data = data_karta(R.drawable.oblozka, 0, 0, "000")
     val dog = karte_blihnic(R.drawable.dog, 4, 1, "002-1")
     val fox = karte_blihnic(R.drawable.fox, 3, 3, "002-2")
@@ -32,16 +34,17 @@ class create_koloda {
     val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-2")
     val voron = karte_dalnic(R.drawable.voron, 1, 2, "101")
     val sneake = karte_blihnic(R.drawable.sneake, 3, 1, "102")
-    val wolf = karte_blihnic(R.drawable.wolf, 6, 5, "103")
+    val wolf = karte_blihnic(R.drawable.wolf, 7, 3, "103")
     val nabor_kart = listOf<data_karta>(fox, dog, cat, bird, mouse)
-    val nabor_kart_vragi = listOf<data_karta>(voron, sneake, wolf)
+    val nabor_kart_vragi = listOf<data_karta>(voron, wolf, sneake)
     val cpiso: Map<String, data_karta> = mapOf(nety_data.ip_karti to nety_data, fox.ip_karti to fox,
         dog.ip_karti to dog, bird.ip_karti to bird, mouse.ip_karti to mouse, voron.ip_karti to voron,
         sneake.ip_karti to sneake)
     val spisok_tekcta: Map<String, Int> = mapOf( fox.ip_karti to R.drawable.fox_opisanie,
     dog.ip_karti to R.drawable.dog_opisanie, bird.ip_karti to R.drawable.bird_opisanie,
     mouse.ip_karti to R.drawable.mouse_opisanie, voron.ip_karti to R.drawable.voron_opisanie,
-    sneake.ip_karti to R.drawable.sneake_opisanie, cat.ip_karti to R.drawable.cat_opisanie)
+    sneake.ip_karti to R.drawable.sneake_opisanie, cat.ip_karti to R.drawable.cat_opisanie,
+    wolf.ip_karti to R.drawable.wolf_opisanie)
 
     // для 1-го уровня колоды
     val nabor_kart_dalnici_1 = listOf<karte_dalnic>(mouse)
@@ -77,4 +80,11 @@ class create_koloda {
         return list.get(number)
     }
     fun text_about_kart(ip: String): Int { return spisok_tekcta.get(ip)!! }
+
+    fun ocobo():data_karta {
+        when (data_flagi.yroven_now) {
+            2 -> return wolf
+        }
+        return fox
+    }
 }

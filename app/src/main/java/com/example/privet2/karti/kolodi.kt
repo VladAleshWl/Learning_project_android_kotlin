@@ -38,5 +38,4 @@ class kolodi {
         }
         return karti.nabor_kart_vragi_blihnic_1
     }
-
 }
