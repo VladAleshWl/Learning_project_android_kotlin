@@ -36,4 +36,3 @@ The authors:
 - Votskaya Sophia (ISP-202)
 - Krapivkina Miroslava (ISP-202)
 
-#Here will be a link to a working site (someday)#
