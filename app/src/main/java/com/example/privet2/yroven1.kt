@@ -16,7 +16,6 @@ import com.example.privet2.karti.unic_vragi
 import kotlin.random.Random
 
 
-
 class yroven1 : AppCompatActivity() {
     lateinit var carta_ctavit: data_karta
     val basa_cart = create_koloda()
@@ -37,10 +36,10 @@ class yroven1 : AppCompatActivity() {
 
         val igra_vuhod: ImageView = findViewById(R.id.image_igra_vuhod)
         val igra_igrat: ImageView = findViewById(R.id.image_igra_igrat)
-        val pole_1_1 = pole(findViewById(R.id.laiaut_1_1), findViewById(R.id.image_1_1_ataka), findViewById(R.id.image_1_1_xp))
-        val pole_1_2 = pole(findViewById(R.id.laiaut_1_2), findViewById(R.id.image_1_2_ataka), findViewById(R.id.image_1_2_xp))
-        val pole_2_1 = pole(findViewById(R.id.laiaut_2_1), findViewById(R.id.image_2_1_ataka), findViewById(R.id.image_2_1_xp))
-        val pole_2_2 = pole(findViewById(R.id.laiaut_2_2), findViewById(R.id.image_2_2_ataka), findViewById(R.id.image_2_2_xp))
+        val pole_1_1 = pole(findViewById(R.id.laiaut_1_1), findViewById(R.id.image_1_1_ataka), findViewById(R.id.image_1_1_xp), nationality = "dalnic")
+        val pole_1_2 = pole(findViewById(R.id.laiaut_1_2), findViewById(R.id.image_1_2_ataka), findViewById(R.id.image_1_2_xp), nationality = "blihnic")
+        val pole_2_1 = pole(findViewById(R.id.laiaut_2_1), findViewById(R.id.image_2_1_ataka), findViewById(R.id.image_2_1_xp), nationality = "dalnic")
+        val pole_2_2 = pole(findViewById(R.id.laiaut_2_2), findViewById(R.id.image_2_2_ataka), findViewById(R.id.image_2_2_xp), nationality = "blihnic")
         val pole_1_3 = pole(findViewById(R.id.laiaut_1_3), findViewById(R.id.image_1_3_ataka), findViewById(R.id.image_1_3_xp))
         val pole_1_4 = pole(findViewById(R.id.laiaut_1_4), findViewById(R.id.image_1_4_ataka), findViewById(R.id.image_1_4_xp))
         val pole_2_3 = pole(findViewById(R.id.laiaut_2_3), findViewById(R.id.image_2_3_ataka), findViewById(R.id.image_2_3_xp))
@@ -117,6 +116,25 @@ class yroven1 : AppCompatActivity() {
             return dannie
         }
 
+        fun paysa(){                                              //пауза
+        }
+
+        fun obnova_all_vrag(){                       //обновления враж. поля
+            xp_vrag.setText(vrag_xp_chislo.toString())
+            blok_poli_vrag(true)
+            carta_ctavit = basa_cart.nety_data
+            opnova(pole_2_4.pole, pole_2_4.xp_now)
+            opnova(pole_2_3.pole, pole_2_3.xp_now)
+            opnova(pole_1_4.pole, pole_1_4.xp_now)
+            opnova(pole_1_3.pole, pole_1_3.xp_now)
+            blok_poli_vrag(false)
+        }
+
+        fun pays_obn(){                                   //анимация
+            obnova_all_vrag()
+            paysa()
+        }
+
         fun sapolnenie_poli(pole_: pole){              //заполнение карт на поле
             if (flag_deictvia == 1){
             if (flag_bloca_vcex) {blok_poli_nahe(false)}
@@ -167,10 +185,10 @@ class yroven1 : AppCompatActivity() {
             startActivity(intent)
         }
 
-        pole_1_1.pole.setOnClickListener { sapolnenie_poli(pole_1_1) }
-        pole_1_2.pole.setOnClickListener { sapolnenie_poli(pole_1_2) }
-        pole_2_1.pole.setOnClickListener { sapolnenie_poli(pole_2_1) }
-        pole_2_2.pole.setOnClickListener { sapolnenie_poli(pole_2_2) }
+        pole_1_1.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_1_1.nationality || carta_ctavit.raspolozenie == "all") {sapolnenie_poli(pole_1_1)} }
+        pole_1_2.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_1_2.nationality || carta_ctavit.raspolozenie == "all") {sapolnenie_poli(pole_1_2)} }
+        pole_2_1.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_2_1.nationality || carta_ctavit.raspolozenie == "all") {sapolnenie_poli(pole_2_1)} }
+        pole_2_2.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_2_2.nationality || carta_ctavit.raspolozenie == "all") {sapolnenie_poli(pole_2_2)} }
         pole_1_3.pole.setOnClickListener { sapolnenie_poli(pole_1_3) }
         pole_1_4.pole.setOnClickListener { sapolnenie_poli(pole_1_4) }
         pole_2_3.pole.setOnClickListener { sapolnenie_poli(pole_2_3) }
@@ -181,28 +199,29 @@ class yroven1 : AppCompatActivity() {
             pole_1_3.xp_now = a
             pole_1_4.xp_now = b         //урон соузного поля
             vrag_xp_chislo = d
+            pays_obn()
             var (a1, b1, d1) = yron__linia(pole_1_1.ataka_now, pole_1_3.xp_now, pole_1_4.xp_now, vrag_xp_chislo)
             pole_1_3.xp_now = a1
             pole_1_4.xp_now = b1
             vrag_xp_chislo = d1
+            pays_obn()
             var (a2, b2, d2) = yron__linia(pole_2_2.ataka_now, pole_2_3.xp_now, pole_2_4.xp_now, vrag_xp_chislo)
             pole_2_3.xp_now = a2
             pole_2_4.xp_now = b2
             vrag_xp_chislo = d2
+            pays_obn()
             var (a3, b3, d3) = yron__linia(pole_2_1.ataka_now, pole_2_3.xp_now, pole_2_4.xp_now, vrag_xp_chislo)
             pole_2_3.xp_now = a3
             pole_2_4.xp_now = b3
             vrag_xp_chislo = d3
-            xp_vrag.setText(vrag_xp_chislo.toString())
-            carta_ctavit = basa_cart.nety_data
+            pays_obn()
+
+
+
             blok_poli_vrag(true)
-            opnova(pole_2_4.pole, pole_2_4.xp_now)
-            opnova(pole_2_3.pole, pole_2_3.xp_now)     //обновления враж. поля
-            opnova(pole_1_4.pole, pole_1_4.xp_now)
-            opnova(pole_1_3.pole, pole_1_3.xp_now)
             if (vrag_xp_chislo < 1) {       //проверка жизний
-                finish()
                 basa_fkagov.flag_1_go_yr = true
+                finish()
             }
             if ((pole_2_4.xp_now != 0) && (pole_2_3.xp_now != 0) && (pole_1_3.xp_now != 0) && (pole_1_4.xp_now != 0)) { otdix = 1}
             else if(!ynic.ocob_xod(hod)){
@@ -246,9 +265,8 @@ class yroven1 : AppCompatActivity() {
                 pole_2_1.xp_now = b7
                 my_xp_chislo = d7
                 xp_my.setText(my_xp_chislo.toString())
-
             blok_poli_nahe(true)
-                carta_ctavit = basa_cart.nety_data
+            carta_ctavit = basa_cart.nety_data
             flag_bloca_vcex = false
             opnova(pole_2_2.pole, pole_2_2.xp_now)
             opnova(pole_2_1.pole, pole_2_1.xp_now)       //обновления союзн. поля
