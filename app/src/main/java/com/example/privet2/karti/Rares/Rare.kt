@@ -1,7 +1,12 @@
 package com.example.privet2.karti.Rares
 
-class Rare (memary: Array<Int>){
+import com.example.privet2.Data.pole
+
+class Rare (memary: List<pole>, posihn: pole){
     val memory = memary
-    var rare = Cposobnosti(memory)
+    var rare = Cposobnosti(memory, posihn)
+    fun vsaim(){
+        rare.vsaim()
+    }
 
 }

@@ -41,7 +41,7 @@ class koloda : AppCompatActivity() {
             if (flag) { karta_l = karta_ }
             else {}
             var pole = spisok_polei.get(i_for_pole)
-            pole.ataka_image.setBackgroundResource(karta_l.ataka_paint()!!)
+            pole.ataka_image.setBackgroundResource(karta_l.ataka_paint(karta_l.ataka)!!)
             pole.xp_image.setBackgroundResource(karta_l.xp_paint(karta_l.xp)!!)
             pole.pole.setBackgroundResource(karta_l.paint)
             if (karta_l == basa_kart.nety_data) { pole.pole.isClickable = false }

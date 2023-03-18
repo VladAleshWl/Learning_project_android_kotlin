@@ -27,7 +27,7 @@ class procmotr_karti : AppCompatActivity() {
         back.setOnClickListener{ finish() }
         paint.setBackgroundResource(karta.paint)
         xp.setBackgroundResource(karta.xp_paint(karta.xp)!!)
-        ataka.setBackgroundResource(karta.ataka_paint()!!)
+        ataka.setBackgroundResource(karta.ataka_paint(karta.ataka)!!)
         text_im.setBackgroundResource(cr_kol.text_about_kart(karta.ip_karti)) //не раскомичивать пока нет текста
     }
 }

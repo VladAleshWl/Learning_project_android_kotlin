@@ -9,4 +9,13 @@ class pole(pole_ob: ConstraintLayout, xp_imag: ImageView, ataka_imag: ImageView,
     var pole = pole_ob
     var xp_image = xp_imag
     var ataka_image = ataka_imag
+
+    fun polychenie_yrona(yron: Int): Int{
+        if (xp_now == 0){ return yron}
+        else{
+            xp_now -= yron
+            if (xp_now < 0){ xp_now = 0 }
+            return 0
+        }
+    }
 }

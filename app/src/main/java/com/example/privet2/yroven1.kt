@@ -54,6 +54,7 @@ class yroven1 : AppCompatActivity() {
         var vrag_xp_chislo:Int = my_xp_chislo
         var otdix: Int
         var hod = 1
+        var poli = listOf<pole>(pole_1_1, pole_1_2, pole_1_3, pole_1_4, pole_2_2, pole_2_1, pole_2_3, pole_2_4)
 
         val nabor_kart_dalnici = koloda.koloda_fo_lvl_dalnic(basa_fkagov.yroven_now)
         val nabor_zentr = koloda.koloda_fo_lvl_zentr(basa_fkagov.yroven_now)
@@ -76,10 +77,10 @@ class yroven1 : AppCompatActivity() {
 
 
 
-        fun opnova(pole: ConstraintLayout, xp: Int){    //обновление карт, их хп и фона в зависимости от хп
-            if (xp < 1){ flag_deictvia = 1 }
+        fun opnova(pole: pole){    //обновление карт, их хп и фона в зависимости от хп
+            if (pole.xp_now < 1){ flag_deictvia = 1 }
             else{ flag_deictvia = 2 }
-            pole.performClick()
+            pole.pole.performClick()
         }
 
         fun blok_poli_nahe(blok: Boolean){
@@ -96,25 +97,20 @@ class yroven1 : AppCompatActivity() {
             pole_2_4.pole.isClickable = blok
         }
 
-        fun yron__linia(yron: Int, blignic: Int, dalnic: Int, vrag: Int): List<Int>{
-            var xp_blignika: Int =  blignic
-            var xp_dalnika: Int = dalnic
-            var vrag_xp: Int = vrag                //разчитывание урона по линии
-
-            if (blignic > 0) {
-                xp_blignika -= yron
-                if (xp_blignika <= 0)        {xp_blignika = 0}
-            }else{
-                if (dalnic > 0){
-                    xp_dalnika -= yron
-                    if (xp_dalnika <= 0)        {xp_dalnika = 0}
-                }else{
-                    vrag_xp = vrag_xp - yron
-                }
-            }
-            var dannie: List<Int> = listOf(xp_blignika, xp_dalnika, vrag_xp)
-            return dannie
+        fun yron__linia(){                          //урон по врагу
+            vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
+            vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
+            vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
+            vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
         }
+
+        fun yron__linia_nam(){                          //урон по нам
+            my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
+            my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
+            my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
+            my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
+        }
+
 
         fun paysa(){                                              //пауза
         }
@@ -123,15 +119,29 @@ class yroven1 : AppCompatActivity() {
             xp_vrag.setText(vrag_xp_chislo.toString())
             blok_poli_vrag(true)
             carta_ctavit = basa_cart.nety_data
-            opnova(pole_2_4.pole, pole_2_4.xp_now)
-            opnova(pole_2_3.pole, pole_2_3.xp_now)
-            opnova(pole_1_4.pole, pole_1_4.xp_now)
-            opnova(pole_1_3.pole, pole_1_3.xp_now)
+            opnova(pole_2_4)
+            opnova(pole_2_3)
+            opnova(pole_1_4)
+            opnova(pole_1_3)
             blok_poli_vrag(false)
         }
 
+        fun obnova_all_nahi(){                       //обновления нашего поля
+            xp_vrag.setText(vrag_xp_chislo.toString())
+            blok_poli_vrag(true)
+            carta_ctavit = basa_cart.nety_data
+            opnova(pole_2_2)
+            opnova(pole_2_1)       //обновления союзн. поля
+            opnova(pole_1_1)
+            opnova(pole_1_2)
+            blok_poli_vrag(false)
+        }
+
+
+
         fun pays_obn(){                                   //анимация
             obnova_all_vrag()
+            obnova_all_nahi()
             paysa()
         }
 
@@ -142,18 +152,27 @@ class yroven1 : AppCompatActivity() {
             pole_.xp_now = carta_ctavit.xp
             pole_.ataka_now = carta_ctavit.ataka
             var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
-            var ataka_karti_icon = carta_ctavit.ataka_paint()
+            var ataka_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
             if ((ataka_karti_icon != null) && (xp_karti_icon != null)) {
                 pole_.ataka_image.setBackgroundResource(ataka_karti_icon)
                 pole_.xp_image.setBackgroundResource(xp_karti_icon)
             }
             pole_.pole.setBackgroundResource(carta_ctavit.paint)
             otkrit_kolody.setBackgroundResource(R.drawable.koloda)
+//                if (carta_ctavit.status == "splehi") {
+//                    var cpos = Rare(poli, pole_)
+//                    cpos.rare = splehi(poli, pole_)
+//                    poli = cpos.rare.vsaim()
+//                    pays_obn()
+//                }
         }
             if (flag_deictvia == 2) {
                 var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
+                var ataca_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
                 pole_.xp_image.setBackgroundResource(xp_karti_icon!!)
+                pole_.ataka_image.setBackgroundResource(ataca_karti_icon!!)
                 pole_.pole.isClickable = false
+
             }}
 
         igra_vuhod.setOnClickListener {       //  выход
@@ -195,26 +214,9 @@ class yroven1 : AppCompatActivity() {
         pole_2_4.pole.setOnClickListener { sapolnenie_poli(pole_2_4) }
 
         ctart.setOnClickListener {                         //конец хода
-            var (a, b, d) = yron__linia(pole_1_2.ataka_now, pole_1_3.xp_now, pole_1_4.xp_now, vrag_xp_chislo)
-            pole_1_3.xp_now = a
-            pole_1_4.xp_now = b         //урон соузного поля
-            vrag_xp_chislo = d
+            yron__linia()       //урон соузного поля
             pays_obn()
-            var (a1, b1, d1) = yron__linia(pole_1_1.ataka_now, pole_1_3.xp_now, pole_1_4.xp_now, vrag_xp_chislo)
-            pole_1_3.xp_now = a1
-            pole_1_4.xp_now = b1
-            vrag_xp_chislo = d1
-            pays_obn()
-            var (a2, b2, d2) = yron__linia(pole_2_2.ataka_now, pole_2_3.xp_now, pole_2_4.xp_now, vrag_xp_chislo)
-            pole_2_3.xp_now = a2
-            pole_2_4.xp_now = b2
-            vrag_xp_chislo = d2
-            pays_obn()
-            var (a3, b3, d3) = yron__linia(pole_2_1.ataka_now, pole_2_3.xp_now, pole_2_4.xp_now, vrag_xp_chislo)
-            pole_2_3.xp_now = a3
-            pole_2_4.xp_now = b3
-            vrag_xp_chislo = d3
-            pays_obn()
+
 
 
 
@@ -248,30 +250,13 @@ class yroven1 : AppCompatActivity() {
 
 
             blok_poli_vrag(false)
-                var (a4, b4, d4) = yron__linia(pole_1_3.ataka_now, pole_1_2.xp_now, pole_1_1.xp_now, my_xp_chislo)
-                pole_1_2.xp_now = a4
-                pole_1_1.xp_now = b4      //урон враж. поля
-                my_xp_chislo = d4
-                var (a5, b5, d5) = yron__linia(pole_1_4.ataka_now, pole_1_2.xp_now, pole_1_1.xp_now, my_xp_chislo)
-                pole_1_2.xp_now = a5
-                pole_1_1.xp_now = b5
-                my_xp_chislo = d5
-                var (a6, b6, d6) = yron__linia(pole_2_3.ataka_now, pole_2_2.xp_now, pole_2_1.xp_now, my_xp_chislo)
-                pole_2_2.xp_now = a6
-                pole_2_1.xp_now = b6
-                my_xp_chislo = d6
-                var (a7, b7, d7) = yron__linia(pole_2_4.ataka_now, pole_2_2.xp_now, pole_2_1.xp_now, my_xp_chislo)
-                pole_2_2.xp_now = a7
-                pole_2_1.xp_now = b7
-                my_xp_chislo = d7
+            yron__linia_nam()                               //урон по нам
                 xp_my.setText(my_xp_chislo.toString())
             blok_poli_nahe(true)
             carta_ctavit = basa_cart.nety_data
             flag_bloca_vcex = false
-            opnova(pole_2_2.pole, pole_2_2.xp_now)
-            opnova(pole_2_1.pole, pole_2_1.xp_now)       //обновления союзн. поля
-            opnova(pole_1_1.pole, pole_1_1.xp_now)
-            opnova(pole_1_2.pole, pole_1_2.xp_now)
+            obnova_all_nahi()
+
             flag_deictvia = 0
                 if (my_xp_chislo < 1) { finish() }            //проверка жизний
             basa_cart.set_krt1(basa_cart.nyhen_dalnici(nabor_kart_dalnici))

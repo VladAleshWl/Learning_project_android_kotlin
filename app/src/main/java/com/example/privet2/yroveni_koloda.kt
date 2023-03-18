@@ -38,7 +38,7 @@ class yroveni_koloda : AppCompatActivity() {
         fun sapolnenie_kart(pole_: pole, karta_numer: data_karta){
             pole_.pole.setBackgroundResource(karta_numer.paint)
             var xp_karti_icon = karta_numer.xp_paint(karta_numer.xp)
-            var ataka_karti_icon = karta_numer.ataka_paint()                      //заполнение карт
+            var ataka_karti_icon = karta_numer.ataka_paint(karta_numer.ataka)                      //заполнение карт
             pole_.xp_image.setBackgroundResource(xp_karti_icon!!)
             pole_.ataka_image.setBackgroundResource(ataka_karti_icon!!)
         }
