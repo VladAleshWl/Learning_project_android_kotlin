@@ -4,9 +4,10 @@ import com.example.privet2.Data.pole
 
 class Rare (memary: List<pole>, posihn: pole){
     val memory = memary
-    var rare = Cposobnosti(memory, posihn)
+    val posihn = posihn
+    var rare = Cposobnosti()
     fun vsaim(){
-        rare.vsaim()
+        rare.vsaim(memory, posihn)
     }
 
 }

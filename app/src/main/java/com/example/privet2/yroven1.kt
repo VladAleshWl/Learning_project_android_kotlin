@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.privet2.Data.Data_and_flagi
 import com.example.privet2.Data.pole
+import com.example.privet2.karti.Rares.Rare
+import com.example.privet2.karti.Rares.splehi
 import com.example.privet2.karti.create_koloda
 import com.example.privet2.karti.data_karta
 import com.example.privet2.karti.kolodi
@@ -159,12 +161,12 @@ class yroven1 : AppCompatActivity() {
             }
             pole_.pole.setBackgroundResource(carta_ctavit.paint)
             otkrit_kolody.setBackgroundResource(R.drawable.koloda)
-//                if (carta_ctavit.status == "splehi") {
-//                    var cpos = Rare(poli, pole_)
-//                    cpos.rare = splehi(poli, pole_)
-//                    poli = cpos.rare.vsaim()
-//                    pays_obn()
-//                }
+                if (carta_ctavit.status == "splehi") {
+                    var cpos = Rare(poli, pole_)
+                    cpos.rare = splehi()
+                    cpos.vsaim()
+                    pays_obn()
+                }
         }
             if (flag_deictvia == 2) {
                 var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
