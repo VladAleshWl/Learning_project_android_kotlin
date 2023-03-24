@@ -29,7 +29,7 @@ class create_koloda {
     val nety_data = data_karta(R.drawable.oblozka, 0, 0, "000", "common")
     val dog = karte_blihnic(R.drawable.dog, 4, 1, "002-1", "common")
     val fox = karte_blihnic(R.drawable.fox, 3, 3, "002-2", "common")
-    val cat = karte_blihnic(R.drawable.cat, 2, 4, "002-3", "common")
+    val cat = karte_blihnic(R.drawable.cat, 2, 4, "002-3", "hiler")
     val mouse = karte_dalnic(R.drawable.mouse, 2, 5, "001-1", "common")
     val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-2", "splehi")
     val voron = karte_dalnic(R.drawable.voron, 2, 3, "101", "common")

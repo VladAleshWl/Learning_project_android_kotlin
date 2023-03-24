@@ -10,7 +10,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.privet2.Data.Data_and_flagi
 import com.example.privet2.Data.pole
 import com.example.privet2.karti.Rares.Rare
-import com.example.privet2.karti.Rares.splehi
 import com.example.privet2.karti.create_koloda
 import com.example.privet2.karti.data_karta
 import com.example.privet2.karti.kolodi
@@ -52,11 +51,11 @@ class yroven1 : AppCompatActivity() {
         val ctart: ImageView = findViewById(R.id.image_ctart)
         val xp_my: TextView = findViewById(R.id.text_xp_nahi)
         val xp_vrag: TextView = findViewById(R.id.text_xp_vraga)
-        var my_xp_chislo:Int = basa_fkagov.xp_persov()
-        var vrag_xp_chislo:Int = my_xp_chislo
+        var my_xp_chislo:Int = basa_fkagov.xp_persov()[0]
+        var vrag_xp_chislo:Int = basa_fkagov.xp_persov()[1]
         var otdix: Int
         var hod = 1
-        var poli = listOf<pole>(pole_1_1, pole_1_2, pole_1_3, pole_1_4, pole_2_2, pole_2_1, pole_2_3, pole_2_4)
+        var poli = listOf<pole>(pole_1_1, pole_1_2, pole_2_1, pole_2_2, pole_1_3, pole_1_4, pole_2_3, pole_2_4)
 
         val nabor_kart_dalnici = koloda.koloda_fo_lvl_dalnic(basa_fkagov.yroven_now)
         val nabor_zentr = koloda.koloda_fo_lvl_zentr(basa_fkagov.yroven_now)
@@ -139,17 +138,25 @@ class yroven1 : AppCompatActivity() {
             blok_poli_vrag(false)
         }
 
-
-
         fun pays_obn(){                                   //анимация
             obnova_all_vrag()
             obnova_all_nahi()
             paysa()
         }
 
+        fun sposobnosti(memary: List<pole>, posihn: pole){
+            if (carta_ctavit.status != "common") {
+                var cpos = Rare(memary, posihn)
+                cpos.rare = cpos.give_efect_spawn(carta_ctavit.status)
+                cpos.vsaim()
+                pays_obn()
+            }
+        }
+
         fun sapolnenie_poli(pole_: pole){              //заполнение карт на поле
             if (flag_deictvia == 1){
-            if (flag_bloca_vcex) {blok_poli_nahe(false)}
+            if (flag_bloca_vcex) { blok_poli_nahe(false) }
+
 
             pole_.xp_now = carta_ctavit.xp
             pole_.ataka_now = carta_ctavit.ataka
@@ -161,12 +168,7 @@ class yroven1 : AppCompatActivity() {
             }
             pole_.pole.setBackgroundResource(carta_ctavit.paint)
             otkrit_kolody.setBackgroundResource(R.drawable.koloda)
-                if (carta_ctavit.status == "splehi") {
-                    var cpos = Rare(poli, pole_)
-                    cpos.rare = splehi()
-                    cpos.vsaim()
-                    pays_obn()
-                }
+                sposobnosti(poli, pole_)
         }
             if (flag_deictvia == 2) {
                 var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
