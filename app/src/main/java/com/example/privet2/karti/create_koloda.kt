@@ -33,7 +33,7 @@ class create_koloda {
     val mouse = karte_dalnic(R.drawable.mouse, 2, 5, "001-1", "common")
     val bird = karte_dalnic(R.drawable.bird, 1, 6, "001-2", "splehi")
     val voron = karte_dalnic(R.drawable.voron, 2, 3, "101", "common")
-    val sneake = karte_blihnic(R.drawable.sneake, 4, 1, "102", "common")
+    val sneake = karte_blihnic(R.drawable.sneake, 4, 1, "102", "poison")
     val wolf = karte_blihnic(R.drawable.wolf, 7, 3, "103", "common")
     val nabor_kart = listOf<data_karta>(fox, dog, cat, bird, mouse)
     val nabor_kart_vragi = listOf<data_karta>(voron, wolf, sneake)

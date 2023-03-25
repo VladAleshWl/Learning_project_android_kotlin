@@ -98,19 +98,7 @@ class yroven1 : AppCompatActivity() {
             pole_2_4.pole.isClickable = blok
         }
 
-        fun yron__linia(){                          //урон по врагу
-            vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
-            vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
-            vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
-            vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
-        }
 
-        fun yron__linia_nam(){                          //урон по нам
-            my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
-            my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
-            my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
-            my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
-        }
 
 
         fun paysa(){                                              //пауза
@@ -144,14 +132,34 @@ class yroven1 : AppCompatActivity() {
             paysa()
         }
 
-        fun sposobnosti(memary: List<pole>, posihn: pole){
-            if (carta_ctavit.status != "common") {
-                var cpos = Rare(memary, posihn)
+        fun sposobnosti_ctavit(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
+            var cpos = Rare(poli, posihn)
+            if (carta_ctavit.status != "common" && carta_ctavit.status in cpos.cpisok_pri_poivlenie) {
                 cpos.rare = cpos.give_efect_spawn(carta_ctavit.status)
                 cpos.vsaim()
                 pays_obn()
             }
         }
+
+        fun sposobnosti_ataka(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
+            if (carta_ctavit.status != "common") {
+                var cpos = Rare(poli, posihn)
+                cpos.rare = cpos.give_efect_ataki(carta_ctavit.status)
+                cpos.vsaim()
+                pays_obn()
+            }
+        }
+
+        fun sposobnosti_vait(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
+            if (carta_ctavit.status != "common") {
+                var cpos = Rare(poli, posihn)
+                cpos.rare = cpos.give_efect_vait(carta_ctavit.status)
+                cpos.vsaim()
+                pays_obn()
+            }
+        }
+
+
 
         fun sapolnenie_poli(pole_: pole){              //заполнение карт на поле
             if (flag_deictvia == 1){
@@ -168,7 +176,7 @@ class yroven1 : AppCompatActivity() {
             }
             pole_.pole.setBackgroundResource(carta_ctavit.paint)
             otkrit_kolody.setBackgroundResource(R.drawable.koloda)
-                sposobnosti(poli, pole_)
+                sposobnosti_ctavit(pole_)
         }
             if (flag_deictvia == 2) {
                 var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
@@ -217,9 +225,36 @@ class yroven1 : AppCompatActivity() {
         pole_2_3.pole.setOnClickListener { sapolnenie_poli(pole_2_3) }
         pole_2_4.pole.setOnClickListener { sapolnenie_poli(pole_2_4) }
 
+        fun yron__linia(){                          //урон по врагу
+            vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
+            vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
+            vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
+            vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
+            /*sposobnosti_all(pole_1_1, "ataka")
+            sposobnosti_all(pole_1_2, "ataka")
+            sposobnosti_all(pole_2_1, "ataka")
+            sposobnosti_all(pole_2_2, "ataka")*/
+        }
+
+        fun yron__linia_nam(){                          //урон по нам
+            my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
+            my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
+            my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
+            my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
+            /*sposobnosti_all(pole_1_4, "ataka")
+            sposobnosti_all(pole_1_3, "ataka")
+            sposobnosti_all(pole_2_4, "ataka")
+            sposobnosti_all(pole_2_3, "ataka")*/
+        }
+
+        fun activaich_ehectov(){
+            //sposobnosti_all(pole_1_1, "vait")
+        }
+
+
         ctart.setOnClickListener {                         //конец хода
             yron__linia()       //урон соузного поля
-            pays_obn()
+
 
 
 
@@ -259,7 +294,8 @@ class yroven1 : AppCompatActivity() {
             blok_poli_nahe(true)
             carta_ctavit = basa_cart.nety_data
             flag_bloca_vcex = false
-            obnova_all_nahi()
+            //activaich_ehectov()
+            pays_obn()
 
             flag_deictvia = 0
                 if (my_xp_chislo < 1) { finish() }            //проверка жизний
