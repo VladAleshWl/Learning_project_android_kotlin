@@ -5,7 +5,7 @@ import com.example.privet2.R
 open class data_karta(paint: Int, xp: Int, ataka: Int, ip: String, status: String) {
     val ip_karti = ip
     var ataka_now = ataka
-    var status = status
+    var rare = status
     open val iconca_classa: Int = 0
     open val raspolozenie: String = "all"
     val paint = paint

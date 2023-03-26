@@ -14,6 +14,7 @@ import com.example.privet2.karti.create_koloda
 import com.example.privet2.karti.data_karta
 import com.example.privet2.karti.kolodi
 import com.example.privet2.karti.unic_vragi
+import kotlin.properties.Delegates
 import kotlin.random.Random
 
 
@@ -41,10 +42,10 @@ class yroven1 : AppCompatActivity() {
         val pole_1_2 = pole(findViewById(R.id.laiaut_1_2), findViewById(R.id.image_1_2_ataka), findViewById(R.id.image_1_2_xp), nationality = "blihnic")
         val pole_2_1 = pole(findViewById(R.id.laiaut_2_1), findViewById(R.id.image_2_1_ataka), findViewById(R.id.image_2_1_xp), nationality = "dalnic")
         val pole_2_2 = pole(findViewById(R.id.laiaut_2_2), findViewById(R.id.image_2_2_ataka), findViewById(R.id.image_2_2_xp), nationality = "blihnic")
-        val pole_1_3 = pole(findViewById(R.id.laiaut_1_3), findViewById(R.id.image_1_3_ataka), findViewById(R.id.image_1_3_xp))
-        val pole_1_4 = pole(findViewById(R.id.laiaut_1_4), findViewById(R.id.image_1_4_ataka), findViewById(R.id.image_1_4_xp))
-        val pole_2_3 = pole(findViewById(R.id.laiaut_2_3), findViewById(R.id.image_2_3_ataka), findViewById(R.id.image_2_3_xp))
-        val pole_2_4 = pole(findViewById(R.id.laiaut_2_4), findViewById(R.id.image_2_4_ataka), findViewById(R.id.image_2_4_xp))
+        val pole_1_3 = pole(findViewById(R.id.laiaut_1_3), findViewById(R.id.image_1_3_ataka), findViewById(R.id.image_1_3_xp), nationality = "blihnic")
+        val pole_1_4 = pole(findViewById(R.id.laiaut_1_4), findViewById(R.id.image_1_4_ataka), findViewById(R.id.image_1_4_xp), nationality = "dalnic")
+        val pole_2_3 = pole(findViewById(R.id.laiaut_2_3), findViewById(R.id.image_2_3_ataka), findViewById(R.id.image_2_3_xp), nationality = "blihnic")
+        val pole_2_4 = pole(findViewById(R.id.laiaut_2_4), findViewById(R.id.image_2_4_ataka), findViewById(R.id.image_2_4_xp), nationality = "dalnic")
         val yverenu: ConstraintLayout = findViewById(R.id.konsol_yverenu)
         val ppole: ConstraintLayout = findViewById(R.id.IPPPPPPPP)
         val otkrit_kolody: ImageView = findViewById(R.id.image_koloda_v_igre)
@@ -106,24 +107,20 @@ class yroven1 : AppCompatActivity() {
 
         fun obnova_all_vrag(){                       //обновления враж. поля
             xp_vrag.setText(vrag_xp_chislo.toString())
-            blok_poli_vrag(true)
             carta_ctavit = basa_cart.nety_data
             opnova(pole_2_4)
             opnova(pole_2_3)
             opnova(pole_1_4)
             opnova(pole_1_3)
-            blok_poli_vrag(false)
         }
 
         fun obnova_all_nahi(){                       //обновления нашего поля
-            xp_vrag.setText(vrag_xp_chislo.toString())
-            blok_poli_vrag(true)
+            xp_my.setText(my_xp_chislo.toString())
             carta_ctavit = basa_cart.nety_data
             opnova(pole_2_2)
             opnova(pole_2_1)       //обновления союзн. поля
             opnova(pole_1_1)
             opnova(pole_1_2)
-            blok_poli_vrag(false)
         }
 
         fun pays_obn(){                                   //анимация
@@ -134,26 +131,26 @@ class yroven1 : AppCompatActivity() {
 
         fun sposobnosti_ctavit(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
             var cpos = Rare(poli, posihn)
-            if (carta_ctavit.status != "common" && carta_ctavit.status in cpos.cpisok_pri_poivlenie) {
-                cpos.rare = cpos.give_efect_spawn(carta_ctavit.status)
+            if (posihn.rare != "common" && posihn.rare in cpos.cpisok_pri_poivlenie) {
+                cpos.rare = cpos.give_efect_spawn(posihn.rare)
                 cpos.vsaim()
                 pays_obn()
             }
         }
 
         fun sposobnosti_ataka(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
-            if (carta_ctavit.status != "common") {
-                var cpos = Rare(poli, posihn)
-                cpos.rare = cpos.give_efect_ataki(carta_ctavit.status)
+            var cpos = Rare(poli, posihn)
+            if (posihn.rare != "common" && posihn.rare in cpos.cpisok_pri_atake) {
+                cpos.rare = cpos.give_efect_ataki(posihn.rare)
                 cpos.vsaim()
                 pays_obn()
             }
         }
 
         fun sposobnosti_vait(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
-            if (carta_ctavit.status != "common") {
+            if (posihn.rare != "common") {
                 var cpos = Rare(poli, posihn)
-                cpos.rare = cpos.give_efect_vait(carta_ctavit.status)
+                cpos.rare = cpos.give_efect_vait(posihn.rare)
                 cpos.vsaim()
                 pays_obn()
             }
@@ -163,21 +160,21 @@ class yroven1 : AppCompatActivity() {
 
         fun sapolnenie_poli(pole_: pole){              //заполнение карт на поле
             if (flag_deictvia == 1){
-            if (flag_bloca_vcex) { blok_poli_nahe(false) }
+                if (flag_bloca_vcex) { blok_poli_nahe(false) }
 
-
-            pole_.xp_now = carta_ctavit.xp
-            pole_.ataka_now = carta_ctavit.ataka
-            var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
-            var ataka_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
-            if ((ataka_karti_icon != null) && (xp_karti_icon != null)) {
-                pole_.ataka_image.setBackgroundResource(ataka_karti_icon)
-                pole_.xp_image.setBackgroundResource(xp_karti_icon)
-            }
-            pole_.pole.setBackgroundResource(carta_ctavit.paint)
-            otkrit_kolody.setBackgroundResource(R.drawable.koloda)
+                pole_.xp_now = carta_ctavit.xp
+                pole_.ataka_now = carta_ctavit.ataka
+                var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
+                var ataka_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
+                if ((ataka_karti_icon != null) && (xp_karti_icon != null)) {
+                    pole_.ataka_image.setBackgroundResource(ataka_karti_icon)
+                    pole_.xp_image.setBackgroundResource(xp_karti_icon)
+                    }
+                pole_.pole.setBackgroundResource(carta_ctavit.paint)
+                otkrit_kolody.setBackgroundResource(R.drawable.koloda)
+                pole_.rare = carta_ctavit.rare
                 sposobnosti_ctavit(pole_)
-        }
+            }
             if (flag_deictvia == 2) {
                 var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
                 var ataca_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
@@ -220,85 +217,87 @@ class yroven1 : AppCompatActivity() {
         pole_1_2.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_1_2.nationality || carta_ctavit.raspolozenie == "all") {sapolnenie_poli(pole_1_2)} }
         pole_2_1.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_2_1.nationality || carta_ctavit.raspolozenie == "all") {sapolnenie_poli(pole_2_1)} }
         pole_2_2.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_2_2.nationality || carta_ctavit.raspolozenie == "all") {sapolnenie_poli(pole_2_2)} }
-        pole_1_3.pole.setOnClickListener { sapolnenie_poli(pole_1_3) }
-        pole_1_4.pole.setOnClickListener { sapolnenie_poli(pole_1_4) }
-        pole_2_3.pole.setOnClickListener { sapolnenie_poli(pole_2_3) }
-        pole_2_4.pole.setOnClickListener { sapolnenie_poli(pole_2_4) }
+        pole_1_3.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_1_3.nationality || carta_ctavit.raspolozenie == "all") { sapolnenie_poli(pole_1_3) } }
+        pole_1_4.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_1_4.nationality || carta_ctavit.raspolozenie == "all") { sapolnenie_poli(pole_1_4) } }
+        pole_2_3.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_2_3.nationality || carta_ctavit.raspolozenie == "all") { sapolnenie_poli(pole_2_3) } }
+        pole_2_4.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_2_4.nationality || carta_ctavit.raspolozenie == "all") { sapolnenie_poli(pole_2_4) } }
 
         fun yron__linia(){                          //урон по врагу
+            sposobnosti_ataka(pole_1_1)
+            sposobnosti_ataka(pole_1_2)
+            sposobnosti_ataka(pole_2_1)
+            sposobnosti_ataka(pole_2_2)
             vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
             vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
             vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
             vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
-            /*sposobnosti_all(pole_1_1, "ataka")
-            sposobnosti_all(pole_1_2, "ataka")
-            sposobnosti_all(pole_2_1, "ataka")
-            sposobnosti_all(pole_2_2, "ataka")*/
         }
 
         fun yron__linia_nam(){                          //урон по нам
+            sposobnosti_ataka(pole_1_4)
+            sposobnosti_ataka(pole_1_3)
+            sposobnosti_ataka(pole_2_4)
+            sposobnosti_ataka(pole_2_3)
             my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
             my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
             my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
             my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
-            /*sposobnosti_all(pole_1_4, "ataka")
-            sposobnosti_all(pole_1_3, "ataka")
-            sposobnosti_all(pole_2_4, "ataka")
-            sposobnosti_all(pole_2_3, "ataka")*/
         }
 
-        fun activaich_ehectov(){
-            //sposobnosti_all(pole_1_1, "vait")
+        fun cpawn_ips(){
+            var nyhnie_poli = mutableListOf<pole>()
+            for (i: Int in 4..poli.size - 1){ if (poli[i].xp_now < 1){ nyhnie_poli.add(poli[i]) } }
+                var xod_vraga by Delegates.notNull<Int>()
+                if (nyhnie_poli.size == 1){ xod_vraga = 0 }
+                else {xod_vraga = Random.nextInt(nyhnie_poli.size - 1) }
+                if (nyhnie_poli[xod_vraga].nationality == "blihnic") {
+                    carta_ctavit = basa_cart.nyhen_blihnic_vrag(nabor_kart_vragi_blihnic)
+                } else {
+                    carta_ctavit = basa_cart.nyhen_dalnici_vrag(nabor_kart_vragi_dalnici)
+                }
+                nyhnie_poli[xod_vraga].pole.performClick()
         }
+
+        fun vibor_kart_vraga(){
+            blok_poli_vrag(true)
+            flag_deictvia = 1
+            if ((pole_2_4.xp_now != 0) && (pole_2_3.xp_now != 0) && (pole_1_3.xp_now != 0) && (pole_1_4.xp_now != 0)) { hod -= 1}
+            else if(!ynic.ocob_xod(hod)){
+                carta_ctavit = basa_cart.ocobo()
+                var nyhnie_poli = mutableListOf<pole>()
+                for (i: Int in 4..poli.size - 1){ if (poli[i].nationality == carta_ctavit.raspolozenie && poli[i].xp_now < 1){ nyhnie_poli.add(poli[i]) } }
+                if (nyhnie_poli.size == 0) {
+                    hod -= 1
+                    cpawn_ips()
+                }
+                else{
+                    if (nyhnie_poli.size == 1){ nyhnie_poli[0].pole.performClick()}
+                    else {
+                        val xod_vraga: Int = Random.nextInt(nyhnie_poli.size - 1)
+                        nyhnie_poli[xod_vraga].pole.performClick()
+                    }
+                }
+            } else { cpawn_ips() }
+            blok_poli_vrag(false)
+        }
+
 
 
         ctart.setOnClickListener {                         //конец хода
             yron__linia()       //урон соузного поля
 
-
-
-
-
-            blok_poli_vrag(true)
             if (vrag_xp_chislo < 1) {       //проверка жизний
                 basa_fkagov.flag_1_go_yr = true
                 finish()
             }
-            if ((pole_2_4.xp_now != 0) && (pole_2_3.xp_now != 0) && (pole_1_3.xp_now != 0) && (pole_1_4.xp_now != 0)) { otdix = 1}
-            else if(!ynic.ocob_xod(hod)){
-                carta_ctavit = basa_cart.ocobo()
-                if (pole_2_3.xp_now < 1){ pole_2_3.pole.performClick() }
-                else if (pole_1_3.xp_now < 1){ pole_1_3.pole.performClick() }
-            } else {
-            var xod_vraga: Int = Random.nextInt(3)
-                flag_deictvia = 1
-            when (xod_vraga) {    //выстовление карт врага
-                0 -> { carta_ctavit = basa_cart.nyhen_blihnic_vrag(nabor_kart_vragi_blihnic)
-                    if (pole_2_3.xp_now < 1) { pole_2_3.pole.performClick() }
-                    else { pole_1_3.pole.performClick() }}
-                1 -> { carta_ctavit = basa_cart.nyhen_blihnic_vrag(nabor_kart_vragi_blihnic)
-                    if (pole_1_3.xp_now < 1) { pole_1_3.pole.performClick() }
-                    else { pole_2_3.pole.performClick() }}
-                2 -> { carta_ctavit = basa_cart.nyhen_dalnici_vrag(nabor_kart_vragi_dalnici)
-                    if (pole_2_4.xp_now < 1) { pole_2_4.pole.performClick() }
-                    else { pole_1_4.pole.performClick() }}
-                3 -> { carta_ctavit = basa_cart.nyhen_dalnici_vrag(nabor_kart_vragi_dalnici)
-                    if (pole_1_4.xp_now < 1) { pole_1_4.pole.performClick() }
-                    else { pole_2_4.pole.performClick() }}
-            }}
-
-
-            blok_poli_vrag(false)
+            vibor_kart_vraga()
             yron__linia_nam()                               //урон по нам
-                xp_my.setText(my_xp_chislo.toString())
-            blok_poli_nahe(true)
-            carta_ctavit = basa_cart.nety_data
+            if (my_xp_chislo < 1) { finish() }            //проверка жизний
             flag_bloca_vcex = false
             //activaich_ehectov()
             pays_obn()
 
             flag_deictvia = 0
-                if (my_xp_chislo < 1) { finish() }            //проверка жизний
             basa_cart.set_krt1(basa_cart.nyhen_dalnici(nabor_kart_dalnici))
             basa_cart.set_krt2(basa_cart.nyhen_zenter(nabor_zentr))
             basa_cart.set_krt3(basa_cart.nyhen_blihnic(nabor_kart_blihnic))
@@ -310,6 +309,7 @@ class yroven1 : AppCompatActivity() {
             prov_21 = pole_2_1.xp_now
             prov_22 = pole_2_2.xp_now
             hod += 1
+            otkrit_kolody.isClickable = true
         }
         otkrit_kolody.setClickable(false)
         ctart.setClickable(false)

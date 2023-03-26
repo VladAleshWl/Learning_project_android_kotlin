@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 class pole(pole_ob: ConstraintLayout, xp_imag: ImageView, ataka_imag: ImageView, xp: Int = 0, ataka: Int = 0,
            nationality: String = "all") {
     var ehect: String = "None"
+    var rare: String = "common"
     var nationality = nationality
     var xp_now = xp
     var ataka_now = ataka
@@ -18,6 +19,21 @@ class pole(pole_ob: ConstraintLayout, xp_imag: ImageView, ataka_imag: ImageView,
             xp_now -= yron
             if (xp_now < 0){ xp_now = 0 }
             return 0
+        }
+    }
+
+    fun poteri_sil(yron: Int): Int{
+        if (ataka_now == 0){ return 0}
+        else{
+            if (yron > ataka_now){
+                val vamp = ataka_now
+                ataka_now = 0
+                return vamp
+            }
+            else{
+                ataka_now -= yron
+                return yron
+            }
         }
     }
 }
