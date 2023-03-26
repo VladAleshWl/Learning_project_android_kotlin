@@ -134,26 +134,26 @@ class yroven1 : AppCompatActivity() {
 
         fun sposobnosti_ctavit(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
             var cpos = Rare(poli, posihn)
-            if (carta_ctavit.status != "common" && carta_ctavit.status in cpos.cpisok_pri_poivlenie) {
-                cpos.rare = cpos.give_efect_spawn(carta_ctavit.status)
+            if (posihn.rare != "common" && posihn.rare in cpos.cpisok_pri_poivlenie) {
+                cpos.rare = cpos.give_efect_spawn(posihn.rare)
                 cpos.vsaim()
                 pays_obn()
             }
         }
 
         fun sposobnosti_ataka(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
-            if (carta_ctavit.status != "common") {
-                var cpos = Rare(poli, posihn)
-                cpos.rare = cpos.give_efect_ataki(carta_ctavit.status)
+            var cpos = Rare(poli, posihn)
+            if (posihn.rare != "common" && posihn.rare in cpos.cpisok_pri_atake) {
+                cpos.rare = cpos.give_efect_ataki(posihn.rare)
                 cpos.vsaim()
                 pays_obn()
             }
         }
 
         fun sposobnosti_vait(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
-            if (carta_ctavit.status != "common") {
+            if (posihn.rare != "common") {
                 var cpos = Rare(poli, posihn)
-                cpos.rare = cpos.give_efect_vait(carta_ctavit.status)
+                cpos.rare = cpos.give_efect_vait(posihn.rare)
                 cpos.vsaim()
                 pays_obn()
             }
@@ -163,21 +163,21 @@ class yroven1 : AppCompatActivity() {
 
         fun sapolnenie_poli(pole_: pole){              //заполнение карт на поле
             if (flag_deictvia == 1){
-            if (flag_bloca_vcex) { blok_poli_nahe(false) }
+                if (flag_bloca_vcex) { blok_poli_nahe(false) }
 
-
-            pole_.xp_now = carta_ctavit.xp
-            pole_.ataka_now = carta_ctavit.ataka
-            var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
-            var ataka_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
-            if ((ataka_karti_icon != null) && (xp_karti_icon != null)) {
-                pole_.ataka_image.setBackgroundResource(ataka_karti_icon)
-                pole_.xp_image.setBackgroundResource(xp_karti_icon)
-            }
-            pole_.pole.setBackgroundResource(carta_ctavit.paint)
-            otkrit_kolody.setBackgroundResource(R.drawable.koloda)
+                pole_.xp_now = carta_ctavit.xp
+                pole_.ataka_now = carta_ctavit.ataka
+                var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
+                var ataka_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
+                if ((ataka_karti_icon != null) && (xp_karti_icon != null)) {
+                    pole_.ataka_image.setBackgroundResource(ataka_karti_icon)
+                    pole_.xp_image.setBackgroundResource(xp_karti_icon)
+                    }
+                pole_.pole.setBackgroundResource(carta_ctavit.paint)
+                otkrit_kolody.setBackgroundResource(R.drawable.koloda)
+                pole_.rare = carta_ctavit.rare
                 sposobnosti_ctavit(pole_)
-        }
+            }
             if (flag_deictvia == 2) {
                 var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
                 var ataca_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
@@ -226,52 +226,46 @@ class yroven1 : AppCompatActivity() {
         pole_2_4.pole.setOnClickListener { sapolnenie_poli(pole_2_4) }
 
         fun yron__linia(){                          //урон по врагу
+            sposobnosti_ataka(pole_1_1)
+            sposobnosti_ataka(pole_1_2)
+            sposobnosti_ataka(pole_2_1)
+            sposobnosti_ataka(pole_2_2)
             vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
             vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
             vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
             vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
-            /*sposobnosti_all(pole_1_1, "ataka")
-            sposobnosti_all(pole_1_2, "ataka")
-            sposobnosti_all(pole_2_1, "ataka")
-            sposobnosti_all(pole_2_2, "ataka")*/
         }
 
         fun yron__linia_nam(){                          //урон по нам
+            sposobnosti_ataka(pole_1_4)
+            sposobnosti_ataka(pole_1_3)
+            sposobnosti_ataka(pole_2_4)
+            sposobnosti_ataka(pole_2_3)
             my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
             my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
             my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
             my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
-            /*sposobnosti_all(pole_1_4, "ataka")
-            sposobnosti_all(pole_1_3, "ataka")
-            sposobnosti_all(pole_2_4, "ataka")
-            sposobnosti_all(pole_2_3, "ataka")*/
         }
 
-        fun activaich_ehectov(){
-            //sposobnosti_all(pole_1_1, "vait")
-        }
 
 
         ctart.setOnClickListener {                         //конец хода
             yron__linia()       //урон соузного поля
-
-
-
-
 
             blok_poli_vrag(true)
             if (vrag_xp_chislo < 1) {       //проверка жизний
                 basa_fkagov.flag_1_go_yr = true
                 finish()
             }
+            flag_deictvia = 1
             if ((pole_2_4.xp_now != 0) && (pole_2_3.xp_now != 0) && (pole_1_3.xp_now != 0) && (pole_1_4.xp_now != 0)) { otdix = 1}
             else if(!ynic.ocob_xod(hod)){
                 carta_ctavit = basa_cart.ocobo()
-                if (pole_2_3.xp_now < 1){ pole_2_3.pole.performClick() }
-                else if (pole_1_3.xp_now < 1){ pole_1_3.pole.performClick() }
+                if (pole_2_3.xp_now == 0){
+                    pole_2_3.pole.performClick() }
+                else if (pole_1_3.xp_now == 0){ pole_1_3.pole.performClick() }
             } else {
             var xod_vraga: Int = Random.nextInt(3)
-                flag_deictvia = 1
             when (xod_vraga) {    //выстовление карт врага
                 0 -> { carta_ctavit = basa_cart.nyhen_blihnic_vrag(nabor_kart_vragi_blihnic)
                     if (pole_2_3.xp_now < 1) { pole_2_3.pole.performClick() }
