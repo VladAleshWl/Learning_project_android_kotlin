@@ -9,7 +9,7 @@ class unic_vragi {
     fun ocob_xod(hod: Int): Boolean{
         var ffag: Boolean = true
         when (flag.yroven_now){
-            2 -> if (hod % 1 == 0) {ffag = false}
+            2 -> if (hod % 3 == 0) {ffag = false}
         }
         return ffag
     }

@@ -14,7 +14,6 @@ import com.example.privet2.karti.create_koloda
 import com.example.privet2.karti.data_karta
 import com.example.privet2.karti.kolodi
 import com.example.privet2.karti.unic_vragi
-import kotlin.properties.Delegates
 import kotlin.random.Random
 
 
@@ -247,9 +246,7 @@ class yroven1 : AppCompatActivity() {
         fun cpawn_ips(){
             var nyhnie_poli = mutableListOf<pole>()
             for (i: Int in 4..poli.size - 1){ if (poli[i].xp_now < 1){ nyhnie_poli.add(poli[i]) } }
-                var xod_vraga by Delegates.notNull<Int>()
-                if (nyhnie_poli.size == 1){ xod_vraga = 0 }
-                else {xod_vraga = Random.nextInt(nyhnie_poli.size - 1) }
+                val xod_vraga: Int = Random.nextInt(nyhnie_poli.size)
                 if (nyhnie_poli[xod_vraga].nationality == "blihnic") {
                     carta_ctavit = basa_cart.nyhen_blihnic_vrag(nabor_kart_vragi_blihnic)
                 } else {
@@ -271,11 +268,8 @@ class yroven1 : AppCompatActivity() {
                     cpawn_ips()
                 }
                 else{
-                    if (nyhnie_poli.size == 1){ nyhnie_poli[0].pole.performClick()}
-                    else {
-                        val xod_vraga: Int = Random.nextInt(nyhnie_poli.size - 1)
-                        nyhnie_poli[xod_vraga].pole.performClick()
-                    }
+                    val xod_vraga: Int = Random.nextInt(nyhnie_poli.size)
+                    nyhnie_poli[xod_vraga].pole.performClick()
                 }
             } else { cpawn_ips() }
             blok_poli_vrag(false)
