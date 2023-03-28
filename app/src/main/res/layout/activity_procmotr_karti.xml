@@ -87,4 +87,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.904"
         app:srcCompat="@drawable/pngshka" />
+
+    <ImageView
+        android:id="@+id/imageView_bos"
+        android:layout_width="121dp"
+        android:layout_height="112dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.979"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        app:srcCompat="@drawable/evilpers" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

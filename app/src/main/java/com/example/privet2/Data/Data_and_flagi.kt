@@ -23,8 +23,8 @@ class Data_and_flagi {
         }
         fun xp_persov(): List<Int>{
             when (yroven_now){
-                1 -> return listOf(5, 5)
-                2 -> return listOf(40, 80)
+                1 -> return listOf(20, 5)
+                2 -> return listOf(11000, 80)
             }
             return listOf(40, 100)
         }

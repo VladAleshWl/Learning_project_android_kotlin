@@ -21,13 +21,24 @@ class procmotr_karti : AppCompatActivity() {
         val ataka: ImageView = findViewById(R.id.image_ataka_pr)
         val text_im: ImageView = findViewById(R.id.image_text_pr)
         val back: ImageView = findViewById(R.id.image_back_pr)
+        val button_bos: ImageView = findViewById(R.id.imageView_bos)
 
-        val karta: data_karta = data_k.get_karta()
+        var karta: data_karta = data_k.get_karta()
 
         back.setOnClickListener{ finish() }
-        paint.setBackgroundResource(karta.paint)
-        xp.setBackgroundResource(karta.xp_paint(karta.xp)!!)
-        ataka.setBackgroundResource(karta.ataka_paint(karta.ataka)!!)
-        text_im.setBackgroundResource(cr_kol.text_about_kart(karta.ip_karti)) //не раскомичивать пока нет текста
+
+        fun sapoln(){
+            paint.setBackgroundResource(karta.paint)
+            xp.setBackgroundResource(karta.xp_paint(karta.xp)!!)
+            ataka.setBackgroundResource(karta.ataka_paint(karta.ataka)!!)
+            text_im.setBackgroundResource(cr_kol.text_about_kart(karta.ip_karti))
+        }
+
+        button_bos.setOnClickListener{
+            karta = cr_kol.bosvisit(karta)
+            sapoln()
+        }
+
+        sapoln()
     }
 }
