@@ -11,6 +11,7 @@ class Data_and_flagi {
         var flag_4_go_yr: Boolean = false
         var flag_5_go_yr: Boolean = false
         var yroven_now: Int = 0
+        var limit_bos: Int = 1
 
         var karta_1_peredacha: data_karta = create_koloda.nety_data002
 
@@ -33,5 +34,6 @@ class Data_and_flagi {
 
     fun set_karta(karta: data_karta) { karta_1_peredacha = karta}
 
-
+    fun povisit_limit(Val: Int = 1){ limit_bos += Val }
+    fun ponisit_limit(Val: Int = 1){ limit_bos -= Val }
 }

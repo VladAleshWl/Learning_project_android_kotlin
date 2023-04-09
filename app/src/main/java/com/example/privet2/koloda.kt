@@ -58,7 +58,7 @@ class koloda : AppCompatActivity() {
             else if (kn_dal.flag_1 && kn_bli.flag_1 && kn_ipi.flag_1) { sapolnenie(karta_ll, true) }   //проверка уславой в выборке
             else if (!kn_dal.flag_1) { if (karta_ll.raspolozenie == "dalnic" || karta_ll.raspolozenie == "all") { sapolnenie(karta_ll, true) }  }
             else if (!kn_bli.flag_1) { if (karta_ll.raspolozenie == "blihnic" || karta_ll.raspolozenie == "all") { sapolnenie(karta_ll, true) }  }
-            else if (!kn_ipi.flag_1) { if (karta_ll.raspolozenie == "all") { sapolnenie(karta_ll, true) } }
+            else if (!kn_ipi.flag_1) { if (karta_ll.bos == "Yes") { sapolnenie(karta_ll, true) } }
 
         }
 

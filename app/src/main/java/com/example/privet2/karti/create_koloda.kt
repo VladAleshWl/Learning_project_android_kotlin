@@ -28,7 +28,8 @@ class create_koloda {
 
                                             //  ВОЗВЫШЕННЫЕ КАРТЫ
 
-        val fox_bos = data_karta(R.drawable.fox_bos, 4, 3, "001", "vampir_cili")
+        val mouse_bos = karte_dalnic(R.drawable.mouse_bos, 5, 7, "001", "common", bos = "Yes")
+        val fox_bos = data_karta(R.drawable.fox_bos, 4, 3, "002", "vampir_cili", bos = "Yes")
 
                                             //  ДИНОМИЧЕСКИЕ КОЛОДЫ КАРТЫ
 
@@ -50,47 +51,58 @@ class create_koloda {
     public  fun get_karta_na_pole(): data_karta{return karta_na_pole}
 
     val data_flagi = Data_and_flagi
+    val data_Flagi = Data_and_flagi()
 
 
                             //  КОЛОДЫ КАРТЫ
     val nabor_kart_bos = listOf<data_karta>(fox_bos)
     val nabor_kart = listOf<data_karta>(fox, dog, cat, bird, mouse)
     val nabor_kart_vragi = listOf<data_karta>(voron, wolf, sneake)
-    val spisok_bor: Map<data_karta, data_karta> = mapOf(fox to fox_bos)
+    val spisok_bor: Map<data_karta, data_karta> = mapOf(fox to fox_bos, mouse to mouse_bos)
+    val spisok_pat: Map<data_karta, data_karta> = mapOf(fox_bos to fox, mouse_bos to mouse)
     val spisok_tekcta: Map<String, Int> = mapOf( fox.ip_karti to R.drawable.fox_opisanie,
     dog.ip_karti to R.drawable.dog_opisanie, bird.ip_karti to R.drawable.bird_opisanie,
     mouse.ip_karti to R.drawable.mouse_opisanie, voron.ip_karti to R.drawable.voron_opisanie,
     sneake.ip_karti to R.drawable.sneake_opisanie, cat.ip_karti to R.drawable.cat_opisanie,
-    wolf.ip_karti to R.drawable.wolf_opisanie, fox_bos.ip_karti to R.drawable.cat_opisanie)
+    wolf.ip_karti to R.drawable.wolf_opisanie, fox_bos.ip_karti to R.drawable.cat_opisanie,
+        mouse_bos.ip_karti to R.drawable.cat_opisanie)
 
 
 
     // для 1-го уровня колоды
 
-    val nabor_kart_dalnici_1 = listOf<karte_dalnic>(mouse)
-    val nabor_kart_blihnic_1 = listOf<karte_blihnic>(dog, fox)
-    val nabor_zentr_1 = listOf<data_karta>(dog, fox, mouse)
-    val nabor_kart_vragi_dalnici_1 = listOf<karte_dalnic>(voron)
-    val nabor_kart_vragi_blihnic_1 = listOf<karte_blihnic>(sneake)
+    val nabor_kart_dalnici_1 = mutableListOf<karte_dalnic>(mouse)
+    val nabor_kart_blihnic_1 = mutableListOf<karte_blihnic>(dog, fox)
+    val nabor_zentr_1 = mutableListOf<data_karta>(dog, fox, mouse)
+    val nabor_kart_vragi_dalnici_1 = mutableListOf<karte_dalnic>(voron)
+    val nabor_kart_vragi_blihnic_1 = mutableListOf<karte_blihnic>(sneake)
 
     // для 2-го уровня колоды
 
-    val nabor_kart_dalnici_2 = listOf<karte_dalnic>(bird, mouse)
-    val nabor_kart_blihnic_2 = listOf<karte_blihnic>(dog, fox, cat)
-    val nabor_zentr_2 = listOf<data_karta>(bird, mouse, dog, fox, cat)
-    val nabor_kart_vragi_dalnici_2 = listOf<karte_dalnic>(voron)
-    val nabor_kart_vragi_blihnic_2 = listOf<karte_blihnic>(sneake)
+    val nabor_kart_dalnici_2 = mutableListOf<karte_dalnic>(bird, mouse)
+    val nabor_kart_blihnic_2 = mutableListOf<karte_blihnic>(dog, fox, cat)
+    val nabor_zentr_2 = mutableListOf<data_karta>(bird, mouse, dog, fox, cat)
+    val nabor_kart_vragi_dalnici_2 = mutableListOf<karte_dalnic>(voron)
+    val nabor_kart_vragi_blihnic_2 = mutableListOf<karte_blihnic>(sneake)
 
 
     fun bosvisit(karta: data_karta): data_karta{
         var kartal = karta
-        if (karta in spisok_bor){
+        if (karta in spisok_bor && data_flagi.limit_bos > 0){
+            data_Flagi.ponisit_limit()
             dinamic_nabor_kart.remove(karta)
             kartal = spisok_bor[karta]!!
             dinamic_nabor_kart_bos.add(kartal)
         }
+        else if (karta in spisok_pat) {
+            data_Flagi.povisit_limit()
+            dinamic_nabor_kart_bos.remove(karta)
+            kartal = spisok_pat[karta]!!
+            dinamic_nabor_kart.add(kartal)
+        }
         return kartal
     }
+
 
     fun nyhen_blihnic (list: List<karte_blihnic>): karte_blihnic {
         var number: Int = Random.nextInt(list.size)
@@ -101,8 +113,15 @@ class create_koloda {
         return list.get(number)
     }
     fun nyhen_zenter (list: List<data_karta>): data_karta{
-        var number: Int = Random.nextInt(list.size)
-        return list.get(number)
+        val hanc : Int = Random.nextInt(2)
+        if (hanc == 1 && dinamic_nabor_kart_bos.size != 0){
+            var number: Int = Random.nextInt(dinamic_nabor_kart_bos.size)
+            return dinamic_nabor_kart_bos.get(number)
+        }
+        else{
+            var number: Int = Random.nextInt(list.size)
+            return list.get(number)
+        }
     }
     fun nyhen_blihnic_vrag (list: List<karte_blihnic>): karte_blihnic {
         var number: Int = Random.nextInt(list.size)

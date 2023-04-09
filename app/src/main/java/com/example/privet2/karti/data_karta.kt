@@ -2,7 +2,8 @@ package com.example.privet2.karti
 import com.example.privet2.R
 
 
-open class data_karta(paint: Int, xp: Int, ataka: Int, ip: String, status: String) {
+open class data_karta(paint: Int, xp: Int, ataka: Int, ip: String, status: String, bos: String = "No") {
+    open val bos = bos
     val ip_karti = ip
     var ataka_now = ataka
     var rare = status
