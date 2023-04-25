@@ -5,4 +5,5 @@ open class Cposobnosti(){
     open fun vsaim(memory: List<pole>, posifn: pole): List<pole> {
         return memory
     }
+
 }
