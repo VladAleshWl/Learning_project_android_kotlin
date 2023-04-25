@@ -28,7 +28,7 @@ class create_koloda {
 
                                             //  ВОЗВЫШЕННЫЕ КАРТЫ
 
-        val mouse_bos = karte_dalnic(R.drawable.mouse_bos, 5, 7, "001", "common", bos = "Yes")
+        val mouse_bos = karte_dalnic(R.drawable.mouse_bos, 3, 6, "001", "probitie", bos = "Yes")
         val fox_bos = data_karta(R.drawable.fox_bos, 4, 3, "002", "vampir_cili", bos = "Yes")
 
                                             //  ДИНОМИЧЕСКИЕ КОЛОДЫ КАРТЫ
@@ -55,7 +55,7 @@ class create_koloda {
 
 
                             //  КОЛОДЫ КАРТЫ
-    val nabor_kart_bos = listOf<data_karta>(fox_bos)
+    val nabor_kart_bos = listOf<data_karta>(fox_bos, fox_bos)
     val nabor_kart = listOf<data_karta>(fox, dog, cat, bird, mouse)
     val nabor_kart_vragi = listOf<data_karta>(voron, wolf, sneake)
     val spisok_bor: Map<data_karta, data_karta> = mapOf(fox to fox_bos, mouse to mouse_bos)

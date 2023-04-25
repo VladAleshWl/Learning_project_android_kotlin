@@ -15,6 +15,7 @@ class Data_and_flagi {
 
         var karta_1_peredacha: data_karta = create_koloda.nety_data002
 
+
         public fun hon_yrovni():Int{
             when (yroven_now){
                 1 -> return R.drawable.interfeis
@@ -22,12 +23,21 @@ class Data_and_flagi {
             }
             return R.drawable.interfeis
         }
+
         fun xp_persov(): List<Int>{
             when (yroven_now){
                 1 -> return listOf(20, 5)
                 2 -> return listOf(11000, 80)
             }
             return listOf(40, 100)
+        }
+
+        fun complit_lvl(){
+            when (yroven_now){
+                1 -> this.flag_1_go_yr = true
+                2 -> this.flag_2_go_yr = true
+                3 -> this.flag_3_go_yr = true
+            }
         }
     }
     fun get_karta(): data_karta { return karta_1_peredacha}

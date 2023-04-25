@@ -88,7 +88,23 @@ class vampir_cili(): Cposobnosti(){
     }
 }
 
-
+class probitie(): Cposobnosti(){
+    override fun vsaim(memory: List<pole>, posifn: pole): List<pole> {
+        if (memory[1] == posifn || memory[0] == posifn){
+            if (memory[4].xp_now != 0 && memory[5].xp_now != 0){ memory[5].polychenie_yrona(2) }
+        }
+        else if (memory[4] == posifn || memory[5] == posifn){
+            if (memory[0].xp_now != 0 && memory[1].xp_now != 0){ memory[0].polychenie_yrona(2) }
+        }
+        else if(memory[2] == posifn || memory[3] == posifn){
+            if (memory[6].xp_now != 0 && memory[7].xp_now != 0){ memory[7].polychenie_yrona(2) }
+        }
+        else if(memory[6] == posifn || memory[7] == posifn){
+            if (memory[2].xp_now != 0 && memory[3].xp_now != 0){ memory[2].polychenie_yrona(2) }
+        }
+        return memory
+    }
+}
                                     // ЭФЕКТЫ ПРИ ОФИДАНИИ КАРТЫ!!!!
                                     // ЭФЕКТЫ ПРИ ОФИДАНИИ КАРТЫ!!!!
                                     // ЭФЕКТЫ ПРИ ОФИДАНИИ КАРТЫ!!!!

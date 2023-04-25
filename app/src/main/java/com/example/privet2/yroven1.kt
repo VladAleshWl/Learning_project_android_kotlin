@@ -1,6 +1,8 @@
 package com.example.privet2
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -22,6 +24,17 @@ class yroven1 : AppCompatActivity() {
     val basa_cart = create_koloda()
     val koloda = kolodi()
     val ynic = unic_vragi()
+
+
+    /*var apppref: SharedPreferences? = null
+    val APP_PREFERENCES = "apppref"*/
+
+
+    /*var sharedPref: SharedPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+    var s: String = sharedPref.getString("mAppIUD", "unknown")!!;
+    var Toast.makeText(this, s, Toast.LENGTH_LONG).show();*/
+
+
     val basa_fkagov = Data_and_flagi
     var flag_deictvia: Int = 0
     var flag_bloca_vcex: Boolean = true
@@ -34,6 +47,12 @@ class yroven1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_yroven1)
         supportActionBar?.hide()
+
+
+
+//        var apppref: SharedPreferences = getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE)
+//        var s: String = apppref.getString("mAppIUD", "unknown")!!
+//        Log.i("mAppIUD", s)
 
         val igra_vuhod: ImageView = findViewById(R.id.image_igra_vuhod)
         val igra_igrat: ImageView = findViewById(R.id.image_igra_igrat)
@@ -56,6 +75,8 @@ class yroven1 : AppCompatActivity() {
         var otdix: Int
         var hod = 1
         var poli = listOf<pole>(pole_1_1, pole_1_2, pole_2_1, pole_2_2, pole_1_3, pole_1_4, pole_2_3, pole_2_4)
+
+        val apppref: SharedPreferences = getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE)
 
         val nabor_kart_dalnici = koloda.koloda_fo_lvl_dalnic(basa_fkagov.yroven_now)
         val nabor_zentr = koloda.koloda_fo_lvl_zentr(basa_fkagov.yroven_now)
@@ -281,7 +302,15 @@ class yroven1 : AppCompatActivity() {
             yron__linia()       //урон соузного поля
 
             if (vrag_xp_chislo < 1) {       //проверка жизний
-                basa_fkagov.flag_1_go_yr = true
+                basa_fkagov.complit_lvl()
+                var answer: Int = apppref.getInt("Level", 0)!!
+
+                if (basa_fkagov.yroven_now > answer) {
+                    apppref
+                        .edit()
+                        .putInt("Level", basa_fkagov.yroven_now)
+                        .apply();
+                }
                 finish()
             }
             vibor_kart_vraga()

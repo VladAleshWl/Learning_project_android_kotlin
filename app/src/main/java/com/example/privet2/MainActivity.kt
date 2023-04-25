@@ -1,12 +1,15 @@
 package com.example.privet2
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.privet2.Data.Data_and_flagi
 import java.io.DataOutputStream
 import java.net.URL
 import java.nio.charset.StandardCharsets
@@ -16,7 +19,6 @@ import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.hide()
         super.onCreate(savedInstanceState)
@@ -31,6 +33,32 @@ class MainActivity : AppCompatActivity() {
         val DA: ImageView = findViewById(R.id.image_Da)
         val NET: ImageView = findViewById(R.id.image_No)
         val executor = Executors.newSingleThreadExecutor()
+        val data_flagi = Data_and_flagi
+
+//        val apppref: SharedPreferences = getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE)
+//        apppref
+//            .edit()
+//            .putString("mAppIUD", "123456789-987654321")
+//            .putString("key", "value")
+//            .apply();
+
+        var apppref: SharedPreferences = getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE)
+        var s: Int = apppref.getInt("Level", 0)!!
+
+        when(s){
+            1 -> data_flagi.flag_1_go_yr = true
+            2 -> data_flagi.flag_2_go_yr = true
+        }
+
+        /*var apppref: SharedPreferences? = null
+        val APP_PREFERENCES = "apppref"
+
+        apppref = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+        val editor = apppref.edit()
+        editor.putString("mAppIUD", "123456789-987654321")
+        editor.apply()*/
+
+
 
         kliker.setBackgroundResource(R.drawable.clickbutton)
 
@@ -106,42 +134,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(MyIntent)
         }
 
-        var a = 1
         kliker.setOnClickListener {
-            when (a) {
-                1 -> {
-                    kliker.setBackgroundResource(R.drawable.nomer1)
-                }
-                2 -> {
-                    kliker.setBackgroundResource(R.drawable.nomer2)
-                }
-                3 -> {
-                    kliker.setBackgroundResource(R.drawable.nomer3)
-                }
-                4 -> {
-                    kliker.setBackgroundResource(R.drawable.nomer4)
-                }
-                5 -> {
-                    kliker.setBackgroundResource(R.drawable.nomer5)
-                }
-                6 -> {
-                    kliker.setBackgroundResource(R.drawable.nomer6)
-                }    //кликер
-                7 -> {
-                    kliker.setBackgroundResource(R.drawable.nomer7)
-                }
-                8 -> {
-                    kliker.setBackgroundResource(R.drawable.nomer8)
-                }
-                9 -> {
-                    kliker.setBackgroundResource(R.drawable.nomer9)
-                }
-                10 -> {
-                    kliker.setBackgroundResource(R.drawable.clickbutton)
-                    a = 0
-                }
-            }
-            a++
+            apppref
+                .edit()
+                .putInt("Level", 0)
+                .apply();
+            data_flagi.flag_1_go_yr = false
+            data_flagi.flag_2_go_yr = false
         }
     }
 

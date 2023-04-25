@@ -6,7 +6,7 @@ class Rare (memary: List<pole>, posihn: pole){
     val memory = memary
     val posihn = posihn
     val cpisok_pri_poivlenie: Map<String, Cposobnosti> = mapOf("splehi" to splehi(), "hiler" to hiler())
-    val cpisok_pri_atake: Map<String, Cposobnosti> = mapOf("poison" to poison(), "vampir_cili" to vampir_cili())
+    val cpisok_pri_atake: Map<String, Cposobnosti> = mapOf("poison" to poison(), "vampir_cili" to vampir_cili(), "probitie" to probitie())
     val cpisok_pri_vait: Map<String, Cposobnosti> = mapOf()
     var rare = Cposobnosti()
 
