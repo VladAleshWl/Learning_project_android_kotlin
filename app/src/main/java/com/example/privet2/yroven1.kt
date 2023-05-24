@@ -243,24 +243,24 @@ class yroven1 : AppCompatActivity() {
         pole_2_4.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_2_4.nationality || carta_ctavit.raspolozenie == "all") { sapolnenie_poli(pole_2_4) } }
 
         fun yron__linia(){                          //урон по врагу
-            sposobnosti_ataka(pole_1_1)
             sposobnosti_ataka(pole_1_2)
-            sposobnosti_ataka(pole_2_1)
-            sposobnosti_ataka(pole_2_2)
             vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
+            sposobnosti_ataka(pole_1_1)
             vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
+            sposobnosti_ataka(pole_2_2)
             vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
+            sposobnosti_ataka(pole_2_1)
             vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
         }
 
         fun yron__linia_nam(){                          //урон по нам
-            sposobnosti_ataka(pole_1_4)
             sposobnosti_ataka(pole_1_3)
-            sposobnosti_ataka(pole_2_4)
-            sposobnosti_ataka(pole_2_3)
             my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
+            sposobnosti_ataka(pole_1_4)
             my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
+            sposobnosti_ataka(pole_2_3)
             my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
+            sposobnosti_ataka(pole_2_4)
             my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
         }
 

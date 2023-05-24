@@ -17,7 +17,10 @@ class pole(pole_ob: ConstraintLayout, xp_imag: ImageView, ataka_imag: ImageView,
         if (xp_now == 0){ return yron}
         else{
             xp_now -= yron
-            if (xp_now < 0){ xp_now = 0 }
+            if (xp_now < 0){
+                xp_now = 0
+                ataka_now = 0
+            }
             return 0
         }
     }
