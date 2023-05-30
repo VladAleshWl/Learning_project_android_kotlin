@@ -123,6 +123,7 @@ class yroven1 : AppCompatActivity() {
 
 
         fun paysa(){                                              //пауза
+            //Thread.sleep(500)
         }
 
         fun obnova_all_vrag(){                       //обновления враж. поля
@@ -143,10 +144,10 @@ class yroven1 : AppCompatActivity() {
             opnova(pole_1_2)
         }
 
-        fun pays_obn(){                                   //анимация
+        fun pays_obn(flag: Boolean = false){                                   //анимация
             obnova_all_vrag()
             obnova_all_nahi()
-            paysa()
+            if (flag) {paysa()}
         }
 
         fun sposobnosti_ctavit(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
@@ -185,12 +186,13 @@ class yroven1 : AppCompatActivity() {
                 pole_.xp_now = carta_ctavit.xp
                 pole_.ataka_now = carta_ctavit.ataka
                 var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
+                pole_.pole.setBackgroundResource(carta_ctavit.paint)
                 var ataka_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
                 if ((ataka_karti_icon != null) && (xp_karti_icon != null)) {
-                    pole_.ataka_image.setBackgroundResource(ataka_karti_icon)
                     pole_.xp_image.setBackgroundResource(xp_karti_icon)
+                    pole_.ataka_image.setBackgroundResource(ataka_karti_icon)
                     }
-                pole_.pole.setBackgroundResource(carta_ctavit.paint)
+
                 otkrit_kolody.setBackgroundResource(R.drawable.koloda)
                 pole_.rare = carta_ctavit.rare
                 sposobnosti_ctavit(pole_)
@@ -245,23 +247,31 @@ class yroven1 : AppCompatActivity() {
         fun yron__linia(){                          //урон по врагу
             sposobnosti_ataka(pole_1_2)
             vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
+            pays_obn(true)
             sposobnosti_ataka(pole_1_1)
             vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
+            pays_obn(true)
             sposobnosti_ataka(pole_2_2)
             vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
+            pays_obn(true)
             sposobnosti_ataka(pole_2_1)
             vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
+            pays_obn(true)
         }
 
         fun yron__linia_nam(){                          //урон по нам
             sposobnosti_ataka(pole_1_3)
             my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
+            pays_obn(true)
             sposobnosti_ataka(pole_1_4)
             my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
+            pays_obn(true)
             sposobnosti_ataka(pole_2_3)
             my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
+            pays_obn(true)
             sposobnosti_ataka(pole_2_4)
             my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
+            pays_obn(true)
         }
 
         fun cpawn_ips(){
@@ -273,11 +283,11 @@ class yroven1 : AppCompatActivity() {
                 } else {
                     carta_ctavit = basa_cart.nyhen_dalnici_vrag(nabor_kart_vragi_dalnici)
                 }
-                nyhnie_poli[xod_vraga].pole.performClick()
+            //nyhnie_poli[xod_vraga].pole.performClick()
+            sapolnenie_poli(nyhnie_poli[xod_vraga])
         }
 
         fun vibor_kart_vraga(){
-            blok_poli_vrag(true)
             flag_deictvia = 1
             if ((pole_2_4.xp_now != 0) && (pole_2_3.xp_now != 0) && (pole_1_3.xp_now != 0) && (pole_1_4.xp_now != 0)) { hod -= 1}
             else if(!ynic.ocob_xod(hod)){
@@ -293,15 +303,12 @@ class yroven1 : AppCompatActivity() {
                     nyhnie_poli[xod_vraga].pole.performClick()
                 }
             } else { cpawn_ips() }
-            blok_poli_vrag(false)
         }
 
 
-
-        ctart.setOnClickListener {                         //конец хода
-            yron__linia()       //урон соузного поля
-
-            if (vrag_xp_chislo < 1) {       //проверка жизний
+        fun start(){
+            yron__linia()                                  //урон соузного поля
+            if (vrag_xp_chislo < 1) {                      //проверка жизний
                 basa_fkagov.complit_lvl()
                 var answer: Int = apppref.getInt("Level", 0)!!
 
@@ -314,11 +321,11 @@ class yroven1 : AppCompatActivity() {
                 finish()
             }
             vibor_kart_vraga()
+            paysa()
             yron__linia_nam()                               //урон по нам
-            if (my_xp_chislo < 1) { finish() }            //проверка жизний
+            if (my_xp_chislo < 1) { finish() }              //проверка жизний
             flag_bloca_vcex = false
             //activaich_ehectov()
-            pays_obn()
 
             flag_deictvia = 0
             basa_cart.set_krt1(basa_cart.nyhen_dalnici(nabor_kart_dalnici))
@@ -334,8 +341,21 @@ class yroven1 : AppCompatActivity() {
             hod += 1
             otkrit_kolody.isClickable = true
         }
+
+        ctart.setOnClickListener {                         //конец хода
+            ctart.isClickable = false
+            start()
+            ctart.isClickable = true
+
+            /*thread { val a = try{start()}
+                catch (e: Exception) {
+                    println("ERROR $e")
+                    return@thread
+            } }*/
+        }
         otkrit_kolody.setClickable(false)
         ctart.setClickable(false)
+        blok_poli_vrag(false)
     }
     override fun onResume() {        //запись данных после колоды
         super.onResume()

@@ -47,7 +47,10 @@ class MainActivity : AppCompatActivity() {
 
         when(s){
             1 -> data_flagi.flag_1_go_yr = true
-            2 -> data_flagi.flag_2_go_yr = true
+            2 -> {
+                data_flagi.flag_1_go_yr = true
+                data_flagi.flag_2_go_yr = true
+            }
         }
 
         /*var apppref: SharedPreferences? = null
