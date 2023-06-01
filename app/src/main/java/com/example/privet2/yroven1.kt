@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,6 +17,8 @@ import com.example.privet2.karti.create_koloda
 import com.example.privet2.karti.data_karta
 import com.example.privet2.karti.kolodi
 import com.example.privet2.karti.unic_vragi
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 
@@ -122,8 +125,9 @@ class yroven1 : AppCompatActivity() {
 
 
 
-        fun paysa(){                                              //пауза
-            //Thread.sleep(500)
+        fun paysa(i: Int = 5){                                              //пауза
+            val cecond: Long = i * 100L
+            Thread.sleep(cecond)
         }
 
         fun obnova_all_vrag(){                       //обновления враж. поля
@@ -144,10 +148,11 @@ class yroven1 : AppCompatActivity() {
             opnova(pole_1_2)
         }
 
-        fun pays_obn(flag: Boolean = false){                                   //анимация
+        fun pays_obn(flag: Boolean = false, index: Int = 0){                                   //анимация
             obnova_all_vrag()
             obnova_all_nahi()
-            if (flag) {paysa()}
+            if (flag) {paysa(3)}
+            Log.i("PAUSE", "${System.currentTimeMillis()}   $index")
         }
 
         fun sposobnosti_ctavit(posihn: pole){          // ЭФЕКТЫ КАРТЫ!!!!
@@ -244,45 +249,15 @@ class yroven1 : AppCompatActivity() {
         pole_2_3.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_2_3.nationality || carta_ctavit.raspolozenie == "all") { sapolnenie_poli(pole_2_3) } }
         pole_2_4.pole.setOnClickListener { if (carta_ctavit.raspolozenie == pole_2_4.nationality || carta_ctavit.raspolozenie == "all") { sapolnenie_poli(pole_2_4) } }
 
-        fun yron__linia(){                          //урон по врагу
-            sposobnosti_ataka(pole_1_2)
-            vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
-            pays_obn(true)
-            sposobnosti_ataka(pole_1_1)
-            vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
-            pays_obn(true)
-            sposobnosti_ataka(pole_2_2)
-            vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
-            pays_obn(true)
-            sposobnosti_ataka(pole_2_1)
-            vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
-            pays_obn(true)
-        }
-
-        fun yron__linia_nam(){                          //урон по нам
-            sposobnosti_ataka(pole_1_3)
-            my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
-            pays_obn(true)
-            sposobnosti_ataka(pole_1_4)
-            my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
-            pays_obn(true)
-            sposobnosti_ataka(pole_2_3)
-            my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
-            pays_obn(true)
-            sposobnosti_ataka(pole_2_4)
-            my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
-            pays_obn(true)
-        }
-
         fun cpawn_ips(){
             var nyhnie_poli = mutableListOf<pole>()
             for (i: Int in 4..poli.size - 1){ if (poli[i].xp_now < 1){ nyhnie_poli.add(poli[i]) } }
-                val xod_vraga: Int = Random.nextInt(nyhnie_poli.size)
-                if (nyhnie_poli[xod_vraga].nationality == "blihnic") {
-                    carta_ctavit = basa_cart.nyhen_blihnic_vrag(nabor_kart_vragi_blihnic)
-                } else {
-                    carta_ctavit = basa_cart.nyhen_dalnici_vrag(nabor_kart_vragi_dalnici)
-                }
+            val xod_vraga: Int = Random.nextInt(nyhnie_poli.size)
+            if (nyhnie_poli[xod_vraga].nationality == "blihnic") {
+                carta_ctavit = basa_cart.nyhen_blihnic_vrag(nabor_kart_vragi_blihnic)
+            } else {
+                carta_ctavit = basa_cart.nyhen_dalnici_vrag(nabor_kart_vragi_dalnici)
+            }
             //nyhnie_poli[xod_vraga].pole.performClick()
             sapolnenie_poli(nyhnie_poli[xod_vraga])
         }
@@ -305,47 +280,110 @@ class yroven1 : AppCompatActivity() {
             } else { cpawn_ips() }
         }
 
+        fun yron__linia_nam(){
+            val job1 = MainScope().launch {//урон по нам
+                sposobnosti_ataka(pole_1_3)
+                my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
+                pays_obn(true, 11)
+                val job2 = MainScope().launch {
+                    paysa(2)
+                    sposobnosti_ataka(pole_1_4)
+                    my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
+                    pays_obn(true, 12)
+                    val job3 = MainScope().launch {
+                        paysa(2)
+                        sposobnosti_ataka(pole_2_3)
+                        my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
+                        pays_obn(true, 13)
+                        val job4 = MainScope().launch {
+                            paysa(2)
+                            sposobnosti_ataka(pole_2_4)
+                            my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
+                            pays_obn(true, 14)
+
+                            if (my_xp_chislo < 1) { finish() }              //проверка жизний
+                            flag_bloca_vcex = false
+
+                            flag_deictvia = 0
+
+                            flag_bloca_vcex = true
+                            prov_11 = pole_1_1.xp_now
+                            prov_12 = pole_1_2.xp_now        //резервное хранение хп карт
+                            prov_21 = pole_2_1.xp_now
+                            prov_22 = pole_2_2.xp_now
+                            hod += 1
+                            ctart.isClickable = true
+                            otkrit_kolody.isClickable = true
+                        }
+                    }
+                }
+            }
+        }
+
+
+        fun yron__linia(){
+            //урон по врагу
+            val job1 = MainScope().launch {
+                sposobnosti_ataka(pole_1_2)
+                vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
+                pays_obn(true, 1)
+                val job2 = MainScope().launch {
+                    paysa(2)
+                    sposobnosti_ataka(pole_1_1)
+                    vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
+                    pays_obn(true, 2)
+                    val job3 = MainScope().launch {
+                        paysa(2)
+                        sposobnosti_ataka(pole_2_2)
+                        vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
+                        pays_obn(true, 3)
+                        val job4 = MainScope().launch {
+                            paysa(2)
+                            sposobnosti_ataka(pole_2_1)
+                            vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
+                            pays_obn(true, 4)
+
+                            if (vrag_xp_chislo < 1) {                      //проверка жизний
+                                basa_fkagov.complit_lvl()
+                                var answer: Int = apppref.getInt("Level", 0)!!
+
+                                if (basa_fkagov.yroven_now > answer) {
+                                    apppref
+                                        .edit()
+                                        .putInt("Level", basa_fkagov.yroven_now)
+                                        .apply();
+                                }
+                                finish()
+                            }
+
+                            vibor_kart_vraga()
+                            paysa(5)
+                            yron__linia_nam()                               //урон по нам
+                        }
+                    }
+                }
+            }
+        }
+
+
 
         fun start(){
             yron__linia()                                  //урон соузного поля
-            if (vrag_xp_chislo < 1) {                      //проверка жизний
-                basa_fkagov.complit_lvl()
-                var answer: Int = apppref.getInt("Level", 0)!!
 
-                if (basa_fkagov.yroven_now > answer) {
-                    apppref
-                        .edit()
-                        .putInt("Level", basa_fkagov.yroven_now)
-                        .apply();
-                }
-                finish()
-            }
-            vibor_kart_vraga()
-            paysa()
-            yron__linia_nam()                               //урон по нам
-            if (my_xp_chislo < 1) { finish() }              //проверка жизний
-            flag_bloca_vcex = false
             //activaich_ehectov()
 
-            flag_deictvia = 0
             basa_cart.set_krt1(basa_cart.nyhen_dalnici(nabor_kart_dalnici))
             basa_cart.set_krt2(basa_cart.nyhen_zenter(nabor_zentr))
             basa_cart.set_krt3(basa_cart.nyhen_blihnic(nabor_kart_blihnic))
             otkrit_kolody.setBackgroundResource(R.drawable.koloda)
             basa_cart.set_flag_deistvii_2(0)
-            flag_bloca_vcex = true
-            prov_11 = pole_1_1.xp_now
-            prov_12 = pole_1_2.xp_now        //резервное хранение хп карт
-            prov_21 = pole_2_1.xp_now
-            prov_22 = pole_2_2.xp_now
-            hod += 1
-            otkrit_kolody.isClickable = true
+
         }
 
         ctart.setOnClickListener {                         //конец хода
             ctart.isClickable = false
             start()
-            ctart.isClickable = true
+
 
             /*thread { val a = try{start()}
                 catch (e: Exception) {
@@ -353,6 +391,7 @@ class yroven1 : AppCompatActivity() {
                     return@thread
             } }*/
         }
+
         otkrit_kolody.setClickable(false)
         ctart.setClickable(false)
         blok_poli_vrag(false)
