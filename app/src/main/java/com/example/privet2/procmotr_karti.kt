@@ -1,5 +1,6 @@
 package com.example.privet2
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import com.example.privet2.karti.data_karta
 
 class procmotr_karti : AppCompatActivity() {
     val data_k = Data_and_flagi()
+    val basa_fkagov = Data_and_flagi
     val cr_kol = create_koloda()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,5 +42,20 @@ class procmotr_karti : AppCompatActivity() {
         }
 
         sapoln()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        basa_fkagov.countactivity -= 1
+    }
+
+    override fun onResume() {
+        super.onResume()
+        basa_fkagov.countactivity += 1
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (basa_fkagov.countactivity == 0){ stopService(Intent(this@procmotr_karti, SoundService::class.java)) }
     }
 }

@@ -3,22 +3,19 @@ package com.example.privet2
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.privet2.Data.Data_and_flagi
-import java.io.DataOutputStream
-import java.net.URL
-import java.nio.charset.StandardCharsets
 import java.util.concurrent.Executors
-import javax.net.ssl.HttpsURLConnection
-import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity() {
+    var flag = false
+    val data_flagi = Data_and_flagi
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.hide()
         super.onCreate(savedInstanceState)
@@ -33,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         val DA: ImageView = findViewById(R.id.image_Da)
         val NET: ImageView = findViewById(R.id.image_No)
         val executor = Executors.newSingleThreadExecutor()
-        val data_flagi = Data_and_flagi
 
 //        val apppref: SharedPreferences = getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE)
 //        apppref
@@ -77,7 +73,20 @@ class MainActivity : AppCompatActivity() {
             android.os.Process.killProcess(android.os.Process.myPid());   //выход из приложения
             System.exit(0);
         }
+
         nastr.setOnClickListener {
+            if (flag){
+                stopService(Intent(this@MainActivity, SoundService::class.java))
+                Log.i("STOP", "${System.currentTimeMillis()}   $flag")
+            }
+            else {
+                startService(Intent(this@MainActivity, SoundService::class.java))
+                Log.i("START", "${System.currentTimeMillis()}   $flag")
+            }
+            flag = !flag
+        }
+
+        /*nastr.setOnClickListener {
             val emailToCheck = "test@gmail.com"
             thread {
                 val text = try {
@@ -115,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 runOnUiThread { println(text) }
             }
-        }
+        }*/
 
         NET.setOnClickListener {
             vihod_kones.visibility = View.INVISIBLE
@@ -127,8 +136,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         koloda.setOnClickListener {
-            val MyIntent =
-                Intent(this, com.example.privet2.koloda::class.java)       //переход в колоду
+            val MyIntent = Intent(this, com.example.privet2.koloda::class.java)       //переход в колоду
             startActivity(MyIntent)
         }
 
@@ -158,6 +166,7 @@ class MainActivity : AppCompatActivity() {
         var DA: ImageView = findViewById(R.id.image_Da)
         var NET: ImageView = findViewById(R.id.image_No)
 
+
         vihod.setOnClickListener {
             vihod_kones.visibility = View.VISIBLE
             vihod.setClickable(false)
@@ -180,5 +189,20 @@ class MainActivity : AppCompatActivity() {
             nastr.setClickable(true)
         }
         vihod.performClick()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        data_flagi.countactivity += 1
+    }
+
+    override fun onPause() {
+        super.onPause()
+        data_flagi.countactivity -= 1
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (data_flagi.countactivity == 0){ stopService(Intent(this@MainActivity, SoundService::class.java)) }
     }
 }

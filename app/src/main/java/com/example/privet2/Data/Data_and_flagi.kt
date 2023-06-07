@@ -5,6 +5,9 @@ import com.example.privet2.karti.data_karta
 
 class Data_and_flagi {
     companion object {
+
+        var countactivity = 0
+
         var flag_1_go_yr: Boolean = false
         var flag_2_go_yr: Boolean = false
         var flag_3_go_yr: Boolean = false

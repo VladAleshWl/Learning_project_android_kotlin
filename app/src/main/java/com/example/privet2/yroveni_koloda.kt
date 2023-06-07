@@ -12,6 +12,7 @@ import com.example.privet2.karti.data_karta
 
 class yroveni_koloda : AppCompatActivity() {
     val data_flagi = Data_and_flagi()
+    val data_flagu = Data_and_flagi
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.hide()
         super.onCreate(savedInstanceState)
@@ -70,5 +71,20 @@ class yroveni_koloda : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        data_flagu.countactivity -= 1
+    }
+
+    override fun onResume() {
+        super.onResume()
+        data_flagu.countactivity += 1
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (data_flagu.countactivity == 0){ stopService(Intent(this@yroveni_koloda, SoundService::class.java)) }
     }
 }

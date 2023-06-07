@@ -398,6 +398,9 @@ class yroven1 : AppCompatActivity() {
     }
     override fun onResume() {        //запись данных после колоды
         super.onResume()
+
+        basa_fkagov.countactivity += 1
+
         val pole_1_2 = pole(findViewById(R.id.laiaut_1_2), findViewById(R.id.image_1_2_ataka), findViewById(R.id.image_1_2_xp))
         val pole_2_1 = pole(findViewById(R.id.laiaut_2_1), findViewById(R.id.image_2_1_ataka), findViewById(R.id.image_2_1_xp))
         val pole_2_2 = pole(findViewById(R.id.laiaut_2_2), findViewById(R.id.image_2_2_ataka), findViewById(R.id.image_2_2_xp))
@@ -437,5 +440,15 @@ class yroven1 : AppCompatActivity() {
         igra_igrat.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        basa_fkagov.countactivity -= 1
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (basa_fkagov.countactivity == 0){ stopService(Intent(this@yroven1, SoundService::class.java)) }
     }
 }

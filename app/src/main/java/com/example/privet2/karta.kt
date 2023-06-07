@@ -28,6 +28,8 @@ public class karta : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
+        basa_fkagov.countactivity += 1
+
         val i2: ImageView = findViewById(R.id.i2_yroven)
         if(basa_fkagov.flag_1_go_yr) { i2.visibility = View.VISIBLE }   //появление 2-го уровня
 
@@ -36,5 +38,15 @@ public class karta : AppCompatActivity() {
             val MyIntent2 = Intent(this, yroven1::class.java)
             startActivity(MyIntent2)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        basa_fkagov.countactivity -= 1
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (basa_fkagov.countactivity == 0){ stopService(Intent(this@karta, SoundService::class.java)) }
     }
 }

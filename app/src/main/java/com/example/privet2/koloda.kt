@@ -13,7 +13,7 @@ import com.example.privet2.karti.data_karta
 class koloda : AppCompatActivity() {
     val basa_kart = create_koloda
     val data_flag = Data_and_flagi()
-
+    val basa_fkagov = Data_and_flagi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,8 +121,20 @@ class koloda : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
+        basa_fkagov.countactivity += 1
+
         val ooo: ImageView = findViewById(R.id.image_kn_ipi)
         ooo.performClick()
         ooo.performClick()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        basa_fkagov.countactivity -= 1
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (basa_fkagov.countactivity == 0){ stopService(Intent(this@koloda, SoundService::class.java)) }
     }
 }
