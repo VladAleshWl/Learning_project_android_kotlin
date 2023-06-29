@@ -68,6 +68,7 @@ class yroven1 : AppCompatActivity() {
         val pole_2_3 = pole(findViewById(R.id.laiaut_2_3), findViewById(R.id.image_2_3_ataka), findViewById(R.id.image_2_3_xp), nationality = "blihnic")
         val pole_2_4 = pole(findViewById(R.id.laiaut_2_4), findViewById(R.id.image_2_4_ataka), findViewById(R.id.image_2_4_xp), nationality = "dalnic")
         val yverenu: ConstraintLayout = findViewById(R.id.konsol_yverenu)
+        val cartaHave: ImageView = findViewById(R.id.imageCartaHave)
         val ppole: ConstraintLayout = findViewById(R.id.IPPPPPPPP)
         val otkrit_kolody: ImageView = findViewById(R.id.image_koloda_v_igre)
         val ctart: ImageView = findViewById(R.id.image_ctart)
@@ -186,6 +187,7 @@ class yroven1 : AppCompatActivity() {
 
         fun sapolnenie_poli(pole_: pole){              //заполнение карт на поле
             if (flag_deictvia == 1){
+                cartaHave.setBackgroundResource(R.drawable.pngshka)
                 if (flag_bloca_vcex) { blok_poli_nahe(false) }
 
                 pole_.xp_now = carta_ctavit.xp
@@ -401,6 +403,7 @@ class yroven1 : AppCompatActivity() {
 
         basa_fkagov.countactivity += 1
 
+        val cartaHave: ImageView = findViewById(R.id.imageCartaHave)
         val pole_1_2 = pole(findViewById(R.id.laiaut_1_2), findViewById(R.id.image_1_2_ataka), findViewById(R.id.image_1_2_xp))
         val pole_2_1 = pole(findViewById(R.id.laiaut_2_1), findViewById(R.id.image_2_1_ataka), findViewById(R.id.image_2_1_xp))
         val pole_2_2 = pole(findViewById(R.id.laiaut_2_2), findViewById(R.id.image_2_2_ataka), findViewById(R.id.image_2_2_xp))
@@ -414,12 +417,14 @@ class yroven1 : AppCompatActivity() {
             pole_1_2.pole.isClickable = false
             pole_2_1.pole.isClickable = false
             pole_2_2.pole.isClickable = false
+            cartaHave.setBackgroundResource(R.drawable.pngshka)
         }
         if (basa_cart.get_flag_deistvii_2() == 1)  {
             pole_1_1.pole.isClickable = true
             pole_1_2.pole.isClickable = true
             pole_2_1.pole.isClickable = true
             pole_2_2.pole.isClickable = true
+            cartaHave.setBackgroundResource(carta_ctavit.paint)
         }
         if (prov_11 > 0 ) { pole_1_1.pole.isClickable = false }
         if (prov_12 > 0 ) { pole_1_2.pole.isClickable = false }
