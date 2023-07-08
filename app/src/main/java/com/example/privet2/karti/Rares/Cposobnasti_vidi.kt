@@ -80,38 +80,20 @@ class poison(): Cposobnosti(){
 
 class vampir_cili(): Cposobnosti(){
     override fun vsaim(memory: List<pole>, posifn: pole): List<pole> {
-            if (memory[1] == posifn){
-                if (memory[4].ataka_now != 0){ memory[1].poteri_sil(-memory[4].poteri_sil(2)) }
-                else { memory[1].poteri_sil(-memory[5].poteri_sil(2)) }
-            }
-            else if (memory[0] == posifn){
-                if (memory[4].ataka_now != 0){ memory[0].poteri_sil(-memory[4].poteri_sil(2)) }
-                else { memory[0].poteri_sil(-memory[5].poteri_sil(2)) }
-            }
-            else if (memory[4] == posifn){
-                if (memory[1].ataka_now != 0){ memory[4].poteri_sil(-memory[1].poteri_sil(2)) }
-                else { memory[4].poteri_sil(-memory[0].poteri_sil(2)) }
-            }
-            else if (memory[5] == posifn){
-                if (memory[1].ataka_now != 0){ memory[5].poteri_sil(-memory[1].poteri_sil(2)) }
-                else { memory[5].poteri_sil(-memory[0].poteri_sil(2)) }
-            }
-            else if (memory[3] == posifn){
-                if (memory[6].ataka_now != 0){ memory[3].poteri_sil(-memory[6].poteri_sil(2)) }
-                else { memory[3].poteri_sil(-memory[7].poteri_sil(2)) }
-            }
-            else if(memory[2] == posifn){
-                if (memory[6].ataka_now != 0){ memory[2].poteri_sil(-memory[6].poteri_sil(2)) }
-                else { memory[2].poteri_sil(-memory[7].poteri_sil(2)) }
-            }
-            else if(memory[6] == posifn){
-                if (memory[3].ataka_now != 0){ memory[6].poteri_sil(-memory[3].poteri_sil(2)) }
-                else { memory[6].poteri_sil(-memory[2].poteri_sil(2)) }
-            }
-            else {
-                if (memory[3].ataka_now != 0){ memory[7].poteri_sil(-memory[3].poteri_sil(2)) }
-                else { memory[7].poteri_sil(-memory[2].poteri_sil(2)) }
-            }
+
+        if (memory.indexOf(posifn) < 4){
+            if (memory[(memory.indexOf(posifn)/2*2)+4].xp_now != 0) {
+                memory[memory.indexOf(posifn)].poteri_sil(-memory[(memory.indexOf(posifn)/2*2)+4].poteri_sil(2))}
+            else if (memory[(memory.indexOf(posifn)/2*2)+5].xp_now != 0) {
+                memory[memory.indexOf(posifn)].poteri_sil(-memory[(memory.indexOf(posifn)/2*2)+5].poteri_sil(2))}
+        }
+        else {
+            if (memory[(memory.indexOf(posifn)/2*2)-3].xp_now != 0) {
+                memory[memory.indexOf(posifn)].poteri_sil(-memory[(memory.indexOf(posifn)/2*2)-3].poteri_sil(2))}
+            else if (memory[(memory.indexOf(posifn)/2*2)-4].xp_now != 0) {
+                memory[memory.indexOf(posifn)].poteri_sil(-memory[(memory.indexOf(posifn)/2*2)-4].poteri_sil(2))}
+        }
+
         return memory
     }
 }
