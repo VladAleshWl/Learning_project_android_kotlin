@@ -13,19 +13,31 @@ import com.example.privet2.karti.data_karta
 class yroveni_koloda : AppCompatActivity() {
     val data_flagi = Data_and_flagi()
     val data_flagu = Data_and_flagi
+    val karti_na_vibor = create_koloda()
+
+    var karta_nomer_1 = karti_na_vibor.get_krt1()
+    var karta_nomer_3 = karti_na_vibor.get_krt3()         //определение карт
+    var karta_nomer_2 = karti_na_vibor.get_krt2()
+
+    fun sapolnenie_kart(pole_: pole, karta_numer: data_karta){
+        pole_.pole.setBackgroundResource(karta_numer.paint)
+        var xp_karti_icon = karta_numer.xp_paint(karta_numer.xp)
+        var ataka_karti_icon = karta_numer.ataka_paint(karta_numer.ataka)                      //заполнение карт
+        pole_.xp_image.setBackgroundResource(xp_karti_icon!!)
+        pole_.ataka_image.setBackgroundResource(ataka_karti_icon!!)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_yroveni_koloda)
 
+
+        val back: Button = findViewById(R.id.button_back_yroven_koloda)
+
         val karta_1 = pole(findViewById(R.id.korta_v_kolode_1), findViewById(R.id.image_karta_v_colode_ataka_1), findViewById(R.id.image_karta_v_colode_xp_1), 0, 0)
         val karta_2 = pole(findViewById(R.id.korta_v_kolode_2), findViewById(R.id.image_karta_v_colode_ataka_2), findViewById(R.id.image_karta_v_colode_xp_2), 0, 0)
         val karta_3 = pole(findViewById(R.id.korta_v_kolode_3), findViewById(R.id.image_karta_v_colode_ataka_3), findViewById(R.id.image_karta_v_colode_xp_3), 0, 0)
-        val back: Button = findViewById(R.id.button_back_yroven_koloda)
-        val karti_na_vibor = create_koloda()
-        var karta_nomer_1 = karti_na_vibor.get_krt1()
-        var karta_nomer_3 = karti_na_vibor.get_krt3()         //определение карт
-        var karta_nomer_2 = karti_na_vibor.get_krt2()
 
         karta_1.xp_image.isClickable = false
         karta_2.xp_image.isClickable = false
@@ -36,13 +48,7 @@ class yroveni_koloda : AppCompatActivity() {
         karti_na_vibor.set_karta_na_pole(karti_na_vibor.nety_data)
 
 
-        fun sapolnenie_kart(pole_: pole, karta_numer: data_karta){
-            pole_.pole.setBackgroundResource(karta_numer.paint)
-            var xp_karti_icon = karta_numer.xp_paint(karta_numer.xp)
-            var ataka_karti_icon = karta_numer.ataka_paint(karta_numer.ataka)                      //заполнение карт
-            pole_.xp_image.setBackgroundResource(xp_karti_icon!!)
-            pole_.ataka_image.setBackgroundResource(ataka_karti_icon!!)
-        }
+
 
         fun poslanie_karti(karta: data_karta){
             karti_na_vibor.set_karta_na_pole(karta)
@@ -62,11 +68,13 @@ class yroveni_koloda : AppCompatActivity() {
         karta_2.pole.setOnClickListener { poslanie_karti(karta_nomer_2) }
         karta_3.pole.setOnClickListener { poslanie_karti(karta_nomer_3) }
         karta_1.pole.setOnLongClickListener { podacha_informagii(karta_nomer_1) }
-        karta_2.pole.setOnLongClickListener { podacha_informagii(karta_nomer_2) }
         karta_3.pole.setOnLongClickListener { podacha_informagii(karta_nomer_3) }
+        karta_2.pole.setOnLongClickListener {
+            data_flagu.flad_for_bosv = true
+            podacha_informagii(karta_nomer_2)
+        }
 
         sapolnenie_kart(karta_1, karta_nomer_1)
-        sapolnenie_kart(karta_2, karta_nomer_2)
         sapolnenie_kart(karta_3, karta_nomer_3)
 
 
@@ -80,6 +88,10 @@ class yroveni_koloda : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        val karta_2 = pole(findViewById(R.id.korta_v_kolode_2), findViewById(R.id.image_karta_v_colode_ataka_2), findViewById(R.id.image_karta_v_colode_xp_2), 0, 0)
+        karta_nomer_2 = karti_na_vibor.get_krt2()
+        sapolnenie_kart(karta_2, karta_nomer_2)
+
         data_flagu.countactivity += 1
     }
 

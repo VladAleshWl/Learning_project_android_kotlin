@@ -18,6 +18,8 @@ class Data_and_flagi {
 
         var karta_1_peredacha: data_karta = create_koloda.nety_data002
 
+        var flad_for_bosv: Boolean = false
+
 
         public fun hon_yrovni():Int{
             when (yroven_now){

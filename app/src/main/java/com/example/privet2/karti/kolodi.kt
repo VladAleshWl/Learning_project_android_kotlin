@@ -2,6 +2,7 @@ package com.example.privet2.karti
 
 class kolodi {
     val karti = create_koloda()
+    val karta = create_koloda
 
     fun koloda_fo_lvl_dalnic(number: Int): List<karte_dalnic>{
         when (number){
@@ -20,7 +21,7 @@ class kolodi {
     fun koloda_fo_lvl_zentr(number: Int): List<data_karta>{
         when (number){
             1 -> return karti.nabor_zentr_1
-            2 -> return karti.nabor_zentr_2
+            2 -> return karta.dinamic_nabor_kart
         }
         return karti.nabor_zentr_1
     }

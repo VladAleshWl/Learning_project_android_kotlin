@@ -8,6 +8,8 @@ class pole(pole_ob: ConstraintLayout, xp_imag: ImageView, ataka_imag: ImageView,
     var rare: String = "common"
     var nationality = nationality
     var xp_now = xp
+    var max_xp: Int = xp
+    var max_ataka: Int = ataka
     var ataka_now = ataka
     var pole = pole_ob
     var xp_image = xp_imag

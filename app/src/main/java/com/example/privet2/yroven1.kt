@@ -45,6 +45,7 @@ class yroven1 : AppCompatActivity() {
     var prov_12 = 0
     var prov_21 = 0
     var prov_22 = 0
+    var nabor_zentr = koloda.koloda_fo_lvl_zentr(basa_fkagov.yroven_now)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +84,6 @@ class yroven1 : AppCompatActivity() {
         val apppref: SharedPreferences = getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE)
 
         val nabor_kart_dalnici = koloda.koloda_fo_lvl_dalnic(basa_fkagov.yroven_now)
-        val nabor_zentr = koloda.koloda_fo_lvl_zentr(basa_fkagov.yroven_now)
         val nabor_kart_blihnic = koloda.koloda_fo_lvl_blihnic(basa_fkagov.yroven_now)
         val nabor_kart_vragi_blihnic = koloda.koloda_fo_lvl__vragi_blihnic(basa_fkagov.yroven_now)
         val nabor_kart_vragi_dalnici = koloda.koloda_fo_lvl_vragi_dalnici(basa_fkagov.yroven_now)
@@ -126,9 +126,8 @@ class yroven1 : AppCompatActivity() {
 
 
 
-        fun paysa(i: Int = 5){                                              //пауза
-            val cecond: Long = i * 100L
-            Thread.sleep(cecond)
+        fun paysa(i: Double = 5.0){                                              //пауза
+            Thread.sleep(i.toLong())
         }
 
         fun obnova_all_vrag(){                       //обновления враж. поля
@@ -152,7 +151,7 @@ class yroven1 : AppCompatActivity() {
         fun pays_obn(flag: Boolean = false, index: Int = 0){                                   //анимация
             obnova_all_vrag()
             obnova_all_nahi()
-            if (flag) {paysa(3)}
+            if (flag) {paysa(2.0)}
             Log.i("PAUSE", "${System.currentTimeMillis()}   $index")
         }
 
@@ -191,7 +190,9 @@ class yroven1 : AppCompatActivity() {
                 if (flag_bloca_vcex) { blok_poli_nahe(false) }
 
                 pole_.xp_now = carta_ctavit.xp
+                pole_.max_xp = carta_ctavit.xp
                 pole_.ataka_now = carta_ctavit.ataka
+                pole_.max_ataka = carta_ctavit.ataka
                 var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
                 pole_.pole.setBackgroundResource(carta_ctavit.paint)
                 var ataka_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
@@ -205,8 +206,19 @@ class yroven1 : AppCompatActivity() {
                 sposobnosti_ctavit(pole_)
             }
             if (flag_deictvia == 2) {
-                var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now)
-                var ataca_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now)
+                var color: String = ""
+                if (pole_.xp_now > pole_.max_xp){ color = "Green" }
+                else if (pole_.xp_now == pole_.max_xp) {color = "White"}
+                else {color = "Red"}
+
+                var xp_karti_icon = carta_ctavit.xp_paint(pole_.xp_now, color)
+
+                if (pole_.ataka_now > pole_.max_ataka){ color = "Green" }
+                else if (pole_.ataka_now == pole_.max_ataka) {color = "White"}
+                else {color = "Red"}
+
+                var ataca_karti_icon = carta_ctavit.ataka_paint(pole_.ataka_now, color)
+
                 pole_.xp_image.setBackgroundResource(xp_karti_icon!!)
                 pole_.ataka_image.setBackgroundResource(ataca_karti_icon!!)
                 pole_.pole.isClickable = false
@@ -288,17 +300,17 @@ class yroven1 : AppCompatActivity() {
                 my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_3.ataka_now))
                 pays_obn(true, 11)
                 val job2 = MainScope().launch {
-                    paysa(2)
+                    paysa(180.0)
                     sposobnosti_ataka(pole_1_4)
                     my_xp_chislo -= pole_1_1.polychenie_yrona(pole_1_2.polychenie_yrona(pole_1_4.ataka_now))
                     pays_obn(true, 12)
                     val job3 = MainScope().launch {
-                        paysa(2)
+                        paysa(180.0)
                         sposobnosti_ataka(pole_2_3)
                         my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_3.ataka_now))
                         pays_obn(true, 13)
                         val job4 = MainScope().launch {
-                            paysa(2)
+                            paysa(180.0)
                             sposobnosti_ataka(pole_2_4)
                             my_xp_chislo -= pole_2_1.polychenie_yrona(pole_2_2.polychenie_yrona(pole_2_4.ataka_now))
                             pays_obn(true, 14)
@@ -330,17 +342,17 @@ class yroven1 : AppCompatActivity() {
                 vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_2.ataka_now))
                 pays_obn(true, 1)
                 val job2 = MainScope().launch {
-                    paysa(2)
+                    paysa(180.0)
                     sposobnosti_ataka(pole_1_1)
                     vrag_xp_chislo -= pole_1_4.polychenie_yrona(pole_1_3.polychenie_yrona(pole_1_1.ataka_now))
                     pays_obn(true, 2)
                     val job3 = MainScope().launch {
-                        paysa(2)
+                        paysa(180.0)
                         sposobnosti_ataka(pole_2_2)
                         vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_2.ataka_now))
                         pays_obn(true, 3)
                         val job4 = MainScope().launch {
-                            paysa(2)
+                            paysa(180.0)
                             sposobnosti_ataka(pole_2_1)
                             vrag_xp_chislo -= pole_2_4.polychenie_yrona(pole_2_3.polychenie_yrona(pole_2_1.ataka_now))
                             pays_obn(true, 4)
@@ -359,7 +371,7 @@ class yroven1 : AppCompatActivity() {
                             }
 
                             vibor_kart_vraga()
-                            paysa(5)
+                            paysa(300.0)
                             yron__linia_nam()                               //урон по нам
                         }
                     }
@@ -373,7 +385,7 @@ class yroven1 : AppCompatActivity() {
             yron__linia()                                  //урон соузного поля
 
             //activaich_ehectov()
-
+            nabor_zentr = koloda.koloda_fo_lvl_zentr(basa_fkagov.yroven_now)
             basa_cart.set_krt1(basa_cart.nyhen_dalnici(nabor_kart_dalnici))
             basa_cart.set_krt2(basa_cart.nyhen_zenter(nabor_zentr))
             basa_cart.set_krt3(basa_cart.nyhen_blihnic(nabor_kart_blihnic))

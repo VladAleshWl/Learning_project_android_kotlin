@@ -13,6 +13,9 @@ class procmotr_karti : AppCompatActivity() {
     val data_k = Data_and_flagi()
     val basa_fkagov = Data_and_flagi
     val cr_kol = create_koloda()
+    val crate_k = create_koloda
+    var karta: data_karta = data_k.get_karta()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_procmotr_karti)
@@ -25,7 +28,7 @@ class procmotr_karti : AppCompatActivity() {
         val back: ImageView = findViewById(R.id.image_back_pr)
         val button_bos: ImageView = findViewById(R.id.imageView_bos)
 
-        var karta: data_karta = data_k.get_karta()
+
 
         back.setOnClickListener{ finish() }
 
@@ -46,6 +49,11 @@ class procmotr_karti : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+
+        if (basa_fkagov.flad_for_bosv) {
+            crate_k.krt2 = karta
+            basa_fkagov.flad_for_bosv = false
+        }
         basa_fkagov.countactivity -= 1
     }
 
