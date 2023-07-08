@@ -30,6 +30,7 @@ class create_koloda {
 
         val mouse_bos = karte_dalnic(R.drawable.mouse_bos, 3, 6, "001", "probitie", bos = "Yes")
         val fox_bos = data_karta(R.drawable.fox_bos, 4, 3, "002", "vampir_cili", bos = "Yes")
+        val cat_bos = karte_blihnic(R.drawable.cat_bos, 5, 1, "003", "paladin", bos = "Yes")
 
                                             //  ДИНОМИЧЕСКИЕ КОЛОДЫ КАРТЫ
 
@@ -58,14 +59,14 @@ class create_koloda {
     val nabor_kart_bos = listOf<data_karta>(fox_bos, fox_bos)
     val nabor_kart = listOf<data_karta>(fox, dog, cat, bird, mouse)
     val nabor_kart_vragi = listOf<data_karta>(voron, wolf, sneake)
-    val spisok_bor: Map<data_karta, data_karta> = mapOf(fox to fox_bos, mouse to mouse_bos)
-    val spisok_pat: Map<data_karta, data_karta> = mapOf(fox_bos to fox, mouse_bos to mouse)
+    val spisok_bor: Map<data_karta, data_karta> = mapOf(fox to fox_bos, mouse to mouse_bos, cat to cat_bos)
+    val spisok_pat: Map<data_karta, data_karta> = mapOf(fox_bos to fox, mouse_bos to mouse, cat_bos to cat)
     val spisok_tekcta: Map<String, Int> = mapOf( fox.ip_karti to R.drawable.fox_opisanie,
     dog.ip_karti to R.drawable.dog_opisanie, bird.ip_karti to R.drawable.bird_opisanie,
     mouse.ip_karti to R.drawable.mouse_opisanie, voron.ip_karti to R.drawable.voron_opisanie,
     sneake.ip_karti to R.drawable.sneake_opisanie, cat.ip_karti to R.drawable.cat_opisanie,
-    wolf.ip_karti to R.drawable.wolf_opisanie, fox_bos.ip_karti to R.drawable.cat_opisanie,
-        mouse_bos.ip_karti to R.drawable.cat_opisanie)
+    wolf.ip_karti to R.drawable.wolf_opisanie, fox_bos.ip_karti to R.drawable.fox_opisanie,
+        mouse_bos.ip_karti to R.drawable.mouse_opisanie, cat_bos.ip_karti to R.drawable.cat_opisanie)
 
 
 
